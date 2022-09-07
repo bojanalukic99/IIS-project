@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="proizvodnjaEER" id="658762BF-A8E1-357C-E6D9-18E2B4D54773" version="3.5">
+<createdBy>Markoviccc</createdBy>
+<createdTime>2022-05-15 13:20:26 UTC</createdTime>
+<ownerDesignName>proizvodnjaEER</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>658762BF-A8E1-357C-E6D9-18E2B4D54773</designId>
+</OSDM_Design>
