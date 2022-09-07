@@ -23,7 +23,7 @@ namespace ISS_BACK.Repository
 
         public OpticianAppointment GetByStartTime(DateTime startTime)
         {
-            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Date == startTime).SingleOrDefault();
+            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Date.Year == startTime.Year && x.Date.Day == startTime.Day && x.Date.Hour == startTime.Hour && x.Date.Minute == startTime.Minute).SingleOrDefault();
         }
 
 

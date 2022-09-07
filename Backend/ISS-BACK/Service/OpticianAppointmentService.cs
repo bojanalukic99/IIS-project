@@ -49,15 +49,17 @@ namespace ISS_BACK.Service
 
                     if (appointment != null)
                     {
+                        currentTime = currentTime.AddMinutes(product.MakingTime);
                         continue;
                     }
-
-                    currentTime = currentTime.AddMinutes(product.MakingTime);
 
                     OpticianAppointment newAppointment = new OpticianAppointment();
                     newAppointment.Date = currentTime;
 
                     appointments.Add(newAppointment);
+
+                    currentTime = currentTime.AddMinutes(product.MakingTime);
+
                 }
 
                 return appointments;

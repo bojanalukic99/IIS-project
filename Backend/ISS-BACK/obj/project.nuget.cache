@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mxCeYskVZRThCVmY+iCw/7I2TFXx0Mp0KVzLbrDD48Lrf3ShWGcMT7bVI9qe1O6QRL86+U132a0/c7am/bjn9Q==",
+  "dgSpecHash": "LOBYpsGt/pqktQGmBUoAdjT0omOuJ8sSA34ovQq4gTs6jB5+0jNs6PQnDW+USoS4t8isuVwSbUI80bmrBjpAvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lukic\\OneDrive\\Radna površina\\iis-back\\ISS-BACK\\ISS-BACK\\ISS-BACK.csproj",
+  "projectFilePath": "C:\\Users\\lukic\\OneDrive\\Radna površina\\IIS-project\\Backend\\ISS-BACK\\ISS-BACK.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lukic\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\lukic\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
