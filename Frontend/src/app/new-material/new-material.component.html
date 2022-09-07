@@ -1,0 +1,28 @@
+<div class="navbar">
+    <mat-toolbar color="primary" class="navbar">
+        <div> 
+            <span (click)="navigate('home')">Home </span>
+            <span (click)="navigate('edit')">Edit profile </span>
+            <span (click)="navigate('appointments')">Appointments</span>
+            <span (click)="navigate('material')">Material</span>
+            <span (click)="navigate('equipment')">Equipment</span>
+            <span (click)="navigate('workHour')">Work hour</span>
+       </div>
+    </mat-toolbar>
+</div>
+<div> 
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <h2>New material</h2>
+                <mat-form-field>
+                    <input matInput placeholder="Name" formControlName="name" required>
+                </mat-form-field> 
+                <mat-form-field>
+                    <input matInput placeholder="Quatity" formControlName="quatity" required>
+                </mat-form-field>                
+                <button mat-raised-button class="button">Add</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

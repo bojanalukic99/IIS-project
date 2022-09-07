@@ -1,0 +1,24 @@
+<div class="navbar">
+    <mat-toolbar color="primary" class="navbar">
+        <div> 
+            <span (click)="navigate('home')">Home </span>
+            <span (click)="navigate('edit')">Edit profile </span>
+            <span (click)="navigate('material')">Material</span>
+            <span (click)="navigate('equipment')">Equipment</span>
+            <span (click)="navigate('workHour')">Work hour</span>
+       </div>
+    </mat-toolbar> 
+</div>
+<div>
+  <mat-card>
+    <div class="appointment" >
+        <p>Date: {{appointment.date}}</p>
+        <p>Optician: {{appointment.optician.firstName}}</p>
+        <p>Product: {{appointment.product.name}}</p>
+        
+    </div>
+    <div class="appointment">
+        <button class="button" (click)="addMaterial(appointment.id)">Add material</button>
+    </div>
+    </mat-card>
+</div>

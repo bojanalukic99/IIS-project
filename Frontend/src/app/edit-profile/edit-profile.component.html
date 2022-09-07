@@ -1,0 +1,34 @@
+<div class="navbar">
+    <mat-toolbar color="primary" class="navbar">
+        <div> 
+            <span (click)="navigate('home')">Home </span>
+            <span (click)="navigate('edit')">Edit profile </span>
+          
+       </div>
+    </mat-toolbar>
+</div>
+<div> 
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <h2>Edit profile</h2>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email" required>
+                </mat-form-field> 
+                <mat-form-field>
+                    <input matInput placeholder="First name" formControlName="firstName" required>
+                </mat-form-field>  
+                <mat-form-field>
+                    <input matInput placeholder="Last name" formControlName="lastName" required>
+                </mat-form-field> 
+                <mat-form-field>
+                    <input matInput placeholder="Phone" formControlName="phone" required>
+                </mat-form-field> 
+                <mat-form-field>
+                    <input matInput placeholder="Birth date" formControlName="birthDate" required>
+                </mat-form-field> 
+                <button mat-raised-button class="button">Edit</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
