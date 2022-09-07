@@ -29,7 +29,6 @@ export class EquipmentViewComponent implements OnInit {
   }
 
   
-
   navigate(data : any){
     if(data === 'home'){
       this.router.navigate(['/optician-home-page']);
@@ -48,10 +47,13 @@ export class EquipmentViewComponent implements OnInit {
     else if(data === 'workHour'){
       this.router.navigate(['/view-work-hour']);
     }
-  }
-
-
-  new(){
+    else if(data=='pdf'){
+      this.router.navigate(['/create-pdf']);
+    }
+    else if(data == 'logout'){
+      this.router.navigate(['/home-page']);
+    }
+  }  new(){
     this.router.navigate(['/new-equipment']);
   }
 

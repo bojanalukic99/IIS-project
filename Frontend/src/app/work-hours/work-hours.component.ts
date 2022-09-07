@@ -50,9 +50,13 @@ export class WorkHoursComponent implements OnInit {
     else if(data === 'workHour'){
       this.router.navigate(['/view-work-hour']);
     }
+    else if(data=='pdf'){
+      this.router.navigate(['/create-pdf']);
+    }
+    else if(data == 'logout'){
+      this.router.navigate(['/home-page']);
+    }
   }
-
-
   new(){
     this.router.navigate(['/add-work-hours']);
   }

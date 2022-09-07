@@ -12,6 +12,7 @@ export class AddOpticianAppointmentComponent implements OnInit {
 
   selectedProduct: any;
 
+
   selectedOptician: any;
 
   products: any;
@@ -53,7 +54,7 @@ export class AddOpticianAppointmentComponent implements OnInit {
     let date = this.datepipe.transform(this.form.get('date')?.value, 'dd.MM.yyyy')
 
     this.api.findFreeAppointments({
-      date: this.form.get('date')?.value,  
+      date: date,  
       productId: parseInt(this.selectedProduct)
     }).subscribe((response: any) => {
       this.appointments = response;
@@ -74,7 +75,7 @@ export class AddOpticianAppointmentComponent implements OnInit {
 
   schedule(date: any){
     this.api.createOpticianAppointment({
-      date: new Date(date),
+      date: date,
       productId: parseInt(this.selectedProduct)
     }).subscribe((response: any)=> {
       this.router.navigate(['/nurse-home-page']);

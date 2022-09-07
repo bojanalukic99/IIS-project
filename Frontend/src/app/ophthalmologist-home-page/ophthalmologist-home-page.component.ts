@@ -50,7 +50,9 @@ export class OphthalmologistHomePageComponent implements OnInit {
     }
     else if(data=='pdf'){
       this.router.navigate(['/create-pdf']);
-
+    }
+    else if(data == 'logout'){
+      this.router.navigate(['/home-page']);
     }
   }
 

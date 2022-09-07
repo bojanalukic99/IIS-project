@@ -44,6 +44,9 @@ export class ProductViewComponent implements OnInit {
     else if(data=='priceList'){
       this.router.navigate(['/priceList']);
     }
+    else if(data=='logout'){
+      this.router.navigate(['/home-page']);
+    }
   }
 
 
