@@ -28,7 +28,5 @@ namespace ISS_BACK.Model
         {
             return ApplicationContext.Equipments.Where(x => x.Id == id).SingleOrDefault();
         }
-
-
     }
 }

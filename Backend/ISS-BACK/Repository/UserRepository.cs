@@ -16,7 +16,7 @@ namespace ISS_BACK.Repository
 
         public IEnumerable<User> GetAllOpticians()
         {
-            return ApplicationContext.Users.Where(x => x.UserType == UserType.Ophtamologist);
+            return ApplicationContext.Users.Where(x => x.UserType == UserType.Optician);
         }
 
         public User GetById(int id)

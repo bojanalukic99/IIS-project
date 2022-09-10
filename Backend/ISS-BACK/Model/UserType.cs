@@ -7,8 +7,9 @@ namespace ISS_BACK.Model
 {
     public enum UserType
     {
-        Admin = 1,
-        Ophtamologist = 2,
-        Nurse= 3
+        Manager = 1,
+        Optician = 2,
+        Seller= 3,
+        Patient = 4
     }
 }

@@ -24,13 +24,20 @@ namespace ISS_BACK.Service
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
                 List<OpticianAppointment> appointments = new List<OpticianAppointment>();
-                DateTime today = inputDate;
-
+                DateTime today = new DateTime();
+                if (inputDate != null)
+                {
+                    today = inputDate;
+                }
                 WorkingHour working = workingHourService.GetByDate(today);
 
-                
+                if (working == null)
+                {
+                    return this.GetFirstFree(productId);
+                }
+
                 int start = Int32.Parse(working.StartTime);
-                int end = Int32.Parse(working.EndTime)-1;
+                int end = Int32.Parse(working.EndTime) - 1;
 
                 DateTime startTime = new DateTime(today.Year, today.Month, today.Day, start, 0, 0);
                 DateTime endTime = new DateTime(today.Year, today.Month, today.Day, end, 0, 0);
@@ -39,9 +46,6 @@ namespace ISS_BACK.Service
 
                 Product product = new Product();
                 product = unitOfWord.Products.Get(productId);
-
-
-               
 
                 while (currentTime <= endTime)
                 {
@@ -62,6 +66,11 @@ namespace ISS_BACK.Service
 
                 }
 
+                if (appointments.Count == 0)
+                {
+                    return this.GetFirstFree(productId);
+                }
+
                 return appointments;
             }
             catch (Exception e)
@@ -69,6 +78,63 @@ namespace ISS_BACK.Service
                 _logger.LogError($"Error is AppointmentService in GetAll {e.Message} {e.StackTrace}");
                 return new List<OpticianAppointment>();
             }
+        }
+
+        public IEnumerable<OpticianAppointment> GetFirstFree(long productId) 
+        {
+            string term = "";
+            using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+
+            List<OpticianAppointment> appointments = new List<OpticianAppointment>();
+
+            IEnumerable<WorkingHour> working = workingHourService.GetAll();
+
+            foreach(WorkingHour workingHour in working) 
+            {
+                DateTime today = DateTime.Today;
+                DateTime work = workingHour.Date;
+
+                int start = Int32.Parse(workingHour.StartTime);
+                int end = Int32.Parse(workingHour.EndTime) - 1;
+
+                DateTime startTime = new DateTime(work.Year, work.Month, work.Day, start, 0, 0);
+                DateTime endTime = new DateTime(work.Year, work.Month, work.Day, end, 0, 0);
+                DateTime currentTime = new DateTime(work.Year, work.Month, work.Day, start, 0, 0);
+
+
+                Product product = new Product();
+                product = unitOfWord.Products.Get(productId);
+
+                while (currentTime <= endTime)
+                {
+                    OpticianAppointment appointment = unitOfWord.OpticianAppointments.GetByStartTime(currentTime);
+
+                    if (appointment != null)
+                    {
+                        currentTime = currentTime.AddMinutes(product.MakingTime);
+                        continue;
+                    }
+
+                    OpticianAppointment newAppointment = new OpticianAppointment();
+                    newAppointment.Date = currentTime;
+
+                    if (newAppointment.Date.Year >= today.Year && newAppointment.Date.Month >= today.Month && newAppointment.Date.Day >= today.Day)
+                    {
+
+                        appointments.Add(newAppointment);
+
+                    }
+
+                    currentTime = currentTime.AddMinutes(product.MakingTime);
+
+                }
+            }
+           
+            appointments.OrderBy(x => x.Date);
+
+
+            return appointments;
+
         }
 
         public IEnumerable<OpticianAppointment> GetAllByOptician(User id)

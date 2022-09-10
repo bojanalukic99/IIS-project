@@ -18,7 +18,7 @@ namespace ISS_BACK.Repository
                 return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted).ToList();
             }
 
-            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted).ToList();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.Patient.FirstName.Contains(term)) || (x.Patient.LastName.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
         }
 
         public OpticianAppointment GetByStartTime(DateTime startTime)
@@ -40,5 +40,17 @@ namespace ISS_BACK.Repository
         {
             return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Include(x => x.Product).Where(x => x.Date.Year == dateTime.Year && x.Date.Month == dateTime.Month).ToList();
         }
+
+        public IEnumerable<OpticianAppointment> GetTodayByOptician(User id)
+        {
+            DateTime today = new DateTime();
+            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Optician == id && x.Date.Year == today.Year && x.Date.Month == today.Month && x.Date.Day==today.Day).ToList();
+        }
+        public IEnumerable<OpticianAppointment> GetPreviousByOptician(User id)
+        {
+            DateTime today = new DateTime();
+            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Optician == id && x.Date <= today).ToList();
+        }
+      
     }
 }

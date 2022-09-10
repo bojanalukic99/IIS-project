@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ISS_BACK.Service
 {
-    public interface IWorkingHourService
+    public interface IWorkingHourService 
     {
         IEnumerable<WorkingHour> GetAllByOptician(int id);
+
+        IEnumerable<WorkingHour> GetAll();
 
         public Task<WorkingHour> AddWorkingHou(WorkingHour workingHour);
 

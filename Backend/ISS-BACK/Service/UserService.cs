@@ -35,7 +35,7 @@ namespace ISS_BACK.Service
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
                 entity.Password = BCrypt.Net.BCrypt.HashPassword(entity.Password);
                 entity.Enabled = true;
-                entity.UserType = UserType.Admin;
+                entity.UserType = UserType.Manager;
                 entity.RegistrationToken = RandomStringHelper.RandomString(20);
                 unitOfWork.Users.Add(entity);
                 _ = unitOfWork.Complete();
@@ -210,7 +210,7 @@ namespace ISS_BACK.Service
             try
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
-                userData.UserType = UserType.Admin;
+                userData.UserType = UserType.Manager;
                 userData.Password = BCrypt.Net.BCrypt.HashPassword(userData.Password);
                 userData.Enabled = true;
                 unitOfWord.Users.Add(userData);

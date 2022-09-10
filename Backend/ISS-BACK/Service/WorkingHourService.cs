@@ -54,6 +54,13 @@ namespace ISS_BACK.Service
             }
         }
 
+        public IEnumerable<WorkingHour> GetAll()
+        {
+            using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
+
+            return unitOfWork.WorkingHours.GetAll();
+        }
+
         public IEnumerable<WorkingHour> GetAllByOptician(int id)
         {
             try
