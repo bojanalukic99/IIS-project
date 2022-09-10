@@ -1,14 +1,26 @@
+<div class="main">
+    <div class="blur">
 <div class="navbar">  
     <mat-toolbar color="primary" class="navbar">
         <div> 
             <span (click)="navigate('home')">Home </span>
-            <span (click)="navigate('login')">Login </span>
-            <span (click)="navigate('registration')">Registration</span>
+            <span (click)="navigate('contact')">Contact </span>
        </div>
     </mat-toolbar>
-    <mat-card>
-        <mat-card-content>
-            <h1>WELLCOME!</h1>
-        </mat-card-content>
-    </mat-card>
+</div>
+<div class="content">
+    <div class="page">
+        <form>
+            <h2>LOGIN HERE</h2>
+            <input matInput type="email"  placeholder="Enter email here" formControlName="email" required>
+            <input matInput type="password" placeholder="Enter password here" formControlName="password" required> 
+            <button mat-raised-button  class="btn">LOGIN</button>
+
+            <p >Don't have an account</p><br>
+            <a href="/registration">Sing up here</a>
+        </form>
+    </div>
+
+</div>
+</div>
 </div>
