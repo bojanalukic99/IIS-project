@@ -57,8 +57,8 @@ export class ApiService {
     return this.http.get(this.url + '/api/user/allOpticians', this.generateHeader());
   }
 
-  getAllProducts(){
-    return this.http.get(this.url + '/api/product/all', this.generateHeader());
+  getAllProducts(data: any){
+    return this.http.get(this.url + '/api/product/all?term=' + data.term, this.generateHeader());
   }
 
   getAllWorkingHourByOptician(data: any){

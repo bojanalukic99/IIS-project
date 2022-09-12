@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 })
 export class ProductViewComponent implements OnInit {
 
+  form: any;
   user:any;
   products:any;
   displayedColumns: string[] = ['Name', 'Price', 'MakingTime', 'Action', 'Edit'];
@@ -18,11 +19,20 @@ export class ProductViewComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
+
+    this.form = this.formBuilder.group({
+      search: [''] 
+    });
   }
 
   ngOnInit(): void {
 
-    this.apiService.getAllProducts().subscribe((response : any) => {
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+
+    this.apiService.getAllProducts({
+      term:  search
+    }).subscribe((response : any) => {
       console.log('aa');
       console.log(response);
       this.products = response  
@@ -65,10 +75,23 @@ export class ProductViewComponent implements OnInit {
   }
 
   linkCLick(id: any){
-    this.router.navigate(['/add-required-equipment'], {queryParams: {id: id}});
+    this.router.navigate(['/new-optician-appointment'], {queryParams: {id: id}});
   }
 
   link2CLick(id: any){
     this.router.navigate(['/edit-product'], {queryParams: {id: id}});
+  }
+
+  onSubmit(){
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+
+  this.apiService.getAllProducts({
+    term:  search
+  }).subscribe((response : any) => {
+    console.log('aa');
+    console.log(response);
+    this.products = response  
+  });
   }
 }

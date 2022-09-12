@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 @Component({
   selector: 'app-add-optician-appointment',
@@ -22,6 +22,7 @@ export class AddOpticianAppointmentComponent implements OnInit {
   form: FormGroup;
 
   optician: any;
+  equipmentId: any;
 
   product: any;
   appointments: any;
@@ -30,26 +31,37 @@ export class AddOpticianAppointmentComponent implements OnInit {
 
   displayedColumns: string[] = ['Date', 'Action'];
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, public datepipe: DatePipe) {
+  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe) {
     this.form = this.formBuilder.group({
       
-      product:['', Validators.required],
+      product:['', Validators.email],
       date: [''],
      });
 
      this.optician = this.api.getUserFromLocalstorage();
-
+     this.activatedRoute.queryParams.subscribe(params => {
+      this.equipmentId = params['id'];
+    });
 
    }
 
   ngOnInit(): void {
 
-    this.api.getAllProducts().subscribe((response: any)=> {
-      this.products = response;
-    })
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+
+    this.api.getAllProducts({
+      term:  search
+    }).subscribe((response : any) => {
+      console.log('aa');
+      console.log(response);
+      this.products = response  
+    });
+  }
+
 
   
-  }
+  
 
   onSubmit() {
 
