@@ -15,9 +15,10 @@ namespace ISS_BACK.Controllers
     [Route("api/[controller]")]
     public class UserController : BaseController<User>
     {
+        private IUserService _userService;
         public UserController(ProjectConfiguration projectConfiguration, IUserService userService) : base(projectConfiguration, userService)
         {
-
+            this._userService = userService;
         }
 
         [Authorize]
@@ -27,26 +28,32 @@ namespace ISS_BACK.Controllers
             return Ok(GetCurrentUser());
         }
 
-        [Route("search")]
-        [HttpGet]
+        
+        [HttpGet("search")]
         public IActionResult Search(string id)
         {
             return Ok(_userService.Search(id));
         }
 
-        [Route("all")]
-        [HttpGet]
+        [HttpGet("all")]
         public IActionResult GetAll()
         {
             return Ok(_userService.GetAll());
         }
 
 
-        [Route("allOpticians")]
-        [HttpGet]
+        
+        [HttpGet("allOpticians")]
         public IActionResult GetAllOpticians()
         {
             return Ok(_userService.GetAllOpticians());
+        }
+
+        [Route("allPatients")]
+        [HttpGet]
+        public virtual IActionResult GetAllPatients()
+        {
+            return Ok(_userService.GetPatients());
         }
 
 

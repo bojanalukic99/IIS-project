@@ -17,5 +17,7 @@ namespace ISS_BACK.Repository
         User Search(string token);
 
         IEnumerable<User> GetAllOpticians();
+
+        IEnumerable<User> GetPatients();
     }
 }

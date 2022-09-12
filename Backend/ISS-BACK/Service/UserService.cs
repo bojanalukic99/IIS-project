@@ -368,5 +368,19 @@ namespace ISS_BACK.Service
                 return new List<User>();
             }
         }
+
+        public IEnumerable<User> GetPatients()
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.Users.GetPatients();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is UserService in CreateUserMethod {e.Message} {e.StackTrace}");
+                return new List<User>();
+            }
+        }
     }
 }

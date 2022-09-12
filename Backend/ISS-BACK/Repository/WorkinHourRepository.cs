@@ -1,4 +1,5 @@
 ﻿using ISS_BACK.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace ISS_BACK.Repository
         public IEnumerable<WorkingHour> GetAllByOptician(int id)
         {
             return ApplicationContext.WorkingHours.Where(x => !x.Deleted && x.Optician.Id == id).ToList();
+        }
+
+        public override IEnumerable<WorkingHour> GetAll()
+        {
+            return ApplicationContext.WorkingHours.Include(x => x.Optician).Where(x => !x.Deleted).ToList();
         }
 
         public WorkingHour GetByDate(DateTime dateTime) {

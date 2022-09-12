@@ -117,12 +117,11 @@ namespace ISS_BACK.Service
 
                     OpticianAppointment newAppointment = new OpticianAppointment();
                     newAppointment.Date = currentTime;
+                    newAppointment.Optician = workingHour.Optician;
 
-                    if (newAppointment.Date.Year >= today.Year && newAppointment.Date.Month >= today.Month && newAppointment.Date.Day >= today.Day)
+                    if (newAppointment.Date >= today)
                     {
-
-                        appointments.Add(newAppointment);
-
+                            appointments.Add(newAppointment); 
                     }
 
                     currentTime = currentTime.AddMinutes(product.MakingTime);

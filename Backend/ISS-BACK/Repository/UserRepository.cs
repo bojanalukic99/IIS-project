@@ -8,7 +8,7 @@ namespace ISS_BACK.Repository
 {
     public class UserRepository : BaseRepository<User> ,IUserRepository
     {
-        public UserRepository(Model.ApplicationContext context) : base(context)
+        public UserRepository(ApplicationContext context) : base(context)
         {
 
 
@@ -22,6 +22,11 @@ namespace ISS_BACK.Repository
         public User GetById(int id)
         {
             return ApplicationContext.Users.Where(x => x.Id == id).SingleOrDefault();
+        }
+
+        public IEnumerable<User> GetPatients()
+        {
+            return ApplicationContext.Users.Where(x => x.UserType == UserType.Patient).ToList();
         }
 
         public User GetUserWithEmail(string email)

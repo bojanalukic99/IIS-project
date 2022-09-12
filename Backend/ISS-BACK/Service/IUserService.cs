@@ -19,7 +19,7 @@ namespace ISS_BACK.Service
         bool PasswordReset(string token, string password);
         bool Activate(string token);
         IEnumerable<User> GetAll();
-
+        IEnumerable<User> GetPatients();
         IEnumerable<User> GetAllOpticians();
 
         IEnumerable<User> Search(string id);
