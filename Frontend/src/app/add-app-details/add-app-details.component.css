@@ -32,21 +32,35 @@
     background-image:  url(Images/background1.jpg);
     background-position: center;
     background-size: cover;
-    height: 109vh;
+    height: 120vh;
 }
 .blur {
     backdrop-filter: blur(2px);
     width: 100%;
   }
 .page{
-    width: 350px;
-    height: 280px;
-    background: linear-gradient(to top, rgba(249, 222, 176, 0.788)50%, rgba(249, 222, 176, 0.8)50%);
+    width:350px;
+    height: 780px;
+    background: linear-gradient(to top, rgba(249, 222, 176, 0.895)50%, rgba(249, 222, 176, 0.895)50%);
     position: absolute;
     top: 50px;
     right:400px;
     border-radius: 10px;
     margin: 3px;
+    padding: 8px;
+}
+
+.pageRight{
+    width: 950px;
+    height: 480px;
+    background: linear-gradient(to top, rgba(240, 228, 208, 0.993)50%, rgba(240, 228, 208, 0.993)50%);
+    position: absolute;
+    top: 50px;
+    right:400px;
+    border-radius: 10px;
+    margin: 3px;
+    margin-top: 130px;
+    margin-right: -320px;
     padding: 8px;
 }
 
@@ -187,8 +201,7 @@ span {
     background: #eee5c6;
     width: 150px;
     height: 50px;
-    font-size: 13px;
-    
+    font-size: 20px;
 }
 
 ::ng-deep th.mat-header-cell{
@@ -205,18 +218,64 @@ span {
     border-right: 2px solid rgb(196, 166, 135);
     border-left: 2px solid rgb(196, 166, 135);
     color: #000;
-    font-size: 25px;
+    font-size: 15px;
     letter-spacing: 1px;
-    margin-top: 15px;
+    margin-top: 5px;
     font-family: sans-serif;
 
 }
+
+.inp1{
+    width: 280px;
+    height: 45px;
+    background: transparent;
+    border-bottom: 3px solid rgb(196, 166, 135);
+    border-top: 3px solid rgb(196, 166, 135);
+    border-right: 2px solid rgb(196, 166, 135);
+    border-left: 2px solid rgb(196, 166, 135);
+    color: #000;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    margin-left: 400px;
+    font-family: sans-serif;
+
+}
+
+
+
+.right{
+    width: 80px;
+    height: 45px;
+    background: transparent;
+    border-bottom: 3px solid rgb(196, 166, 135);
+    border-top: 3px solid rgb(196, 166, 135);
+    border-right: 2px solid rgb(196, 166, 135);
+    border-left: 2px solid rgb(196, 166, 135);
+    color: #000;
+    margin-left: 10px;
+}
+
+.left{
+    width: 80px;
+    height: 45px;
+    background: transparent;
+    border-bottom: 3px solid rgb(196, 166, 135);
+    border-top: 3px solid rgb(196, 166, 135);
+    border-right: 2px solid rgb(196, 166, 135);
+    border-left: 2px solid rgb(196, 166, 135);
+    color: #000;
+}
+
 .mat-table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 25%;
-    margin-left: 450px;
-    margin-top: 370px;
+    width: 10%;
+    margin-top: 20px;
+  }
+
+  .highlightTableColor{
+    background-color: red
   }
 
   .mat-table a {
@@ -229,15 +288,13 @@ span {
 td {
     border: 2px solid rgb(196, 166, 135);
     border-collapse: collapse;
-    font-size: 15px;
-
+    font-size: 20px;
   }
   th {
     border: 2px solid rgb(196, 166, 135);
     border-collapse: collapse;
-    font-size: 15px;
     color: #000;
-
+font-size: 20px;
   }
 
   

@@ -10,7 +10,7 @@
 </div>
 <div class="content">
     <div class="page">
-        <form>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <h2>LOGIN HERE</h2>
             <input matInput type="email"  placeholder="Enter email here" formControlName="email" required>
             <input matInput type="password" placeholder="Enter password here" formControlName="password" required> 

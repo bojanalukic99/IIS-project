@@ -22,15 +22,15 @@ export class AddOpticianAppointmentComponent implements OnInit {
   form: FormGroup;
 
   optician: any;
-  equipmentId: any;
+  productId: any;
+  DropdownVar=1;
 
   product: any;
   appointments: any;
 
   date: any = this.datepipe.transform(new Date(), "mm/dd/yyyy")
 
-  displayedColumns: string[] = ['Date', 'Action'];
-
+  displayedColumns: string[] = ['Date', 'Time','Optician','Schedule'];
   constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe) {
     this.form = this.formBuilder.group({
       
@@ -40,8 +40,16 @@ export class AddOpticianAppointmentComponent implements OnInit {
 
      this.optician = this.api.getUserFromLocalstorage();
      this.activatedRoute.queryParams.subscribe(params => {
-      this.equipmentId = params['id'];
+      this.productId = params['id'];
     });
+
+    this.api.getProductById({ id: this.productId }).subscribe((response: any) => {
+
+      this.form = this.formBuilder.group({
+      product: [response.name, Validators.email]
+    });
+
+  });  
 
    }
 
@@ -73,9 +81,12 @@ export class AddOpticianAppointmentComponent implements OnInit {
 
     this.api.findFreeAppointments({
       date: date,  
-      productId: parseInt(this.selectedProduct)
+      productId: this.productId
     }).subscribe((response: any) => {
       this.appointments = response;
+      console.log(this.appointments)
+      console.log(this.productId)
+      this.DropdownVar = 2;
     })
   }
 
@@ -91,12 +102,9 @@ export class AddOpticianAppointmentComponent implements OnInit {
     }
   }
 
-  schedule(date: any){
-    this.api.createOpticianAppointment({
-      date: date,
-      productId: parseInt(this.selectedProduct)
-    }).subscribe((response: any)=> {
-      this.router.navigate(['/nurse-home-page']);
-    })
+  Schedule(data: any){
+    console.log('ovde')
+    console.log(data.id )
+      this.router.navigate(['/app-details'], { queryParams: { appointmentDate: data.date, optician: data.optician.firstName, productId: this.productId} });
   }
 }

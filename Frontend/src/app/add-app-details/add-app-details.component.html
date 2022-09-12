@@ -1,0 +1,95 @@
+<div class="main">
+    <div class="blur">
+  <div class="navbar">  
+    <mat-toolbar color="primary" class="navbar">
+      <div> 
+        <span (click)="navigate('home')">Home </span>
+        <span (click)="navigate('edit')">Edit profile </span>
+        <span (click)="navigate('logout')">Log out</span>
+   </div>
+    </mat-toolbar>
+  </div>
+  <div class="content">
+    <div class="page">
+       <div class="container">
+        <h2>ORDER PRODUCT</h2>
+        <p>Product:</p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input class="inp" matInput placeholder="Product" formControlName="product" required >
+      
+        <p>Date:</p>
+        <input class="inp" matInput placeholder="Date" formControlName="date" required >
+        <p>Optician:</p>
+        <input class="inp" matInput placeholder="Optician" formControlName="optician" required >
+        <br>
+        <br>
+        <button class="button" (click)="patient()">PATIENT INFORMATION</button>
+        <br>
+        <br>
+        <p>Left eye________Right eye</p>
+              <input class="left" matInput placeholder="DiopterLeft" formControlName="diopterLeft" required >
+              <input class="right" matInput placeholder="DiopterRight" formControlName="diopterRight" required >
+              <br>
+              <br>
+              <input class="left" matInput placeholder="AstigmatismLeft" formControlName="astigmatismLeft" required >
+              <input class="right" matInput placeholder="AstigmatismRigth" formControlName="astigmatismRight" required >
+              <br>
+              <br>
+              <input class="left" matInput placeholder="AddForReadingLeft" formControlName="addForReadingLeft" required >
+              <input class="right" matInput placeholder="AddForReadingRigth" formControlName="addForReadingRigth" required >
+              <br>
+              <br>
+              <input class="inp" matInput placeholder="DistanceBetweenPupils" formControlName="distanceBetweenPupils" required >
+              <input class="inp" matInput placeholder="TypeOfGlass" formControlName="typeOfGlass" required >
+
+               <br>
+               <br>
+               <button class="btn" mat-raised-button (click)="done()">DONE</button>
+              </form>
+  </div>
+  
+  </div>
+  <div class="pageRight" *ngIf="patientVar===1">
+    <h2>PATIENTS</h2>
+
+    <br>
+    <input class="inp1" matInput placeholder="Search" formControlName="search">
+    <button class="btn" mat-raised-button color="primary">Search</button>
+    
+    <mat-table mat-table [dataSource]="patients" class="mat-elevation-z8">
+     
+      <ng-container matColumnDef="FirstName">
+        <th mat-header-cell *matHeaderCellDef> First name  </th>
+        <td mat-cell *matCellDef="let patient" > {{patient.firstName}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef> Last name</th>
+        <td mat-cell *matCellDef="let patient"> {{patient.lastName}} </td>
+      </ng-container>
+ 
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let patient"> {{patient.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Phone">
+       <th mat-header-cell *matHeaderCellDef> Phone </th>
+       <td mat-cell *matCellDef="let patient">{{patient.phone}} </td>
+     </ng-container>
+     <ng-container matColumnDef="Choose">
+      <th mat-header-cell *matHeaderCellDef> Choose patient </th>
+      <td mat-cell *matCellDef="let patient"><button class="button" (click)="Choose(patient)">Choose patient</button> </td>
+    </ng-container>
+    <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let patient"><button class="button" (click)="Edit(patient.id)">Edit</button> </td>
+    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </mat-table>
+  </div>
+  </div>
+    </div>
+</div>
+
+  

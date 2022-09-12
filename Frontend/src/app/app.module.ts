@@ -46,6 +46,7 @@ import { AppointmentMaterialComponent } from './appointment-material/appointment
 import { AppointmentEquipmentComponent } from './appointment-equipment/appointment-equipment.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { CreatePdfComponent } from './create-pdf/create-pdf.component';
+import { AddAppDetailsComponent } from './add-app-details/add-app-details.component';
 
 
 @NgModule({
@@ -75,7 +76,9 @@ import { CreatePdfComponent } from './create-pdf/create-pdf.component';
     AppointmentMaterialComponent,
     AppointmentEquipmentComponent,
     PriceListComponent,
-    CreatePdfComponent
+    CreatePdfComponent,
+    AddAppDetailsComponent,
+    
   ],
   imports: [
     BrowserModule,

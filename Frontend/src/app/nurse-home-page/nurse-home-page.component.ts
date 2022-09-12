@@ -49,5 +49,13 @@ export class NurseHomePageComponent implements OnInit {
     this.router.navigate(['/new-optician-appointment']);
   }
 
+  order()
+  {
+    this.router.navigate(['/product-view']);
+  }
+  register()
+  {
+    this.router.navigate(['/registartion']);
+  }
  
 }
