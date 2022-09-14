@@ -18,6 +18,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table'
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -100,7 +104,10 @@ import { AddAppDetailsComponent } from './add-app-details/add-app-details.compon
     MatSlideToggleModule,
     MatToolbarModule,
     MatTableModule,
-
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatStepperModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

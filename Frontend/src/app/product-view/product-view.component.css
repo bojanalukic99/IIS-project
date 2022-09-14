@@ -15,10 +15,10 @@
 }
 .btn{
     width: 100px;
-    height: 40px;
-    background: #eba16f9d;
-    border: 2px solid #eaac82;
-    margin-left: 725px;
+    height:  40px;
+    background: #b0b8ca;
+    border: 2px solid #b0b8ca;
+    margin-left: 15px;
     color: #000;
     font-size: 18px;
     border-bottom-right-radius: 5px;
@@ -30,7 +30,7 @@
 }
 .main {
     width: 100%;
-    background-image:  url(Images/background1.jpg);
+    background-image:  url(Images/background1.jpg.jpg);
     background-position: center;
     background-size: cover;
     height: 109vh;
@@ -152,6 +152,16 @@ mat-card {
     font-style: italic;
     font-size: 20;
     text-align: center;
+    margin-bottom: 50px;
+}
+
+.inp{
+ height: 25px;
+ border-bottom: 2px solid #142e69;
+ border-top: none;
+ border-right: none;
+ border-left: none;
+
 }
 
 .navbar {
@@ -198,36 +208,120 @@ span {
   }
 
 .button {
-    background: #eee5c6;
+    background: #142e69;
     width: 90px;
     height: 30px;
     font-size: 10px;
+    color: white;
 }
 
 ::ng-deep th.mat-header-cell{
     width: 140px;
     min-width: 140px;
+   
 }
 
 .mat-table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 65%;
-    margin-left: 120px;
+    width: 30%;
+    margin-left: 20px;
     margin-top: 30px;
   }
 
   .mat-table a {
-    color: #d5c6ac;
+    color: #0b296c;
   }
   
   td, th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
+    border: 0px solid #142e69;
+    text-align: left;
+    padding: 10px;
     color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
   }
   
   tr:nth-child(even) {
-    background-color: hsla(38, 51%, 72%, 0.725);
+    background-color: #9fb7e941;
+  }
+
+
+  .example-container {
+    height: 1000px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: white;
+    background-color: #e1e4eb;
+  }
+  .example-sidenav-content {
+
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .example-sidenav {
+     user-select: none;     
+    background-color: #142e69;
+    color: white;
+  }
+
+  .full-width {
+    width: 100%;
+    color: white;
+  }
+  .example-toolbar{
+    color: #000;
+    background-color: white;
+  }
+
+.example-toolbar h2{
+    font-size: 30px;
+    color: #142e69;
+    width: 100%;
+    text-align:left;
+}
+
+  .menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+    color: white;
+  }
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+  .submenu {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 30px;
+    color: white;
+  }
+
+  .mat-list-icon{
+    color: white;
+  }
+
+
+
+  .spaceLeft{
+    margin-right: 750px;
+    margin-left: 10px;
+    height: 20px;
+    transform: scale(1.5);
+    color:  #142e69;;
+  }
+  .space{
+    margin-left: 13px;
+  }
+
+  .mat-list-item{
+    color: white;
+  }
+
+  .submenu.expanded {
+    transform: scaleY(1);
+    
   }

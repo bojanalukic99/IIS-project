@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatSidenav } from '@angular/material/sidenav';
 @Component({
   selector: 'app-add-app-details',
   templateUrl: './add-app-details.component.html',
@@ -12,6 +13,41 @@ import { ApiService } from '../api.service';
 
 export class AddAppDetailsComponent implements OnInit {
 
+  firstFormGroup = this.formBuilder.group({
+    name: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: ['', Validators.required],
+
+  });
+  secondFormGroup = this.formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  thridFormGroup = this.formBuilder.group({
+    diopterRight: ['', Validators.required],
+    astigmatismRight: ['', Validators.required],
+    additionForReadingRight: ['', Validators.required],
+  })
+  isLinear = false;
+
+
+  @ViewChild('sidenav') sidenav: MatSidenav | undefined;
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
+  }
   productId: any;
   appointmentDate : any;
   form: FormGroup;
@@ -36,6 +72,7 @@ export class AddAppDetailsComponent implements OnInit {
       addForReadingRigth: ['', Validators.required],
       distanceBetweenPupils: ['', Validators.required],
       typeOfGlass: ['', Validators.required],
+      patient: ['', Validators.required],
      });
 
      
@@ -81,7 +118,9 @@ export class AddAppDetailsComponent implements OnInit {
 
   left(){}
   right(){}
-  done(){}
+  done(){
+    
+  }
   patient(){
     this.patientVar=1;
   }
@@ -92,5 +131,5 @@ export class AddAppDetailsComponent implements OnInit {
   }
   Edit(data: any){}
 
-
+ 
 }

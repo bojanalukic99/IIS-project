@@ -16,14 +16,16 @@
 .btn{
     width: 50%;
     height: 40px;
-    background: #eba16f9d;
-    border: 2px solid #eaac82;
+    background: #ffffff;
+    border: 2px solid #000000;
     margin-top: 53px;
     margin-left: 25px;
     color: #000;
     font-size: 18px;
-    border-bottom-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .btn:focus{
@@ -31,7 +33,7 @@
 }
 .main {
     width: 100%;
-    background-image:  url(Images/background1.jpg);
+    background-image:  url(Images/aaa.jpg);
     background-position: center;
     background-size: cover;
     height: 109vh;
@@ -43,12 +45,12 @@
 .page{
     width: 450px;
     height: 380px;
-    background: linear-gradient(to top, rgba(249, 222, 176, 0.788)50%, rgba(249, 222, 176, 0.8)50%);
+    background: linear-gradient(to top, #F7E9D7 50%, #F7E9D7 50%);
     position: absolute;
-    top: 100px;
     right: 470px;
     border-radius: 10px;
     margin: 6px;
+    margin-top: 100px;
     padding: 8px;
 }
 
@@ -73,7 +75,7 @@
     color: #000;
     font-size: 15px;
     letter-spacing: 1px;
-    margin-top: 30px;
+    margin-top: 100px;
     font-family: sans-serif;
 }
 
@@ -154,11 +156,7 @@ mat-card {
     text-align: center;
 }
 
-.navbar {
-    justify-content: space-between;
-    height: 50px;
-    font-size: 30px;
-}
+
 
 span {
     padding-right: 10rem;
@@ -182,7 +180,7 @@ mat-card {
 
 .navbar {
     justify-content: space-between;
-    background-color: #95694ca5;
+    background-color: #a4272779;
     color: #000;
     
 }
@@ -206,3 +204,62 @@ border-radius: 12px;
     width: 140px;
     min-width: 140px;
 }
+
+.example-container {
+    height: 1000px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+  .example-sidenav-content {
+
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .example-sidenav {
+     user-select: none;     
+    background-color: #142e69;
+    color: white;
+  }
+
+  .full-width {
+    width: 100%;
+    color: white;
+  }
+  .example-toolbar{
+    background-color: #b0b8ca;
+    color: white;
+  }
+  .menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+    color: white;
+  }
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+  .submenu {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 30px;
+    color: white;
+  }
+
+  .mat-list-icon{
+    color: white;
+  }
+
+  .mat-list-item{
+    color: white;
+  }
+
+  .submenu.expanded {
+    transform: scaleY(1);
+    
+  }
+  .space{
+    margin-left: 13px;
+  }

@@ -14,12 +14,14 @@
     font-family: Arial;
 }
 .btn{
-    width: 53%;
+    width: 30%;
     height: 40px;
-    background: #eba16fc4;
-    border: 2px solid #eaac82;
-    margin-top: 13px;
-    color: #000;
+    background: #f3f1f655;
+    border: 2px solid #f3f1f65f;
+    margin-top: 40px;
+    margin-left: 35px;
+    margin-bottom: 30px;;
+    color: white;
     font-size: 15px;
     border-bottom-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -30,25 +32,38 @@
 }
 .main {
     width: 100%;
-    background-image:  url(Images/background1.jpg);
+    background-image:  url(Images/background1.jpg.jpg);
     background-position: center;
     background-size: cover;
-    height: 109vh;
+    height: 120vh;
+    position: absolute
 }
 .blur {
     backdrop-filter: blur(2px);
     width: 100%;
   }
-.page{
-    width: 250px;
-    height: 380px;
-    background: linear-gradient(to top, rgba(249, 222, 176, 0.788)50%, rgba(249, 222, 176, 0.8)50%);
+
+.frame{
+    width: 1050px;
+    height: 600px;
     position: absolute;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 80px;
+}
+
+.page{
+    width: 550px;
+    height: 380px;
+background: transparent;
     top: 100px;
     right: 470px;
     border-radius: 10px;
-    margin: 6px;
+    margin-top: 200px;
+    margin-left: 450px;
     padding: 8px;
+    
+    color: white;
 }
 
 .page h2{
@@ -59,21 +74,26 @@
     border-radius: 10px;
     margin: 2px;
     padding: 8px;
+    
+    color: white;
 }
 
 .page input{
     width: 240px;
     height: 35px;
     background: transparent;
-    border-bottom: 1px solid rgb(218, 151, 84);
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    border-bottom: 2px solid #c7c7c7;
+    border-top: 2px solid #c7c7c7;
+    border-left: 2px solid #c7c7c7;
+    border-right: 2px solid #c7c7c7;
+
     color: #000;
     font-size: 15px;
     letter-spacing: 1px;
     margin-top: 30px;
     font-family: sans-serif;
+    
+    color: white;
 }
 
 .page input:focus{
@@ -112,21 +132,25 @@
 }
 
 .content h2{
-    color: #000;
+   
+    color: white;
 }
 
 .content a{
-    color: #000;
+  
+    color: white;
 }
 
 .content p{
-    color: black;
+    
+    color: white;
 }
 
 .content .cn a{
     text-decoration: none;
-    color: #000;
-    transition: .3s ease;
+
+    color: white;
+        transition: .3s ease;
 }
 
 .cn:hover{
