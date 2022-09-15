@@ -1,6 +1,11 @@
 <div class="main">
     <div class="blur">
-
+    <div class="navbar">
+        <span class="space">HOME</span>
+        
+        <span class="space">INFO</span>
+        <span class="space">CONTACT</span>
+    </div>
         <div class="content">
             <div class="page">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -10,8 +15,8 @@
                     <input matInput type="password" placeholder="Enter password here" formControlName="password" required> 
                     <br>
                     <button mat-raised-button  class="btn">LOGIN</button>
-                    <p >Don't have an account</p><br>
-                    <a href="/registration">Sing up here</a>
+                    <p class="left">Don't have an account</p><br>
+                    <a class="left" href="/registration">Sing up here</a>
                 </form>
             </div>
 

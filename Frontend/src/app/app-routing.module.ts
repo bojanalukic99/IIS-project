@@ -6,6 +6,7 @@ import { AddOpticianAppointmentComponent } from './add-optician-appointment/add-
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddRequiredEquipmentComponent } from './add-required-equipment/add-required-equipment.component';
 import { AddWorkHoursComponent } from './add-work-hours/add-work-hours.component';
+import { AppPreviewComponent } from './app-preview/app-preview.component';
 import { AppointmentEquipmentComponent } from './appointment-equipment/appointment-equipment.component';
 import { AppointmentMaterialComponent } from './appointment-material/appointment-material.component';
 import { CreatePdfComponent } from './create-pdf/create-pdf.component';
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path: 'priceList', component: PriceListComponent},
   {path: 'create-pdf', component: CreatePdfComponent},
   {path: 'app-details', component: AddAppDetailsComponent},
+  {path: 'app-preview', component: AppPreviewComponent},
 ];
 
 @NgModule({

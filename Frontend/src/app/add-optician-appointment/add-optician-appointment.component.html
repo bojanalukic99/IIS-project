@@ -18,7 +18,6 @@
           </mat-list-item>
           <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
             <a mat-list-item href="/product-view">Order product</a>
-            <a mat-list-item href="/registration">Register user</a>
             <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
               <span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
@@ -34,6 +33,16 @@
       </mat-sidenav>
     
       <div class="example-sidenav-content">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <button mat-raised-button class="button">FIND</button>      
+      </form>
+      <mat-form-field class="spaceLeft"  appearance="fill">
+        <mat-label>Search free appointment</mat-label>
+        <input   matInput [matDatepicker]="picker" required formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+       
+        <mat-datepicker  #picker></mat-datepicker>
+      </mat-form-field>
         <div class="container">
           <div  class="dropdown-content">
             <mat-table mat-table [dataSource]="appointments">
@@ -57,7 +66,7 @@
                </ng-container>
                <ng-container matColumnDef="Schedule">
                 <th mat-header-cell *matHeaderCellDef>Schedule</th>
-                <td mat-cell *matCellDef="let appointment"><button class="btn" (click)="Schedule(appointment)">Schedule</button> </td>
+                <td mat-cell *matCellDef="let appointment"><button class="btn" (click)="Schedule(appointment)">SCHEDULE</button> </td>
               </ng-container>
                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -66,8 +75,6 @@
            </div>
                             
            </div>                 
-       
-        
     </div>     
    
 

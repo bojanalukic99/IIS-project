@@ -14,7 +14,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
-//import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table'
@@ -22,6 +21,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDialogModule } from '@angular/material/dialog';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { SchedulerModule } from 'angular-calendar-scheduler';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +53,7 @@ import { AppointmentEquipmentComponent } from './appointment-equipment/appointme
 import { PriceListComponent } from './price-list/price-list.component';
 import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 import { AddAppDetailsComponent } from './add-app-details/add-app-details.component';
+import {AppPreviewComponent}from './app-preview/app-preview.component';
 
 
 @NgModule({
@@ -82,7 +85,7 @@ import { AddAppDetailsComponent } from './add-app-details/add-app-details.compon
     PriceListComponent,
     CreatePdfComponent,
     AddAppDetailsComponent,
-    
+    AppPreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,6 @@ import { AddAppDetailsComponent } from './add-app-details/add-app-details.compon
     HttpClientModule,
     CommonModule,
     MatFormFieldModule,
-    //NgbModalModule,
     MatSlideToggleModule,
     MatToolbarModule,
     MatTableModule,
@@ -108,8 +110,13 @@ import { AddAppDetailsComponent } from './add-app-details/add-app-details.compon
     MatListModule,
     MatIconModule,
     MatStepperModule,
+    MatDialogModule,
+    CalendarModule,
+    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
+    
   ],
   providers: [DatePipe],
+  entryComponents:[MatDialogModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

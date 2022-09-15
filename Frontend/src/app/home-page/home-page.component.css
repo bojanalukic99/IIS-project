@@ -19,7 +19,7 @@
     background: #f3f1f655;
     border: 2px solid #f3f1f65f;
     margin-top: 40px;
-    margin-left: 35px;
+    margin-left: 155px;
     margin-bottom: 30px;;
     color: white;
     font-size: 15px;
@@ -32,16 +32,14 @@
 }
 .main {
     width: 100%;
-    background-image:  url(Images/background1.jpg.jpg);
+    background-image:  url(Images/log1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 800px;
+    height: 753px;
     background-position: center;
-    background-size: cover;
-    height: 120vh;
     position: absolute
 }
-.blur {
-    backdrop-filter: blur(2px);
-    width: 100%;
-  }
+
 
 .frame{
     width: 1050px;
@@ -53,21 +51,22 @@
 }
 
 .page{
-    width: 550px;
-    height: 380px;
-background: transparent;
+    width: 450px;
+    height: 350px;
+background: linear-gradient(#385f96ad 50%, #385f96ad 50%);
     top: 100px;
     right: 470px;
     border-radius: 10px;
-    margin-top: 200px;
-    margin-left: 450px;
+    margin: 30px;
+    margin-top: 120px;
+    margin-left: 50px;
     padding: 8px;
     
     color: white;
 }
 
 .page h2{
-    width: 220px;
+    width: 420px;
     font-family: sams-serif;
     text-align: center;
     font-size: 22px;
@@ -79,20 +78,19 @@ background: transparent;
 }
 
 .page input{
-    width: 240px;
+    width: 340px;
     height: 35px;
     background: transparent;
     border-bottom: 2px solid #c7c7c7;
-    border-top: 2px solid #c7c7c7;
-    border-left: 2px solid #c7c7c7;
-    border-right: 2px solid #c7c7c7;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 
-    color: #000;
     font-size: 15px;
     letter-spacing: 1px;
     margin-top: 30px;
+    margin-left: 50px;
     font-family: sans-serif;
-    
     color: white;
 }
 
@@ -176,11 +174,6 @@ mat-card {
     text-align: center;
 }
 
-.navbar {
-    justify-content: space-between;
-    height: 50px;
-    font-size: 30px;
-}
 
 span {
     padding-right: 10rem;
@@ -204,10 +197,13 @@ mat-card {
 
 .navbar {
     justify-content: space-between;
-    background-color: #95694ca5;
-    color: #000;
-    
+    background-color: #385f96ad;
+    text-align: right;
+    color: white;
+    height: 40px;
+    font-size: 20px; 
 }
+
 
 span {
     padding-right: 1rem;
@@ -227,4 +223,8 @@ border-radius: 12px;
 ::ng-deep th.mat-header-cell{
     width: 140px;
     min-width: 140px;
+}
+
+.left{
+    margin-left: 50px;
 }

@@ -35,6 +35,7 @@ export class AddOpticianAppointmentComponent implements OnInit {
   products: any;
 
   opticians: any;
+  minDate = new Date();
 
   form: FormGroup;
 
@@ -139,9 +140,12 @@ export class AddOpticianAppointmentComponent implements OnInit {
   Schedule(data: any){
     console.log('ovde')
     console.log(data.id )
-      this.router.navigate(['/app-details'], { queryParams: { appointmentDate: data.date, optician: data.optician.firstName, productId: this.productId} });
+      this.router.navigate(['/app-details'], { queryParams: { appointmentDate: data.date, optician: data.optician.id, productId: this.productId} });
   }
+
+ 
 }
+
 
 /*
 

@@ -91,7 +91,7 @@ export class ProductViewComponent implements OnInit {
   }
 
   linkCLick(id: any){
-    this.router.navigate(['/new-optician-appointment'], {queryParams: {id: id}});
+    this.router.navigate(['/app-details'], {queryParams: {id: id}});
   }
 
   link2CLick(id: any){

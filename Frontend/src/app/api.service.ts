@@ -7,6 +7,7 @@ import { retry } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  
 
   constructor(private http: HttpClient) { }
   
@@ -94,7 +95,9 @@ export class ApiService {
     return this.http.get(this.url + '/api/opticianAppointment/getFreeApointments/' + data.date + '/' +  data.productId, this.generateHeader())
   }
 
-
+  predictTime(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/predictTime/', data)
+  }
   getAllAppointmentsByDate(data: any){
     return this.http.get(this.url + '/api/opticianAppointment/allByDate/' + data.date, this.generateHeader())
   }

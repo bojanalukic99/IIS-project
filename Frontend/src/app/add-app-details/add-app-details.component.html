@@ -16,8 +16,11 @@
             <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
           </mat-list-item>
           <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-            <a mat-list-item href="/product-view">Order product</a>
-            <a mat-list-item href="/registration">Register user</a>
+            
+            <a mat-list-item href="/nurse-home-page">Home page</a>
+            <a mat-list-item href="/edit-profile">Edit profile</a>
+            <a mat-list-item href="/product-view">Products</a>
+
             <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
               <span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
@@ -26,6 +29,8 @@
               <mat-list-item>SubSubmenu Item 1</mat-list-item>
               <mat-list-item>SubSubmenu Item 2</mat-list-item>
             </div>
+            <a mat-list-item href="/home-page">Logout</a>
+
           </div>
         </mat-nav-list>
         <mat-nav-list>
@@ -37,31 +42,66 @@
           
          
           <mat-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="dateForm" label="CHOOSE DATE">
+              <form [formGroup]="dateForm">
+                <div class="container">
+                  <div  class="dropdown-content">
+                    <mat-table mat-table [dataSource]="appointments">
+
+                       <ng-container matColumnDef="Date">
+                         <th mat-header-cell *matHeaderCellDef> Appointment Date  </th>
+                         <td mat-cell *matCellDef="let appointment"> {{appointment.date |  date:"yyyy"}}-{{appointment.date |  date:"MM"}}-{{appointment.date |  date:"dd"}} </td>
+                       </ng-container>
+                     
+                       <ng-container matColumnDef="Time">
+                         <th mat-header-cell *matHeaderCellDef> Appointment Time </th>
+                         <td mat-cell *matCellDef="let appointment"> {{appointment.date |  date:"HH:mm"}} </td>
+                       </ng-container>
+                  
+                       <ng-container matColumnDef="Optician">
+                         <th mat-header-cell *matHeaderCellDef> Optician </th>
+                         <td mat-cell *matCellDef="let appointment"> {{appointment.optician.firstName}} </td>
+                       </ng-container>
+                       <ng-container matColumnDef="Schedule">
+                        <th mat-header-cell *matHeaderCellDef>Schedule</th>
+                        <td mat-cell *matCellDef="let appointment"><button class="button" mat-button matStepperNext (click)="Schedule(appointment)">SCHEDULE</button> </td>
+                      </ng-container>
+                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </mat-table>
+                  
+                   </div>
+                                    
+                   </div>               
+               
+                <div>
+                  <button class="btn" mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>PATIENT INFORMATION</ng-template>
                 <mat-form-field appearance="fill">
                   <mat-label>Name</mat-label>
-                  <input matInput placeholder="name" formControlName="name" required>
+                  <input class="black" matInput placeholder="name" formControlName="name" required>
                   
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>LastName</mat-label>
-                  <input matInput placeholder="last name" formControlName="last name" required>
-                </mat-form-field>
+           
 
                 <mat-form-field appearance="fill">
                   <mat-label>Email</mat-label>
-                  <input matInput placeholder="email" formControlName="email" required>
+                  <input class="black" matInput placeholder="email" formControlName="email" required>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                   <mat-label>Phone</mat-label>
-                  <input matInput placeholder="phone" formControlName="phone" required>
+                  <input class="black" matInput placeholder="phone" formControlName="phone" required>
                 </mat-form-field>
                  
                 <div>
-                  <button class="btn" mat-button matStepperNext>Next</button>
+                  <button class="btn" mat-button matStepperPrevious>Back</button>
+                  <button class="btn" (click)="right()" mat-button matStepperNext>Next</button>
                 </div>
               </form>
             </mat-step>
@@ -69,15 +109,15 @@
               <form [formGroup]="secondFormGroup">
                 <mat-form-field appearance="fill">
                   <mat-label>Diopter</mat-label>
-                  <input matInput formControlName="diopterLeft" placeholder="Diopter" required>
+                  <input class="black" matInput formControlName="diopterLeft" placeholder="Diopter" required>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Astigmatism</mat-label>
-                  <input matInput formControlName="astigmatismLeft" placeholder="Astigmatism"required>
+                  <input class="black" matInput formControlName="astigmatismLeft" placeholder="Astigmatism"required>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Addition for reading</mat-label>
-                  <input matInput formControlName="additionForReadingLeft" placeholder="Addition for reading"required>
+                  <input class="black" matInput formControlName="additionForReadingLeft" placeholder="Addition for reading"required>
                 </mat-form-field>
                
                 <div>
@@ -90,15 +130,15 @@
               <form [formGroup]="thridFormGroup">
                 <mat-form-field appearance="fill">
                   <mat-label>Diopter</mat-label>
-                  <input matInput formControlName="diopterRight" placeholder="Diopter"required>
+                  <input class="black" matInput formControlName="diopterRight" placeholder="Diopter"required>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Astigmatism</mat-label>
-                  <input matInput formControlName="astigmatismRight" placeholder="Astigmatism"required>
+                  <input class="black" matInput formControlName="astigmatismRight" placeholder="Astigmatism"required>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Addition for reading</mat-label>
-                  <input matInput formControlName="additionForReadingRight" placeholder="Addition for reading" required>
+                  <input class="black" matInput formControlName="additionForReadingRight" placeholder="Addition for reading" required>
                 </mat-form-field>
                
                 <div>
@@ -107,17 +147,46 @@
                 </div>
               </form>
             </mat-step>
+            <mat-step [stepControl]="fourthFormGroup" label="OTHERS INFORMATION">
+              <form [formGroup]="fourthFormGroup">
+                <mat-form-field appearance="fill">
+                  <mat-label>Distance between pupils</mat-label>
+                  <input class="black" matInput formControlName="distanceBetweenPupils" placeholder="Distance between pupils"required>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Type of glass</mat-label>
+                  <input class="black" matInput formControlName="typeOfGlass" placeholder="typeOfGlass"required>
+                </mat-form-field>
+               
+                <div>
+               
+                  <button class="btn" mat-button matStepperPrevious>Back</button>
+                  <button class="btn" (click)="right()" mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
             <mat-step>
-              <ng-template  matStepLabel>Done</ng-template>
+              <ng-template  matStepLabel>DONE</ng-template>
               <p class="doneP">Please press DONE to confirm the entered information</p>>
-              <div>
-                <button class="btn" mat-button matStepperPrevious>Back</button>
-                <button class="done" mat-button (click)="done()">DONE</button>
-              </div>
+         <div>
+          <p class="black">PRODUCT: {{productName}}</p>
+          <p class="black">DATE :{{appointmentDate |  date:"yyyy"}}-{{appointmentDate |  date:"MM"}}-{{appointmentDate |  date:"dd"}} </p>
+          <p class="black">TIME : {{appointmentDate |  date:"HH:mm"}}</p>
+          <p class="black">OPTICIAN : {{opticianName}} {{opticianLastName}}</p>
+          <p class="black">PATIENT NAME: {{patientName}}</p>
+          <p class="black">PATIENT EMAIL: {{patientEmail}} </p>
+          <P class="black">PATIENT PHONE NUMBER: {{patientPhone}}</P>
+         </div>
+     
+         
+        
+         <div>
+          <button class="btn" mat-button matStepperPrevious>Back</button>
+          <button class="done" mat-button (click)="done()">DONE</button>
+        </div>
             </mat-step>
           </mat-stepper>
     </div>
-    
     </div>
     <div class="pageRight" *ngIf="patientVar===1">
       <h2 class="labele">PATIENTS</h2>

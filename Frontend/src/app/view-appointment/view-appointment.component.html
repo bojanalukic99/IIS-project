@@ -1,24 +1,48 @@
-<div class="navbar">
-    <mat-toolbar color="primary" class="navbar">
-        <div> 
-            <span (click)="navigate('home')">Home </span>
-            <span (click)="navigate('edit')">Edit profile </span>
-            <span (click)="navigate('material')">Material</span>
-            <span (click)="navigate('equipment')">Equipment</span>
-            <span (click)="navigate('workHour')">Work hour</span>
-       </div>
-    </mat-toolbar> 
-</div>
-<div>
-  <mat-card>
-    <div class="appointment" >
-        <p>Date: {{appointment.date}}</p>
-        <p>Optician: {{appointment.optician.firstName}}</p>
-        <p>Product: {{appointment.product.name}}</p>
-        
-    </div>
-    <div class="appointment">
-        <button class="button" (click)="addMaterial(appointment.id)">Add material</button>
-    </div>
-    </mat-card>
-</div>
+<div class="main">
+    <div class="blur">
+     
+      <mat-sidenav-container class="example-container" autosize>
+        <mat-toolbar  class="example-toolbar">
+          <h2>YOUR CALENDAR</h2>         
+        </mat-toolbar>
+        <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+         
+          <mat-nav-list>
+            <button class="space" mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+  
+            <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+              <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+              <mat-icon mat-list-icon>home</mat-icon>
+              <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+            </mat-list-item>
+            <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+              <a mat-list-item href="/optician-home-page">Home page</a>
+              <a mat-list-item href="/edit-profile">Edit profile</a>
+               <a mat-list-item href="/view-appointment">Calendar</a>
+               <a mat-list-item href="/view-appointment">Work hours</a>
+              <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+              </mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                <mat-list-item>Previous</mat-list-item>
+                <mat-list-item>Future</mat-list-item>
+              </div>
+              <a mat-list-item href="/home-page">Logout</a>
+  
+            </div>
+          </mat-nav-list>
+          <mat-nav-list>
+      </mat-nav-list>
+        </mat-sidenav>
+      
+        <div class="example-sidenav-content">
+   
+    
+        </div>
+      
+      </mat-sidenav-container>
+     
+  </div>
+  </div>
+  
