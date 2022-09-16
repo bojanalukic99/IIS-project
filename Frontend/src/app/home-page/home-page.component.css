@@ -32,10 +32,10 @@
 }
 .main {
     width: 100%;
-    background-image:  url(Images/log1.jpg);
+    background-image:  url(Images/triangel1.jpg);
     background-repeat: no-repeat;
     background-size: 100% 800px;
-    height: 753px;
+    height: 620px;
     background-position: center;
     position: absolute
 }
@@ -50,16 +50,46 @@
     margin: 80px;
 }
 
+.contact{
+    color: #043478d5;
+    margin-top: 630px;
+    margin-left: 700px;
+}
+
+.contact h2{
+    color: #043478d5;
+}
+.contact p{
+    color: #043478d5;
+    font-size: 20px;
+    margin-left: -40px;
+}
+
+.info{
+    color: #043478d5;
+    margin-top: 50px;
+    margin-left: 730px;
+}
+
+.info h2{
+    color: #043478d5;
+}
+.info p{
+    color: #043478d5;
+    font-size: 20px;
+    margin-left: -100px;
+}
+
 .page{
     width: 450px;
     height: 350px;
-background: linear-gradient(#385f96ad 50%, #385f96ad 50%);
+background: linear-gradient(#043478d5 50%, #043478d5 50%);
     top: 100px;
     right: 470px;
     border-radius: 10px;
     margin: 30px;
     margin-top: 120px;
-    margin-left: 50px;
+    margin-left: 800px;
     padding: 8px;
     
     color: white;
@@ -197,11 +227,12 @@ mat-card {
 
 .navbar {
     justify-content: space-between;
-    background-color: #385f96ad;
+    background-color: #12448af4;
     text-align: right;
     color: white;
     height: 40px;
     font-size: 20px; 
+
 }
 
 

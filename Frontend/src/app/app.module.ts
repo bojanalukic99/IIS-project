@@ -23,7 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDialogModule } from '@angular/material/dialog';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { SchedulerModule } from 'angular-calendar-scheduler';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -54,6 +54,8 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 import { AddAppDetailsComponent } from './add-app-details/add-app-details.component';
 import {AppPreviewComponent}from './app-preview/app-preview.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 @NgModule({
@@ -111,9 +113,13 @@ import {AppPreviewComponent}from './app-preview/app-preview.component';
     MatIconModule,
     MatStepperModule,
     MatDialogModule,
+    NgbModalModule,
     CalendarModule,
-    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
-    
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    FlatpickrModule.forRoot(),
   ],
   providers: [DatePipe],
   entryComponents:[MatDialogModule],

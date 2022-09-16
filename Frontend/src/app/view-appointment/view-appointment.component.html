@@ -18,7 +18,6 @@
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
               <a mat-list-item href="/optician-home-page">Home page</a>
               <a mat-list-item href="/edit-profile">Edit profile</a>
-               <a mat-list-item href="/view-appointment">Calendar</a>
                <a mat-list-item href="/view-appointment">Work hours</a>
               <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
                 <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
