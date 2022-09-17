@@ -126,6 +126,9 @@ export class ApiService {
   editMaterial(data: any){
     return this.http.put(this.url + '/api/material/edit/' + data.id, data, this.generateHeader());
   }
+  addComment(data: any){
+    return this.http.put(this.url + '/api/opticianAppointment/addComment/' + data.id + '/' + data.comment, data, this.generateHeader());
+  }
   changeQuantity(data: any){
     return this.http.put(this.url + '/api/material/changeQuantity/' + data.id + '/' + data.quatity, data, this.generateHeader());
   }

@@ -3,7 +3,7 @@
      
       <mat-sidenav-container class="example-container" autosize>
         <mat-toolbar  class="example-toolbar">
-          <h2>YOUR CALENDAR</h2>         
+          <h2>Appointment details</h2>         
         </mat-toolbar>
         <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
          
@@ -36,12 +36,38 @@
         </mat-sidenav>
       
         <div class="example-sidenav-content">
-   
-    
+          <div class="info">
+            <h3>Product: {{productName}}</h3>
+            <h3>Date: {{appDate |  date:"yyyy"}}-{{appDate |  date:"MM"}}-{{appDate|  date:"dd"}}</h3>
+            <h3>Time: {{appDate | date:"HH:mm"}}</h3>
+            <h3>Left eye</h3>
+             <p>Diopter: {{diopterLeft}}</p>
+             <p>Astigmatism: {{astigmatismLeft}}</p>
+             <p>Addition for reading: {{addReadingLeft}}</p>
+            <h3>Right eye</h3>
+            <p>Diopter: {{diopterRight}}</p>
+            <p>Astigmatism: {{astigmatismRight}}</p>
+            <p>Addition for reading: {{addReadingRight}}</p>
+            <h3>Type of glass: {{glass}}</h3>
+            <h3>Distance between pupils: {{distance}}</h3>
+
+        </div>
+          <form [formGroup]="form">
+            <mat-form-field appearance="fill">
+              <mat-label>Your comment</mat-label>
+              <input class="inp" matInput placeholder="comment" formControlName="comment" required>
+              
+            </mat-form-field>
+             
+            <div>
+              <button class="btn" (click)="done()" mat-raised-button >SAVE</button>
+              <button class="btn" (click)="done()" mat-raised-button >FINISH</button>
+            </div>
+          </form>
         </div>
       
       </mat-sidenav-container>
      
   </div>
-  </div>
+</div>
   

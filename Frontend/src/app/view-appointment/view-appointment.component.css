@@ -14,18 +14,18 @@
     font-family: Arial;
 }
 .btn{
-    width: 50%;
+    width: 100px;
     height: 40px;
-    background: #ffffff;
-    border: 2px solid #000000;
-    margin-top: 53px;
+    background: #142e69;
+    border: 2px solid white;
+    margin-top:13px;
     margin-left: 25px;
-    color: #000;
+    color: white;
     font-size: 18px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .btn:focus{
@@ -65,14 +65,14 @@
 }
 
 .page input{
-    width: 240px;
+    width: 40px;
     height: 35px;
     background: transparent;
     border-bottom: 1px solid rgb(218, 151, 84);
     border-top: none;
     border-right: none;
     border-left: none;
-    color: #000;
+    color: #142e69;
     font-size: 15px;
     letter-spacing: 1px;
     margin-top: 100px;
@@ -88,6 +88,11 @@
     margin: auto;
     color: #fff;
     position: relative;
+}
+
+.inp{
+    color: #142e69;
+    width: 100px;
 }
 
 .content .par{
@@ -173,10 +178,24 @@ span {
     padding-right: 10rem;
 }
 
+.info{
+    color: #142e69;
+}
 
+.info h3{
+    margin-top: 10px;
+}
+
+.info p {
+    font-size: 18px;
+    margin-left: 10px;
+}
 
 .mat-form-field {
     display: block;
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 mat-card {

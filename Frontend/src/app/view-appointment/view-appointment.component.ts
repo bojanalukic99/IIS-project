@@ -11,6 +11,7 @@ import {
 import { addPeriod, CalendarSchedulerEvent, CalendarSchedulerEventAction, CalendarSchedulerViewComponent, DAYS_IN_WEEK, endOfPeriod, SchedulerDateFormatter, SchedulerEventTimesChangedEvent, SchedulerViewDay, SchedulerViewHour, SchedulerViewHourSegment, startOfPeriod, subPeriod } from 'angular-calendar-scheduler';
 import { addMonths, endOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
+import { th } from 'date-fns/locale';
 
 
 @Component({
@@ -50,6 +51,18 @@ export class ViewAppointmentComponent implements OnInit {
   displayedColumns: string[] = ['Date','Product','View'];
   appointmentId : any;
 
+  productName: any;
+  appDate: any;
+  leftEye: any;
+  diopterLeft: any;
+  diopterRight: any;
+  astigmatismLeft: any;
+  astigmatismRight: any;
+  addReadingLeft: any;
+  addReadingRight: any;
+  glass: any;
+  distance: any;
+
 
   CalendarView = CalendarView;
 
@@ -68,6 +81,8 @@ export class ViewAppointmentComponent implements OnInit {
 
   minDate: Date = new Date();
   maxDate: Date = endOfDay(addMonths(new Date(), 1));
+
+  form: FormGroup;
   
   
 
@@ -100,6 +115,10 @@ export class ViewAppointmentComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder, private apiService: ApiService, private router: Router,  private activatedRoute: ActivatedRoute) { 
 
+    this.form = this.formBuilder.group({
+      comment: ['']
+    });
+
     this.activatedRoute.queryParams.subscribe(params => {
       this.appointmentId = params['id'];
     });
@@ -110,6 +129,20 @@ export class ViewAppointmentComponent implements OnInit {
     this.apiService.getAppointmentsById({id : this.appointmentId}).subscribe((response: any)=> {    
       
       this.appointment = response;
+      this.productName = response.product.name;
+      this.appDate = response.date;
+      this.diopterLeft= response.leftEye.diopter;
+      this.diopterRight=response.rightEye.diopter;
+      this.astigmatismLeft= response.leftEye.astigmatism;
+      this.astigmatismRight= response.rightEye.astigmatism;
+      this.addReadingLeft= response.leftEye.additionForReading;
+      this.addReadingRight= response.rightEye.additionForReading;
+      this.glass= response.typeOfGlass;
+      this.distance= response.distanceBetweenPupils;
+
+      this.form = this.formBuilder.group({
+        comment: [response.comment]
+      });
     })
   
 
@@ -150,7 +183,15 @@ export class ViewAppointmentComponent implements OnInit {
   addEquipment(){
     this.router.navigate(['/appointment-equipment']);
   } 
-  
+   
 
+  done(){
+    this.apiService.addComment({
+      id: this.appointmentId,
+      comment: this.form.get('comment')?.value,
+    }).subscribe((response)=> {
+      this.router.navigate(['/optician-home-page']);
 
+    })
+  }
 }

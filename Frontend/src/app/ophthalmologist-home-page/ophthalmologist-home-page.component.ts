@@ -99,46 +99,8 @@ export class OphthalmologistHomePageComponent implements OnInit {
 
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: { ...colors['red']},
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: { ...colors['yellow'] },
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: { ...colors['blue'] },
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: { ...colors['yellow'] },
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  events: CalendarEvent[] = [];
+
 
   activeDayIsOpen: boolean = true;
 
@@ -171,13 +133,7 @@ export class OphthalmologistHomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.apiService.getAppointmentsByNurse({
-      id: this.user.id
-    }).subscribe((response : any) => {
-      console.log('aaa')
-      this.appointments = response  
-    });
+    this.getAppointments();
   }
 
   
@@ -245,10 +201,37 @@ export class OphthalmologistHomePageComponent implements OnInit {
     this.handleEvent('Dropped or resized', event);
   }
 
+
+  getAppointments() {
+
+    this.apiService.getAppointmentsByOptician({id: this.user.id}).subscribe((response: any) => {
+      this.appointments = response;
+
+      for(let event of this.appointments) {
+
+        var startTime = new Date(event.date);
+        var endTime = new Date(event.date);
+        endTime.setMinutes(endTime.getMinutes() + event.product.makingTime);
+        console.log(endTime)
+
+        this.events.push({
+            start: new Date(startTime),
+            end:  new Date(endTime),
+            title: event.product.name ? event.product.name : 'Product',
+            color: colors['red'],
+            actions: this.actions,
+            allDay: false,
+            id: event.id
+          });
+      }
+    })
+  }
+
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
-  }
+  
+}
 
   addEvent(): void {
     this.events = [
@@ -278,5 +261,7 @@ export class OphthalmologistHomePageComponent implements OnInit {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
-
+  eventClicked({ event }: { event: CalendarEvent }): void {
+    this.router.navigate(['/view-appointment'], {queryParams: {id: event.id}});
+  }
 }
