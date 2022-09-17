@@ -25,7 +25,7 @@ namespace ISS_BACK.Repository
             Products = new ProductRepository(_context);
             RequiredEquipments = new RequiredEquipmentRepository(_context);
             WorkingHours = new WorkinHourRepository(_context);
-
+            EyeDetails = new EyeDetailsRepository(_context);
         }
 
         public IUserRepository Users { get; private set; }
@@ -37,6 +37,8 @@ namespace ISS_BACK.Repository
         public IProductRepository Products { get; private set; }
         public IRequiredEquipmentRepository RequiredEquipments { get; private set; }
         public IWorkingHourRepository WorkingHours { get; private set; }
+
+        public IEyeDetailsRepository EyeDetails { get; private set; }
 
 
         public IBaseRepository<TEntity> GetRepository<TEntity>() where TEntity : class

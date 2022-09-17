@@ -8,7 +8,7 @@ namespace ISS_BACK.Repository
 {
     public interface IOpticianAppointmentRepository : IBaseRepository<OpticianAppointment>
     {
-        IEnumerable<OpticianAppointment> GetAllByOptician(User id);
+        IEnumerable<OpticianAppointment> GetAllByOptician(long id);
         public IEnumerable<OpticianAppointment> GetTodayByOptician(User id);
             public IEnumerable<OpticianAppointment> GetPreviousByOptician(User id);
 

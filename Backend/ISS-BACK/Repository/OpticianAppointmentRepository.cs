@@ -18,22 +18,22 @@ namespace ISS_BACK.Repository
                 return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted).ToList();
             }
 
-            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.Patient.FirstName.Contains(term)) || (x.Patient.LastName.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
         }
 
         public OpticianAppointment GetByStartTime(DateTime startTime)
         {
-            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Include(x => x.Patient).Where(x => !x.Deleted && x.Date.Year == startTime.Year && x.Date.Day == startTime.Day && x.Date.Hour == startTime.Hour && x.Date.Minute == startTime.Minute).SingleOrDefault();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Where(x => !x.Deleted && x.Date.Year == startTime.Year && x.Date.Day == startTime.Day && x.Date.Hour == startTime.Hour && x.Date.Minute == startTime.Minute).SingleOrDefault();
         }
 
 
-        public IEnumerable<OpticianAppointment> GetAllByOptician(User id)
+        public IEnumerable<OpticianAppointment> GetAllByOptician(long id)
         {
-            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Optician == id).ToList();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Include(x => x.Product).Where(x => !x.Deleted && x.Optician.Id == id).ToList();
         }
 
         public OpticianAppointment GetById(long id) {
-            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Include(x => x.Product).Where(x => x.Id == id).SingleOrDefault();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Include(x => x.Product).Include(x => x.LeftEye).Include(x => x.RightEye).Where(x => x.Id == id).SingleOrDefault();
         }
 
         public IEnumerable<OpticianAppointment> GetAllByDate(DateTime dateTime)

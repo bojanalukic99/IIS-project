@@ -1,4 +1,5 @@
-﻿using ISS_BACK.Model;
+﻿using ISS_BACK.DTO;
+using ISS_BACK.Model;
 using ISS_BACK.Repository;
 using Microsoft.Extensions.Logging;
 using System;
@@ -136,7 +137,7 @@ namespace ISS_BACK.Service
 
         }
 
-        public IEnumerable<OpticianAppointment> GetAllByOptician(User id)
+        public IEnumerable<OpticianAppointment> GetAllByOptician(long id)
         {
             try
             {
@@ -178,20 +179,35 @@ namespace ISS_BACK.Service
             }
         }
 
-        public OpticianAppointment AddOpticianAppointment(DateTime date, long productId)
+        public OpticianAppointment AddOpticianAppointment(OpticianAppointmentDTO dto)
         {
              
             OpticianAppointment opticianAppointment= new OpticianAppointment();
             try
             {
 
+                EyeDetails leftEye = new EyeDetails();
+                leftEye.Diopter = dto.DiopterLeft;
+                leftEye.Astigmatism = dto.AstigmatismLeft;
+                leftEye.AdditionForReading = dto.AdditionForReadingLeft;
+
+                EyeDetails rightEye = new EyeDetails();
+                rightEye.Diopter = dto.DiopterRight;
+                rightEye.Astigmatism = dto.AstigmatismRight;
+                rightEye.AdditionForReading = dto.AdditionForReadingRight;
 
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
-               opticianAppointment.Optician = unitOfWork.Users.Get(1);
-               opticianAppointment.Date = date;
+               opticianAppointment.Optician = unitOfWork.Users.Get(dto.OpticianId);
+               opticianAppointment.Date = dto.Date;
                opticianAppointment.IsScheduled = false;
-               opticianAppointment.Product = unitOfWork.Products.Get(productId);
-
+               opticianAppointment.Product = unitOfWork.Products.Get(dto.ProductId);
+                opticianAppointment.PatientName = dto.Name;
+                opticianAppointment.Phone = dto.Phone;
+                opticianAppointment.Email = dto.Email;
+                opticianAppointment.LeftEye = leftEye;
+                opticianAppointment.RightEye = rightEye;
+                opticianAppointment.DistanceBetweenPupils = dto.DistanceBetweenPupils;
+                opticianAppointment.TypeOfGlass = dto.TypeOfGlass;
 
                 unitOfWork.OpticianAppointments.Add(opticianAppointment);
                 _ = unitOfWork.Complete();
@@ -215,11 +231,8 @@ namespace ISS_BACK.Service
 
                 OpticianAppointment opticianAppointmentDB = Get(id);
 
-               opticianAppointmentDB.Date = appointment.Date;
-               opticianAppointmentDB.Product = appointment.Product;
-               opticianAppointmentDB.IsScheduled = appointment.IsScheduled;
-               opticianAppointmentDB.Optician = appointment.Optician;
-                
+                opticianAppointmentDB.Comment = appointment.Comment;
+
                 unitOfWork.OpticianAppointments.Update(opticianAppointmentDB);
                 _ = unitOfWork.Complete();
 
@@ -242,6 +255,28 @@ namespace ISS_BACK.Service
             catch (Exception e)
             {
                 return new List<OpticianAppointment>();
+            }
+        }
+
+        public bool AddComment(long id, string comment)
+        {
+            try
+            {
+                using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
+
+                OpticianAppointment opticianAppointmentDB = Get(id);
+
+                opticianAppointmentDB.Comment = comment;
+                opticianAppointmentDB.IsScheduled = true;
+
+                unitOfWork.OpticianAppointments.Update(opticianAppointmentDB);
+                _ = unitOfWork.Complete();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

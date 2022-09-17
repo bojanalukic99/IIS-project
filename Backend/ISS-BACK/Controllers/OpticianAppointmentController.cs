@@ -22,6 +22,7 @@ namespace ISS_BACK.Controllers
             this.opticianAppointmentService = opticianAppointmentService;
         }
 
+        [HttpPut("{id}")]
         public override IActionResult Update(int id, OpticianAppointment entity)
         {
             if (entity == null)
@@ -33,6 +34,18 @@ namespace ISS_BACK.Controllers
 
             return Ok(response);
         }
+        [HttpPut("addComment/{id}/{comment}")]
+        public  IActionResult AddComment(long id, string comment)
+        {
+            if (comment == null)
+            {
+                comment = " ";
+            }
+
+            bool response = opticianAppointmentService.AddComment(id, comment);
+
+            return Ok(response);
+        }
 
         [HttpGet("getFreeApointments/{date}/{productId}")]
         public virtual IActionResult GetFreeApointments(DateTime date, long productId) {
@@ -40,7 +53,7 @@ namespace ISS_BACK.Controllers
         }
 
         [HttpGet("allByOptician/{id}")]
-        public virtual IActionResult GetAllByOptician(User id)
+        public virtual IActionResult GetAllByOptician(long id)
         {
             return Ok(opticianAppointmentService.GetAllByOptician(id));
         }
@@ -67,7 +80,8 @@ namespace ISS_BACK.Controllers
         [HttpPost("add")]
         public virtual IActionResult AddAppointment(OpticianAppointmentDTO dto)
         {
-            return Ok(opticianAppointmentService.AddOpticianAppointment(dto.Date, dto.ProductId));
+            return Ok(opticianAppointmentService.AddOpticianAppointment(dto));
         }
+        
     }
 }
