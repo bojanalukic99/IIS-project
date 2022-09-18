@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -9,45 +12,50 @@ import { ApiService } from '../api.service';
 })
 export class AddProductComponent implements OnInit {
 
-  form: FormGroup;
+  message: string = ""
+  cancelButtonText = "Cancel"
+  user: any;
+  local_data: any;
+form: FormGroup;
 
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<AddProductComponent>) { 
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router) {
+    this.user = this.api.getUserFromLocalstorage();
+
+    this.local_data = {...data};
+  
+    if (data) {
+      this.message = data.message || this.message;
+      if (data.buttonText) {
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+    }
+
+ 
+
+    this.dialogRef.updateSize('600px','400px')
     this.form = this.formBuilder.group({
       name: ['',Validators.required],
       price: ['',Validators.required],
       makingTime: ['',Validators.required]
      });
-   }
 
+  }
+
+ onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
   ngOnInit(): void {
-
-
-
   }
 
-  onSubmit() {
-    this.api.createProduct({
-      name: this.form.get('name')?.value, 
-      price: this.form.get('price')?.value, 
-      makingTime: parseFloat(this.form.get('makingTime')?.value),    
-    }).subscribe((response: any) => {
-      this.router.navigate(['/product-view']);
-    })
-  }
 
-  navigate(data : any){
-    if(data === 'home'){
-      this.router.navigate(['/nurse-home-page']);
-    }
-    else if(data === 'edit'){
-      this.router.navigate(['/edit-profile']);
-    }
-    else if(data === 'products'){
-      this.router.navigate(['/product-view']);
-    }
-    else if(data=='priceList'){
-      this.router.navigate(['/priceList']);
-    }
+
+  yesDialog() {
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
+  noDialog() {
+    this.dialogRef.close({ event: 'no-option', data: this.form.value });
+  }
+  onSubmit(){}
+
 }

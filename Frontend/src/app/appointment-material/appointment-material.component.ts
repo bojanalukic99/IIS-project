@@ -46,9 +46,7 @@ export class AppointmentMaterialComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.api.getAllMaterial().subscribe((response: any)=> {
-        this.materials = response;
-    })
+   
   }
 
   onSubmit() {

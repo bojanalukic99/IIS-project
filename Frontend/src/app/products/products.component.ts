@@ -5,14 +5,14 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
-import { EditMaterialComponent } from '../edit-material/edit-material.component';
-import { NewMaterialComponent } from '../new-material/new-material.component';
+import { EditProductComponent } from '../edit-product/edit-product.component';
+
 @Component({
-  selector: 'app-material-view',
-  templateUrl: './material-view.component.html',
-  styleUrls: ['./material-view.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class MaterialViewComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
   isExpanded = true;
   showSubmenu: boolean = false;
@@ -33,9 +33,9 @@ export class MaterialViewComponent implements OnInit {
   }
   form: any;
   user:any;
-  materials:any;
-  displayedColumns: string[] = ['Name', 'Quatity', 'Edit','Delete'];
-  materialId: any
+  products:any;
+  displayedColumns: string[] = ['Name', 'Price', 'MakingTime', 'Edit', 'Delete'];
+  productId: any
   selectedRow: any;
 
   constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
@@ -51,14 +51,35 @@ export class MaterialViewComponent implements OnInit {
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
 
-    this.apiService.getAllMaterial({
+    this.apiService.getAllProducts({
       term:  search
     }).subscribe((response : any) => {
       console.log('aa');
       console.log(response);
-      this.materials = response  
+      this.products = response  
     });
   }
+
+  
+
+  navigate(data : any){
+    if(data === 'home'){
+      this.router.navigate(['/nurse-home-page']);
+    }
+    else if(data === 'edit'){
+      this.router.navigate(['/edit-profile']);
+    }
+    else if(data === 'products'){
+      this.router.navigate(['/product-view']);
+    }
+    else if(data=='priceList'){
+      this.router.navigate(['/priceList']);
+    }
+    else if(data=='logout'){
+      this.router.navigate(['/home-page']);
+    }
+  }
+
 
 
   linkCLick(id: any){
@@ -66,7 +87,7 @@ export class MaterialViewComponent implements OnInit {
   }
 
   link2CLick(id: any){
-    this.apiService.deleteMaterial({id: id}).subscribe((response) => {
+    this.apiService.deleteProduct({id: id}).subscribe((response) => {
       this.ngOnInit();
     });
   }
@@ -75,12 +96,12 @@ export class MaterialViewComponent implements OnInit {
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
 
-  this.apiService.getAllMaterial({
+  this.apiService.getAllProducts({
     term:  search
   }).subscribe((response : any) => {
     console.log('aa');
     console.log(response);
-    this.materials = response  
+    this.products = response  
   });
   }
 
@@ -101,9 +122,9 @@ export class MaterialViewComponent implements OnInit {
         title: 'New'
     };
   
-    const dialogRef = this.dialog.open(NewMaterialComponent,{
+    const dialogRef = this.dialog.open(AddProductComponent,{
       data:{
-        message: 'Add material',
+        message: 'Add product',
         buttonText: {
           cancel: 'DONE'
         }
@@ -115,13 +136,13 @@ export class MaterialViewComponent implements OnInit {
         case "yes-option":
           this.data = res.data;
 
-          this.apiService.createMaterial({
-            name: this.data.name,
-            quatity: parseInt(this.data.quatity)
+          this.apiService.createProduct({
+            name: this.data.name, 
+            price: this.data.price, 
+            makingTime: parseInt(this.data.makingTime),    
           }).subscribe((response: any) => {
               this.ngOnInit();
           })
-        
           break;
         case "no-option":
           console.log('No Clicked');
@@ -143,9 +164,9 @@ export class MaterialViewComponent implements OnInit {
         title: 'New'
     };
   
-    const dialogRef = this.dialog.open(EditMaterialComponent,{
+    const dialogRef = this.dialog.open(EditProductComponent,{
       data:{
-        message: 'Edit material',
+        message: 'Edit product',
         id: id,
         buttonText: {
           cancel: 'DONE'
@@ -158,15 +179,14 @@ export class MaterialViewComponent implements OnInit {
         case "yes-option":
           this.data = res.data;
 
-          this.apiService.editMaterial({
+          this.apiService.editProduct({
             id: id,
-            name: this.data.name,
-            quatity: parseInt(this.data.quatity)
-            
+            name: this.data.name, 
+            price: this.data.price, 
+            makingTime: this.data.makingTime,  
           }).subscribe((response: any) => {
-              this.ngOnInit();
+            this.ngOnInit();
           })
-        
           break;
         case "no-option":
           console.log('No Clicked');

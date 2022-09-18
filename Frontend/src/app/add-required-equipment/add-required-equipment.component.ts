@@ -30,10 +30,10 @@ export class AddRequiredEquipmentComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+/*
     this.api.getAllEquipment().subscribe((response: any)=> {
       this.equipments=response;
-    })
+    })*/
 
   }
 

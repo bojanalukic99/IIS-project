@@ -18,12 +18,15 @@ import { EquipmentViewComponent } from './equipment-view/equipment-view.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialViewComponent } from './material-view/material-view.component';
+import { MenagerHomePageComponent } from './menager-home-page/menager-home-page.component';
 import { NewMaterialComponent } from './new-material/new-material.component';
 import { NurseHomePageComponent } from './nurse-home-page/nurse-home-page.component';
 import { OphthalmologistHomePageComponent } from './ophthalmologist-home-page/ophthalmologist-home-page.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { ProductsComponent } from './products/products.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { UsersComponent } from './users/users.component';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { WorkHoursComponent } from './work-hours/work-hours.component';
 
@@ -55,8 +58,10 @@ const routes: Routes = [
   {path: 'create-pdf', component: CreatePdfComponent},
   {path: 'app-details', component: AddAppDetailsComponent},
   {path: 'app-preview', component: AppPreviewComponent},
-];
-
+  {path: 'menager-home-page', component: MenagerHomePageComponent},
+  {path: 'users', component:UsersComponent},
+  {path: 'products', component: ProductsComponent },
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

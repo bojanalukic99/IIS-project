@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-material',
@@ -9,56 +10,49 @@ import { ApiService } from '../api.service';
   styleUrls: ['./new-material.component.css']
 })
 export class NewMaterialComponent implements OnInit {
+  message: string = ""
+  cancelButtonText = "Cancel"
+  user: any;
+  local_data: any;
+form: FormGroup;
 
-  form: FormGroup;
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<NewMaterialComponent>) { 
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router) {
+    this.user = this.api.getUserFromLocalstorage();
+
+    this.local_data = {...data};
+  
+    if (data) {
+      this.message = data.message || this.message;
+      if (data.buttonText) {
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+    }
+
+ 
+
+    this.dialogRef.updateSize('600px','400px')
     this.form = this.formBuilder.group({
-      name: ['',Validators.required],
-      quatity: ['',Validators.required]
-     });
-   }
+      name: ['', Validators.required],
+      quatity: ['', Validators.required]
+    });
 
+  }
+
+ onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
   ngOnInit(): void {
   }
 
-  onSubmit() {
 
 
-
-    this.api.createMaterial({
-      name: this.form.get('name')?.value,
-      quatity: parseInt(this.form.get('quatity')?.value)
-      
-    }).subscribe((response: any) => {
-      this.router.navigate(['/material-view']);
-    })
+  yesDialog() {
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
-
- navigate(data : any){
-    if(data === 'login'){
-      this.router.navigate(['/login']);
-    }
-
-    else if(data === 'registration'){
-      this.router.navigate(['/registration']);
-    }
-    else if(data === 'edit'){
-      this.router.navigate(['/edit-profile']);
-    }
-    else if(data === 'appointments'){
-      this.router.navigate(['/view-appointments-optician']);
-    }
-    else if(data === 'material'){
-      this.router.navigate(['/material-view']);
-    }
-    else if(data === 'equipment'){
-      this.router
-      .navigate(['/equipment-view']);
-    }
-    else if(data === 'workHour'){
-      this.router.navigate(['/view-work-hour']);
-    }
+  noDialog() {
+    this.dialogRef.close({ event: 'no-option', data: this.form.value });
   }
+  onSubmit(){}
 
 }

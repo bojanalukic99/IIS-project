@@ -45,8 +45,8 @@ export class ApiService {
     return this.http.get(this.url + '/api/opticianAppointment/getById/' + data.id, this.generateHeader());
   }
 
-  getAllMaterial(){
-    return this.http.get(this.url + '/api/material/all', this.generateHeader());
+  getAllMaterial(data: any){
+    return this.http.get(this.url + '/api/material/all?term='+ data.term, this.generateHeader());
   }
   getMaterialById(data: any){
     return this.http.get(this.url + '/api/material/getById/' + data.id, this.generateHeader());
@@ -77,8 +77,8 @@ export class ApiService {
     return this.http.post(this.url + '/api/requieredEquipment/add/' + data.productId + '/' + data.equipmentId, data)
   }
 
-  getAllEquipment(){
-    return this.http.get(this.url + '/api/equipment/all', this.generateHeader());
+  getAllEquipment(data: any){
+    return this.http.get(this.url + '/api/equipment/all?term=' + data.term, this.generateHeader());
   }
 
   getProductById(data: any){

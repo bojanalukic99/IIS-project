@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-edit-product',
@@ -10,11 +12,27 @@ import { ApiService } from '../api.service';
 })
 export class EditProductComponent implements OnInit {
 
-  form: FormGroup;
-  product: any;
-  productId: any
+  message: string = ""
+  cancelButtonText = "Cancel"
+  user: any;
+  local_data: any;
+form: FormGroup;
+id: any;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { 
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<EditProductComponent>, private router: Router, private activatedRoute: ActivatedRoute) { 
+
+    this.user = this.api.getUserFromLocalstorage();
+
+    this.local_data = {...data};
+  
+    if (data) {
+      this.message = data.message || this.message;
+      if (data.buttonText) {
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+    }
+
+    this.id = data.id;
 
     this.form = this.formBuilder.group({
       name: ['', Validators.email],
@@ -22,13 +40,7 @@ export class EditProductComponent implements OnInit {
       makingTime: ['', Validators.required],
     });
 
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.productId = params['id'];
-    });
-
-    
-
-    this.api.getProductById({ id: this.productId }).subscribe((response: any) => {
+    this.api.getProductById({ id: this.id }).subscribe((response: any) => {
 
       this.form = this.formBuilder.group({
       name: [response.name, Validators.email],
@@ -37,38 +49,26 @@ export class EditProductComponent implements OnInit {
     });
 
   });  
+
+    this.dialogRef.updateSize('600px','400px')
   
-}
 
+  }
 
+ onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.api.editProduct({
-      id: parseInt(this.productId),
-      name: this.form.get('name')?.value,
-      price: this.form.get('price')?.value,
-      makingTime: parseInt(this.form.get('makingTime')?.value),
-    }).subscribe((response: any) => {
-      this.router.navigate(['/product-view']);
-    })
-  }
 
 
-  navigate(data : any){
-    if(data === 'home'){
-      this.router.navigate(['/nurse-home-page']);
-    }
-    else if(data === 'edit'){
-      this.router.navigate(['/edit-profile']);
-    }
-    else if(data === 'products'){
-      this.router.navigate(['/product-view']);
-    }
-    else if(data=='priceList'){
-      this.router.navigate(['/priceList']);
-    }
+  yesDialog() {
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
+  noDialog() {
+    this.dialogRef.close({ event: 'no-option', data: this.form.value });
+  }
+  onSubmit(){}
 
 }

@@ -41,12 +41,16 @@ export class LoginComponent implements OnInit {
 
        this.user = this.api.getUserFromLocalstorage();
 
-
+       console.log("userType =" || this.user.userType )
         if(this.user.userType == 1){
+          this.router.navigate(['/menager-home-page']);
+        }
+        else if(this.user.userType == 2) {
           this.router.navigate(['/optician-home-page']);
         }
         else {
           this.router.navigate(['/nurse-home-page']);
+
         }
 
         

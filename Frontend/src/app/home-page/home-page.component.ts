@@ -40,13 +40,16 @@ export class HomePageComponent implements OnInit {
 
        this.user = this.api.getUserFromLocalstorage();
 
+      if(this.user.userType == 1){
+        this.router.navigate(['/menager-home-page']);
+      }
+      else if(this.user.userType == 2) {
+        this.router.navigate(['/optician-home-page']);
+      }
+      else {
+        this.router.navigate(['/nurse-home-page']);
 
-        if(this.user.userType == 1){
-          this.router.navigate(['/optician-home-page']);
-        }
-        else {
-          this.router.navigate(['/nurse-home-page']);
-        }
+      }
 
         
     }); 

@@ -58,6 +58,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { FinishAppComponent } from './finish-app/finish-app.component';
 import { EditWorkHoursComponent } from './edit-work-hours/edit-work-hours.component';
+import { MenagerHomePageComponent } from './menager-home-page/menager-home-page.component';
+import { UsersComponent } from './users/users.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -92,6 +95,9 @@ import { EditWorkHoursComponent } from './edit-work-hours/edit-work-hours.compon
     AppPreviewComponent,
     FinishAppComponent,
     EditWorkHoursComponent,
+    MenagerHomePageComponent,
+    UsersComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
