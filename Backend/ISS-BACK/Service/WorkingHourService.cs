@@ -80,5 +80,37 @@ namespace ISS_BACK.Service
             using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
             return unitOfWork.WorkingHours.GetByDate(dateTime);
         }
+
+        public WorkingHour GetById(long id)
+        {
+            using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+            return unitOfWord.WorkingHours.Get(id);
+        }
+
+        public bool Update(int id, WorkingHour entity)
+        {
+            try
+            {
+                using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
+
+                WorkingHour working = unitOfWork.WorkingHours.Get(id);
+
+                working.Date = entity.Date;
+                working.StartTime = entity.StartTime;
+                working.EndTime = entity.EndTime;
+
+                unitOfWork.WorkingHours.Update(working);
+                _ = unitOfWork.Complete();
+
+
+
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

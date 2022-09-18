@@ -33,5 +33,29 @@ namespace ISS_BACK.Controllers
 
             return Ok(workingHourService.GetAllByOptician(id));
         }
+        [HttpDelete("delete/{id}")]
+        public override IActionResult Delete(int id)
+        {
+            bool response = _baseService.Delete(id);
+            return Ok(response);
+        }
+        [HttpGet("getById/{id}")]
+        public virtual IActionResult GetById(int id)
+        {
+            return Ok(workingHourService.GetById(id));
+        }
+
+        [HttpPut("{id}")]
+        public override IActionResult Update(int id, WorkingHour entity)
+        {
+            if (entity == null)
+            {
+                return BadRequest();
+            }
+
+            bool response = workingHourService.Update(id, entity);
+
+            return Ok(response);
+        }
     }
 }

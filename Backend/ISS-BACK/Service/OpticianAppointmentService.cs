@@ -60,6 +60,7 @@ namespace ISS_BACK.Service
 
                     OpticianAppointment newAppointment = new OpticianAppointment();
                     newAppointment.Date = currentTime;
+                    newAppointment.Optician = working.Optician;
 
                     appointments.Add(newAppointment);
 
@@ -267,6 +268,26 @@ namespace ISS_BACK.Service
                 OpticianAppointment opticianAppointmentDB = Get(id);
 
                 opticianAppointmentDB.Comment = comment;
+
+                unitOfWork.OpticianAppointments.Update(opticianAppointmentDB);
+                _ = unitOfWork.Complete();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool Finish(long id)
+        {
+            try
+            {
+                using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
+
+                OpticianAppointment opticianAppointmentDB = Get(id);
+
                 opticianAppointmentDB.IsScheduled = true;
 
                 unitOfWork.OpticianAppointments.Update(opticianAppointmentDB);

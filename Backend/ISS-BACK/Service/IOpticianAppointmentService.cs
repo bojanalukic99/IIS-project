@@ -24,6 +24,7 @@ namespace ISS_BACK.Service
         IEnumerable<OpticianAppointment> GetAllByDate(DateTime date);
 
         bool AddComment(long id, string comment);
+        bool Finish(long id);
 
     }
 }

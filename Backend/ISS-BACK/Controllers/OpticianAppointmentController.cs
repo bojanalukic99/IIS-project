@@ -46,6 +46,14 @@ namespace ISS_BACK.Controllers
 
             return Ok(response);
         }
+        [HttpPut("finish/{id}")]
+        public IActionResult Finish(long id)
+        {
+
+            bool response = opticianAppointmentService.Finish(id);
+
+            return Ok(response);
+        }
 
         [HttpGet("getFreeApointments/{date}/{productId}")]
         public virtual IActionResult GetFreeApointments(DateTime date, long productId) {

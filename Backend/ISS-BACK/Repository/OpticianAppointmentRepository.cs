@@ -44,12 +44,12 @@ namespace ISS_BACK.Repository
         public IEnumerable<OpticianAppointment> GetTodayByOptician(User id)
         {
             DateTime today = new DateTime();
-            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Optician == id && x.Date.Year == today.Year && x.Date.Month == today.Month && x.Date.Day==today.Day).ToList();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Where(x => !x.Deleted && x.Optician == id && x.Date.Year == today.Year && x.Date.Month == today.Month && x.Date.Day==today.Day).ToList();
         }
         public IEnumerable<OpticianAppointment> GetPreviousByOptician(User id)
         {
             DateTime today = new DateTime();
-            return ApplicationContext.OpticianAppointments.Where(x => !x.Deleted && x.Optician == id && x.Date <= today).ToList();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Where(x => !x.Deleted && x.Optician == id && x.Date <= today).ToList();
         }
       
     }

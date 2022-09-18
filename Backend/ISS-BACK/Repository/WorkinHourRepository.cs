@@ -13,7 +13,7 @@ namespace ISS_BACK.Repository
 
         public IEnumerable<WorkingHour> GetAllByOptician(int id)
         {
-            return ApplicationContext.WorkingHours.Where(x => !x.Deleted && x.Optician.Id == id).ToList();
+            return ApplicationContext.WorkingHours.Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id).ToList();
         }
 
         public override IEnumerable<WorkingHour> GetAll()
@@ -22,7 +22,18 @@ namespace ISS_BACK.Repository
         }
 
         public WorkingHour GetByDate(DateTime dateTime) {
-            return ApplicationContext.WorkingHours.Where(x => x.Date.Year == dateTime.Year && x.Date.Month == dateTime.Month && x.Date.Day == dateTime.Day).SingleOrDefault();
+            return ApplicationContext.WorkingHours.Include(x => x.Optician).Where(x => x.Date.Year == dateTime.Year && x.Date.Month == dateTime.Month && x.Date.Day == dateTime.Day).SingleOrDefault();
+        }
+
+        public WorkingHour GetById(int id)
+        {
+            return ApplicationContext.WorkingHours.Include(x => x.Optician).Where(x => x.Id == id).SingleOrDefault();
+
+        }
+
+        public WorkingHour GetById(long id)
+        {
+            return ApplicationContext.WorkingHours.Include(x => x.Optician).Where(x => x.Id == id).SingleOrDefault();
         }
     }
 }

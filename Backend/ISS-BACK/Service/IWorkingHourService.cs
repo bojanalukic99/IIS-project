@@ -16,5 +16,7 @@ namespace ISS_BACK.Service
 
         WorkingHour GetByDate(DateTime date);
 
+        WorkingHour GetById(long id);
+        bool Update(int id, WorkingHour entity);
     }
 }

@@ -11,5 +11,7 @@ namespace ISS_BACK.Repository
         IEnumerable<WorkingHour> GetAllByOptician(int id);
 
         WorkingHour GetByDate(DateTime date);
+
+        WorkingHour GetById(long id);
     }
 }
