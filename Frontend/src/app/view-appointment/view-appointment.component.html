@@ -18,7 +18,7 @@
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
               <a mat-list-item href="/optician-home-page">Home page</a>
               <a mat-list-item href="/edit-profile">Edit profile</a>
-               <a mat-list-item href="/view-appointment">Work hours</a>
+               <a mat-list-item href="/view-work-hour">Work hours</a>
               <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
                 <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
                 <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
@@ -37,20 +37,27 @@
       
         <div class="example-sidenav-content">
           <div class="info">
-            <h3>Product: {{productName}}</h3>
-            <h3>Date: {{appDate |  date:"yyyy"}}-{{appDate |  date:"MM"}}-{{appDate|  date:"dd"}}</h3>
-            <h3>Time: {{appDate | date:"HH:mm"}}</h3>
-            <h3>Left eye</h3>
+            <div class="page">
+            <h2>Product: {{productName}}</h2>
+            <h2>Date: {{appDate |  date:"yyyy"}}-{{appDate |  date:"MM"}}-{{appDate|  date:"dd"}}</h2>
+            <h2>Time: {{appDate | date:"HH:mm"}}</h2>
+            </div>
+            <div class="pageLeft">
+            <h2>Left eye</h2>
              <p>Diopter: {{diopterLeft}}</p>
              <p>Astigmatism: {{astigmatismLeft}}</p>
              <p>Addition for reading: {{addReadingLeft}}</p>
-            <h3>Right eye</h3>
+            </div>
+            <div class="pageRight">
+            <h2>Right eye</h2>
             <p>Diopter: {{diopterRight}}</p>
             <p>Astigmatism: {{astigmatismRight}}</p>
             <p>Addition for reading: {{addReadingRight}}</p>
-            <h3>Type of glass: {{glass}}</h3>
-            <h3>Distance between pupils: {{distance}}</h3>
-
+          </div>
+          <div class="page2">
+            <h2>Type of glass: {{glass}}</h2>
+            <h2>Distance between pupils: {{distance}}</h2>
+          </div>
         </div>
           <form [formGroup]="form">
             <mat-form-field appearance="fill">
@@ -58,10 +65,9 @@
               <input class="inp" matInput placeholder="comment" formControlName="comment" required>
               
             </mat-form-field>
-             
             <div>
               <button class="btn" (click)="done()" mat-raised-button >SAVE</button>
-              <button class="btn" (click)="done()" mat-raised-button >FINISH</button>
+              <button class="btn" (click)="finish()" mat-raised-button >FINISH</button>
             </div>
           </form>
         </div>

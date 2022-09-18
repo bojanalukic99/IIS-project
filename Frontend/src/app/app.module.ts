@@ -56,6 +56,8 @@ import { AddAppDetailsComponent } from './add-app-details/add-app-details.compon
 import {AppPreviewComponent}from './app-preview/app-preview.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { FinishAppComponent } from './finish-app/finish-app.component';
+import { EditWorkHoursComponent } from './edit-work-hours/edit-work-hours.component';
 
 
 @NgModule({
@@ -88,6 +90,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     CreatePdfComponent,
     AddAppDetailsComponent,
     AppPreviewComponent,
+    FinishAppComponent,
+    EditWorkHoursComponent,
   ],
   imports: [
     BrowserModule,

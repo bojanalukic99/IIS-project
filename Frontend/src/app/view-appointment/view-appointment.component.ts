@@ -12,6 +12,10 @@ import { addPeriod, CalendarSchedulerEvent, CalendarSchedulerEventAction, Calend
 import { addMonths, endOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
 import { th } from 'date-fns/locale';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AppPreviewComponent } from '../app-preview/app-preview.component';
+import { FinishAppComponent } from '../finish-app/finish-app.component';
+
 
 
 @Component({
@@ -113,7 +117,7 @@ export class ViewAppointmentComponent implements OnInit {
   @ViewChild(CalendarSchedulerViewComponent) calendarScheduler: CalendarSchedulerViewComponent | undefined;
 
 
-  constructor( private formBuilder: FormBuilder, private apiService: ApiService, private router: Router,  private activatedRoute: ActivatedRoute) { 
+  constructor( private formBuilder: FormBuilder, private apiService: ApiService, private router: Router,  private activatedRoute: ActivatedRoute, private dialog: MatDialog) { 
 
     this.form = this.formBuilder.group({
       comment: ['']
@@ -193,5 +197,41 @@ export class ViewAppointmentComponent implements OnInit {
       this.router.navigate(['/optician-home-page']);
 
     })
+  }
+
+  openAlertDialog() {
+   
+    const dialogRef = this.dialog.open(FinishAppComponent,{
+      data:{
+        message: ' Is the product finished?',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+          this.done();
+
+          this.apiService.finish({
+            id: this.appointmentId
+          }).subscribe((response)=> {
+            this.router.navigate(['/optician-home-page']);    
+          })
+          
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  finish(){
+    this.openAlertDialog();
   }
 }

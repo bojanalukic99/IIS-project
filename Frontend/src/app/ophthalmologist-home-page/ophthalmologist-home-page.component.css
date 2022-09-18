@@ -20,10 +20,13 @@
     height: 30px;
     width: 120px;
     margin-top: 3px;
+    border-radius: 8px;
+    margin-right: 5px;
 }
 .btn:focus{
     outline: none;
 }
+
 .main {
     width: 100%;
     background-image: url(Images/log1.jpg);

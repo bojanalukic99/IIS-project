@@ -85,7 +85,9 @@ export class ApiService {
     return this.http.get(this.url + '/api/product/getById/' + data.id, this.generateHeader());
   }
 
-
+  getWorkHoureById(data: any){
+    return this.http.get(this.url + '/api/workingHour/getById/' + data.id, this.generateHeader());
+  }
   createOpticianAppointment(data: any){
     return this.http.post(this.url + '/api/opticianAppointment/add', data);
 
@@ -129,6 +131,9 @@ export class ApiService {
   addComment(data: any){
     return this.http.put(this.url + '/api/opticianAppointment/addComment/' + data.id + '/' + data.comment, data, this.generateHeader());
   }
+  finish(data: any){
+    return this.http.put(this.url + '/api/opticianAppointment/finish/' + data.id, data, this.generateHeader());
+  }
   changeQuantity(data: any){
     return this.http.put(this.url + '/api/material/changeQuantity/' + data.id + '/' + data.quatity, data, this.generateHeader());
   }
@@ -137,12 +142,16 @@ export class ApiService {
     return this.http.put(this.url + '/api/product/' + data.id, data, this.generateHeader());
   }
 
+  editWorkHoure(data: any){
+    return this.http.put(this.url + '/api/workingHour/' + data.id, data, this.generateHeader());
+  }
+
   editEquipment(data: any){
     return this.http.put(this.url + '/api/equipment/edit/' + data.id, data, this.generateHeader());
   }
 
   editWorkHour(data: any){
-    return this.http.put(this.url + '/api/workHour/' + data.id, data, this.generateHeader());
+    return this.http.put(this.url + '/api/workingHour/' + data.id, data, this.generateHeader());
   }
 
   deleteMaterial(data: any){
@@ -158,7 +167,7 @@ export class ApiService {
   }
 
   deleteWorkHour(data: any){
-    return this.http.delete(this.url + '/api/workHour/' + data.id, this.generateHeader());
+    return this.http.delete(this.url + '/api/workingHour/delete/' + data.id, this.generateHeader());
   }
   getUserFromLocalstorage() {
 

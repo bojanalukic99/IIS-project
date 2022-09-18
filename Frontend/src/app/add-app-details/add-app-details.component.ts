@@ -23,7 +23,7 @@ export class AddAppDetailsComponent implements OnInit {
   patientEmail: any;
   patientPhone: any;
   appointments: any;
-  predictTime: any;
+  predictTime = new Date();
   appDate: any;
   date: any = this.datepipe.transform(new Date(), "mm/dd/yyyy")
   dateForm = this.formBuilder.group({
@@ -91,6 +91,7 @@ export class AddAppDetailsComponent implements OnInit {
      
     this.activatedRoute.queryParams.subscribe(params => {
       this.productId = params['id'];
+
     });
   }
 
@@ -100,6 +101,7 @@ export class AddAppDetailsComponent implements OnInit {
     this.api.getProductById({ id: this.productId }).subscribe((response: any) => {
       this.productName = response.name;
       console.log(response)
+
 });
 
 
@@ -172,8 +174,9 @@ export class AddAppDetailsComponent implements OnInit {
         typeOfGlass: this.fourthFormGroup.get('typeOfGlass')?.value,
     }).subscribe((response: any) => {
 
+ 
           this.openAlertDialog();
-          this.router.navigate(['/app-preview']);        
+          this.router.navigate(['/nurse-home-page']);        
     }); 
 
   }
@@ -190,7 +193,7 @@ export class AddAppDetailsComponent implements OnInit {
   openAlertDialog() {
     const dialogRef = this.dialog.open(AppPreviewComponent,{
       data:{
-        message: 'You have successfully made an appointment! Predicted time of finished product is: ',
+        message: 'You have successfully made an appointment! Predicted time of finished product is',
         buttonText: {
           cancel: 'DONE'
         }

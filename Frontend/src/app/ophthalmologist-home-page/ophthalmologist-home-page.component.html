@@ -18,7 +18,7 @@
           <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
             <a mat-list-item href="/optician-home-page">Home page</a>
             <a mat-list-item href="/edit-profile">Edit profile</a>
-             <a mat-list-item href="/view-appointment">Work hours</a>
+             <a mat-list-item href="/view-work-hour">Work hours</a>
             <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
               <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
@@ -50,7 +50,7 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
       >
-        Previous Month
+        Previous
       </button>
       <button type="button" 
         class="btn btn-outline-secondary"
@@ -66,7 +66,7 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
       >
-        Next Month
+        Next
       </button>
     </div>
   </div>

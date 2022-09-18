@@ -1,25 +1,26 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-add-work-hours',
-  templateUrl: './add-work-hours.component.html',
-  styleUrls: ['./add-work-hours.component.css']
+  selector: 'app-edit-work-hours',
+  templateUrl: './edit-work-hours.component.html',
+  styleUrls: ['./edit-work-hours.component.css']
 })
-export class AddWorkHoursComponent implements OnInit {
+export class EditWorkHoursComponent implements OnInit {
 
- 
+  
   message: string = ""
   cancelButtonText = "Cancel"
   user: any;
   local_data: any;
 form: FormGroup;
+id: any;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<AddWorkHoursComponent>) { 
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<EditWorkHoursComponent>, private router: Router, private activatedRoute: ActivatedRoute) { 
 
     this.user = this.api.getUserFromLocalstorage();
 
@@ -32,14 +33,26 @@ form: FormGroup;
       }
     }
 
- 
+    this.id = data.id;
 
-    this.dialogRef.updateSize('600px','400px')
     this.form = this.formBuilder.group({
       date: ['',Validators.required],
       startTime: ['',Validators.required],
       endTime: ['',Validators.required],
      });
+
+    this.api.getWorkHoureById({ id: this.id }).subscribe((response: any) => {
+
+      this.form = this.formBuilder.group({
+        date: [response.date,Validators.required],
+        startTime: [response.startTime,Validators.required],
+        endTime: [response.endTime,Validators.required],
+    });
+
+  });  
+
+    this.dialogRef.updateSize('600px','400px')
+  
 
   }
 

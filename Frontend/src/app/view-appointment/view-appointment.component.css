@@ -18,10 +18,11 @@
     height: 40px;
     background: #142e69;
     border: 2px solid white;
-    margin-top:13px;
-    margin-left: 25px;
+    margin-top:23px;
+    margin-right: 50px;
     color: white;
     font-size: 18px;
+    left: 800px;
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -42,29 +43,143 @@
     backdrop-filter: blur(2px);
     width: 100%;
   }
-.page{
-    width: 450px;
-    height: 380px;
-    background: linear-gradient(to top, #F7E9D7 50%, #F7E9D7 50%);
+
+.page2{
+    width: 280px;
+    height: 180px;
+    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
     position: absolute;
-    right: 470px;
+    right: 20px;
     border-radius: 10px;
     margin: 6px;
-    margin-top: 100px;
+    margin-top: -270px;
     padding: 8px;
 }
 
-.page h2{
-    width: 220px;
+.page2 h2{
+    width: 300px;
     font-family: sams-serif;
-    text-align: center;
+    text-align: left;
     font-size: 22px;
     border-radius: 10px;
     margin: 2px;
     padding: 8px;
+    color: white;
+    margin-bottom: 20px;
+}
+.page{
+    width: 280px;
+    height: 180px;
+    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    position: absolute;
+    right: 990px;
+    border-radius: 10px;
+    margin: 6px;
+    margin-top: -270px;
+    padding: 8px;
+}
+
+.page h2{
+    width: 300px;
+    font-family: sams-serif;
+    text-align: left;
+    font-size: 22px;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+    color: white;
+    margin-bottom: 20px;
 }
 
 .page input{
+    width: 40px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid rgb(218, 151, 84);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #142e69;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 100px;
+    font-family: sans-serif;
+}
+
+.pageLeft{
+    width: 280px;
+    height: 180px;
+    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    position: absolute;
+    right: 670px;
+    border-radius: 10px;
+    margin: 6px;
+    margin-top: -270px;
+    padding: 8px;
+}
+
+.pageLeft p{
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pageLeft h2{
+    width: 300px;
+    font-family: sams-serif;
+    text-align: left;
+    font-size: 22px;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pageLeft input{
+    width: 40px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid rgb(218, 151, 84);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #142e69;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 100px;
+    font-family: sans-serif;
+}
+
+.pageRight{
+    width: 280px;
+    height: 180px;
+    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    position: absolute;
+    right: 350px;
+    border-radius: 10px;
+    margin: 6px;
+    margin-top: -270px;
+    padding: 8px;
+}
+
+.pageRight p{
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pageRight h2{
+    width: 300px;
+    font-family: sams-serif;
+    text-align: left;
+    font-size: 22px;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pageRight input{
     width: 40px;
     height: 35px;
     background: transparent;
@@ -84,7 +199,7 @@
 }
 .content{
     width: 1200px;
-    height: auto;
+    height:30 auto;
     margin: auto;
     color: #fff;
     position: relative;
@@ -92,7 +207,7 @@
 
 .inp{
     color: #142e69;
-    width: 100px;
+    width: 100%;
 }
 
 .content .par{
@@ -184,7 +299,10 @@ span {
 
 .info h3{
     margin-top: 10px;
+    color: #142e69;
 }
+
+
 
 .info p {
     font-size: 18px;
@@ -193,9 +311,9 @@ span {
 
 .mat-form-field {
     display: block;
-    width: 500px;
-    margin-top: 20px;
-    margin-left: 10px;
+    width: 900px;
+    margin-top: 300px;
+    margin-left: 150px;
 }
 
 mat-card {
