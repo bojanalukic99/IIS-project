@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RegistrationComponent } from '../registration/registration.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -38,7 +39,7 @@ export class UsersComponent implements OnInit {
   usertId: any
   selectedRow: any;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private dialog: MatDialog) { 
+  constructor(private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private dialog: MatDialog) { 
     this.user = this.apiService.getUserFromLocalstorage();
 
     this.form = this.formBuilder.group({
@@ -91,7 +92,9 @@ export class UsersComponent implements OnInit {
 
   }
 
-
+  back(){
+    this.location.back()
+   } 
   openAlertDialog() {
     const dialogConfig = new MatDialogConfig();
 

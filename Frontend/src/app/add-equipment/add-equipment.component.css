@@ -78,6 +78,18 @@ span {
     background: #e4d1d1;
 border-radius: 12px;
 }
+.back {
+    background: #b51d1d;
+    border: #b51d1d;
+    color: white;
+    font-size: 15px;
+    width: 80px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  }
 
 ::ng-deep th.mat-header-cell{
     width: 140px;

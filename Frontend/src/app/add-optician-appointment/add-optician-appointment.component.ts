@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-add-optician-appointment',
   templateUrl: './add-optician-appointment.component.html',
@@ -49,7 +50,7 @@ export class AddOpticianAppointmentComponent implements OnInit {
   date: any = this.datepipe.transform(new Date(), "mm/dd/yyyy")
 
   displayedColumns: string[] = ['Date', 'Time','Optician','Schedule'];
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe) {
+  constructor(private location: Location,private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe) {
     this.form = this.formBuilder.group({
       
       product:['', Validators.email],
@@ -103,7 +104,9 @@ export class AddOpticianAppointmentComponent implements OnInit {
   }
 
 
-  
+  back(){
+    this.location.back()
+   } 
   
 
   onSubmit() {

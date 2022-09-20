@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -30,7 +32,8 @@ export class EditUserComponent implements OnInit {
   }
   user:any;
   
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(
+    private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
@@ -68,7 +71,9 @@ export class EditUserComponent implements OnInit {
   });  
   
   }
-
+  back(){
+    this.location.back()
+   } 
   ngOnInit(): void {
 
   }

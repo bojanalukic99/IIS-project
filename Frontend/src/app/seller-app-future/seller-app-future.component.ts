@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-seller-app-future',
   templateUrl: './seller-app-future.component.html',
@@ -34,7 +35,7 @@ export class SellerAppFutureComponent implements OnInit {
   productId: any
   selectedRow: any;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
 
     this.form = this.formBuilder.group({
@@ -55,7 +56,9 @@ export class SellerAppFutureComponent implements OnInit {
       this.appointments = response  
     });
   }
-
+  back(){
+    this.location.back()
+   } 
 
   onSubmit(){
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-
+import {Location} from '@angular/common';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-app-preview',
@@ -10,7 +10,7 @@ export class AppPreviewComponent implements OnInit {
   message: string = ""
   cancelButtonText = "Cancel"
 
-  constructor(  @Inject(MAT_DIALOG_DATA) private data: any,  private dialogRef: MatDialogRef<AppPreviewComponent>) { 
+  constructor( private location: Location, @Inject(MAT_DIALOG_DATA) private data: any,  private dialogRef: MatDialogRef<AppPreviewComponent>) { 
 
     if (data) {
       this.message = data.message || this.message;
@@ -26,5 +26,8 @@ export class AppPreviewComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+  back(){
+    this.location.back()
+   } 
 
 }

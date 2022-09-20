@@ -61,6 +61,19 @@ margin-bottom: 5px;
     padding: 8px;
 }
 
+.back {
+  background: #b51d1d;
+  border: #b51d1d;
+  color: white;
+  font-size: 15px;
+  width: 80px;
+  height: 40px;
+  margin-left: 30px;
+  margin-top: 15px;
+border-radius: 5px;
+margin-bottom: 5px;
+}
+
 .page input{
     width: 240px;
     height: 35px;

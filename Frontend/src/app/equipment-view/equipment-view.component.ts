@@ -7,6 +7,7 @@ import { AddEquipmentComponent } from '../add-equipment/add-equipment.component'
 import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
 import { EditEquipmentComponent } from '../edit-equipment/edit-equipment.component';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-equipment-view',
@@ -39,7 +40,7 @@ export class EquipmentViewComponent implements OnInit {
   equipmentId: any
   selectedRow: any;
 
-  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(private location: Location,private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
 
     this.form = this.formBuilder.group({
@@ -83,7 +84,9 @@ export class EquipmentViewComponent implements OnInit {
     this.equipments = response  
   });
   }
-
+  back(){
+    this.location.back()
+   } 
   new(){
     this.openAlertDialog();
     this.ngOnInit();

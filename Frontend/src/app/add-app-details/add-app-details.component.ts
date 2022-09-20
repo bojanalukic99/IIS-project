@@ -6,6 +6,8 @@ import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppPreviewComponent } from '../app-preview/app-preview.component';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-add-app-details',
   templateUrl: './add-app-details.component.html',
@@ -83,7 +85,7 @@ export class AddAppDetailsComponent implements OnInit {
   
   displayedColumns: string[] = ['Date', 'Time','Optician','Schedule'];
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe, private dialog: MatDialog) { 
+  constructor(private location: Location, private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe, private dialog: MatDialog) { 
     this.form = this.formBuilder.group({
       
      });
@@ -201,5 +203,7 @@ export class AddAppDetailsComponent implements OnInit {
     });
   }
 
- 
+  back(){
+    this.location.back()
+   } 
 }

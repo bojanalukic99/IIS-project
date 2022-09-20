@@ -15,7 +15,7 @@ import { th } from 'date-fns/locale';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppPreviewComponent } from '../app-preview/app-preview.component';
 import { FinishAppComponent } from '../finish-app/finish-app.component';
-
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -117,7 +117,7 @@ export class ViewAppointmentComponent implements OnInit {
   @ViewChild(CalendarSchedulerViewComponent) calendarScheduler: CalendarSchedulerViewComponent | undefined;
 
 
-  constructor( private formBuilder: FormBuilder, private apiService: ApiService, private router: Router,  private activatedRoute: ActivatedRoute, private dialog: MatDialog) { 
+  constructor(private location: Location, private formBuilder: FormBuilder, private apiService: ApiService, private router: Router,  private activatedRoute: ActivatedRoute, private dialog: MatDialog) { 
 
     this.form = this.formBuilder.group({
       comment: ['']
@@ -157,7 +157,9 @@ export class ViewAppointmentComponent implements OnInit {
    
    
   }
-
+  back(){
+    this.location.back()
+   } 
   
 
   navigate(data : any){

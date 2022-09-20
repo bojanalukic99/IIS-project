@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
 import { EditProductComponent } from '../edit-product/edit-product.component';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
   productId: any
   selectedRow: any;
 
-  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(private location: Location,private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
 
     this.form = this.formBuilder.group({
@@ -60,7 +60,9 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  
+  back(){
+    this.location.back()
+   } 
 
   navigate(data : any){
     if(data === 'home'){

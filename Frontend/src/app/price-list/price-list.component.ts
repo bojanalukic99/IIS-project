@@ -5,6 +5,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-price-list',
   templateUrl: './price-list.component.html',
@@ -33,7 +34,7 @@ export class PriceListComponent implements OnInit {
   priceLists:any;
   displayedColumns: string[] = ['Date', 'Product', 'Price'];
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
       this.apiService.getAllPriceList().subscribe((response : any)=> {
         this.priceLists = response;
       })
@@ -42,6 +43,11 @@ export class PriceListComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  back(){
+    this.location.back()
+   } 
+
 
   navigate(data : any){
     if(data === 'home'){

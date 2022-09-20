@@ -7,7 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddWorkHoursComponent } from '../add-work-hours/add-work-hours.component';
 import { DatePipe } from '@angular/common';
 import { EditWorkHoursComponent } from '../edit-work-hours/edit-work-hours.component';
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-work-hours',
@@ -43,7 +43,7 @@ export class WorkHoursComponent implements OnInit {
   equipmentId: any;
   id: any;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private dialog: MatDialog, public datepipe: DatePipe) { 
+  constructor(private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private dialog: MatDialog, public datepipe: DatePipe) { 
     this.user = this.apiService.getUserFromLocalstorage();
   }
 
@@ -56,7 +56,9 @@ export class WorkHoursComponent implements OnInit {
     });
   }
 
-  
+  back(){
+    this.location.back()
+   } 
 
   navigate(data : any){
     if(data === 'home'){

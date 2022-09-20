@@ -7,6 +7,8 @@ import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
 import { EditMaterialComponent } from '../edit-material/edit-material.component';
 import { NewMaterialComponent } from '../new-material/new-material.component';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-material-view',
   templateUrl: './material-view.component.html',
@@ -38,7 +40,8 @@ export class MaterialViewComponent implements OnInit {
   materialId: any
   selectedRow: any;
 
-  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(private location: Location,
+    private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
 
     this.form = this.formBuilder.group({
@@ -89,6 +92,10 @@ export class MaterialViewComponent implements OnInit {
     this.ngOnInit();
 
   }
+  back(){
+    this.location.back()
+   } 
+
 
   openAlertDialog() {
     const dialogConfig = new MatDialogConfig();

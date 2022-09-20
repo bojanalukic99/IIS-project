@@ -187,46 +187,9 @@
             </mat-step>
           </mat-stepper>
     </div>
+    <button (click)="back()" class="back">BACK</button>
+
     </div>
-    <div class="pageRight" *ngIf="patientVar===1">
-      <h2 class="labele">PATIENTS</h2>
-  
-      <br>
-      <input class="inp1" matInput placeholder="Search" formControlName="search">
-      <button class="btn" mat-raised-button color="primary">Search</button>
-      
-      <mat-table mat-table [dataSource]="patients" class="mat-elevation-z8">
-       
-        <ng-container matColumnDef="FirstName">
-          <th mat-header-cell *matHeaderCellDef> First name  </th>
-          <td mat-cell *matCellDef="let patient" > {{patient.firstName}}</td>
-        </ng-container>
-      
-        <ng-container matColumnDef="LastName">
-          <th mat-header-cell *matHeaderCellDef> Last name</th>
-          <td mat-cell *matCellDef="let patient"> {{patient.lastName}} </td>
-        </ng-container>
-   
-        <ng-container matColumnDef="Email">
-          <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let patient"> {{patient.email}} </td>
-        </ng-container>
-        <ng-container matColumnDef="Phone">
-         <th mat-header-cell *matHeaderCellDef> Phone </th>
-         <td mat-cell *matCellDef="let patient">{{patient.phone}} </td>
-       </ng-container>
-       <ng-container matColumnDef="Choose">
-        <th mat-header-cell *matHeaderCellDef> Choose patient </th>
-        <td mat-cell *matCellDef="let patient"><button class="button" (click)="Choose(patient)">Choose patient</button> </td>
-      </ng-container>
-      <ng-container matColumnDef="Edit">
-        <th mat-header-cell *matHeaderCellDef> Edit </th>
-        <td mat-cell *matCellDef="let patient"><button class="button" (click)="Edit(patient.id)">Edit</button> </td>
-      </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-   </mat-table>
-    </div>     
     
     </mat-sidenav-container>
 
