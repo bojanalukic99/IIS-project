@@ -18,7 +18,78 @@ namespace ISS_BACK.Repository
                 return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted).ToList();
             }
 
-            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+        }
+        public IEnumerable<OpticianAppointment> GetAllPrevious(string term)
+        {
+            DateTime today = DateTime.Today;
+
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Date < today).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Date < today || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllPreviousByOptician(string term, long id)
+        {
+            DateTime today = DateTime.Today;
+
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id && x.Date < today).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id && x.Date < today || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllToday(string term)
+        {
+            DateTime today = DateTime.Today;
+
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted  && x.Date == today).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Date == today || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllTodayByOptician(string term, long id)
+        {
+            DateTime today = DateTime.Today;
+
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id && x.Date == today).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id && x.Date == today || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllFuture(string term)
+        {
+            DateTime today = DateTime.Today;
+
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Date > today).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Date > today || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllFutureByOptician(string term, long id)
+        {
+            DateTime today = DateTime.Today;
+
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id && x.Date > today).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.Optician.Id == id && x.Date > today || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
         }
 
         public OpticianAppointment GetByStartTime(DateTime startTime)

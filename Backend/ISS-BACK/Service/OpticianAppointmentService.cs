@@ -300,5 +300,89 @@ namespace ISS_BACK.Service
                 return false;
             }
         }
+
+        public IEnumerable<OpticianAppointment> GetAllPrevious(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.OpticianAppointments.GetAllPrevious(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<OpticianAppointment>();
+            }
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllToday(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.OpticianAppointments.GetAllToday(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<OpticianAppointment>();
+            }
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllFuture(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.OpticianAppointments.GetAllFuture(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<OpticianAppointment>();
+            }
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllPreviousByOptician(string term, long id)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.OpticianAppointments.GetAllPreviousByOptician(term,id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<OpticianAppointment>();
+            }
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllTodayByOptician(string term, long id)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.OpticianAppointments.GetAllTodayByOptician(term, id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<OpticianAppointment>();
+            }
+        }
+
+        public IEnumerable<OpticianAppointment> GetAllFutureByOptician(string term, long id)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.OpticianAppointments.GetAllFutureByOptician(term, id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<OpticianAppointment>();
+            }
+        }
     }
 }

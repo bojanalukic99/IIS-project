@@ -13,6 +13,17 @@ namespace ISS_BACK.Repository
             public IEnumerable<OpticianAppointment> GetPreviousByOptician(User id);
 
         IEnumerable<OpticianAppointment> GetAll(string term);
+        IEnumerable<OpticianAppointment> GetAllPrevious(string term);
+
+        IEnumerable<OpticianAppointment> GetAllToday(string term);
+
+        IEnumerable<OpticianAppointment> GetAllFuture(string term);
+        IEnumerable<OpticianAppointment> GetAllPreviousByOptician(string term, long id);
+
+        IEnumerable<OpticianAppointment> GetAllTodayByOptician(string term, long id);
+
+        IEnumerable<OpticianAppointment> GetAllFutureByOptician(string term, long id);
+
 
         OpticianAppointment GetByStartTime(DateTime startTime);
 

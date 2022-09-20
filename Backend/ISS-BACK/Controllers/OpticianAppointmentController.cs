@@ -79,6 +79,43 @@ namespace ISS_BACK.Controllers
             return Ok(opticianAppointmentService.GetAll(term));
         }
 
+        [HttpGet("allPrevious")]
+        public virtual IActionResult GetAllPrevious(string term)
+        {
+            return Ok(opticianAppointmentService.GetAllPrevious(term));
+        }
+
+
+        [HttpGet("allToday")]
+        public virtual IActionResult GetAllToday(string term)
+        {
+            return Ok(opticianAppointmentService.GetAllToday(term));
+        }
+
+        [HttpGet("allFuture")]
+        public virtual IActionResult GetAllFuture(string term)
+        {
+            return Ok(opticianAppointmentService.GetAllFuture(term));
+        }
+        [HttpGet("allPreviousByOptician/{id}")]
+        public virtual IActionResult GetAllPreviousByOptician(string term, long id)
+        {
+            return Ok(opticianAppointmentService.GetAllPreviousByOptician(term, id));
+        }
+
+
+        [HttpGet("allTodayByOptician/{id}")]
+        public virtual IActionResult GetAllTodayByOptician(string term, long id)
+        {
+            return Ok(opticianAppointmentService.GetAllTodayByOptician(term, id));
+        }
+
+        [HttpGet("allFutureByOptician/{id}")]
+        public virtual IActionResult GetAllFutureByOptician(string term, long id)
+        {
+            return Ok(opticianAppointmentService.GetAllFutureByOptician(term, id));
+        }
+
         [HttpGet("allByDate/{date}")]
         public virtual IActionResult FetAllByDate(DateTime date)
         {
