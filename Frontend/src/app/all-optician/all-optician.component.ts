@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ChangeDetectionStrategy, OnInit, ViewChild  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 @Component({
-  selector: 'app-view-appointment-nurse',
-  templateUrl: './view-appointment-nurse.component.html',
-  styleUrls: ['./view-appointment-nurse.component.css']
+  selector: 'app-all-optician',
+  templateUrl: './all-optician.component.html',
+  styleUrls: ['./all-optician.component.css']
 })
-export class ViewAppointmentNurseComponent implements OnInit {
+export class AllOpticianComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
   isExpanded = true;
@@ -40,6 +40,12 @@ export class ViewAppointmentNurseComponent implements OnInit {
     this.form = this.formBuilder.group({
       search: [''] 
     });
+
+    this.apiService.getCurrentUser().subscribe((response: any) => {
+
+      console.log(response);
+      this.user= response;
+  });  
   }
 
   ngOnInit(): void {
@@ -47,7 +53,8 @@ export class ViewAppointmentNurseComponent implements OnInit {
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
 
-    this.apiService.getAppointments({
+    this.apiService.getAppointmentsByOptician({
+      id: this.user.id,
       term:  search
     }).subscribe((response : any) => {
       console.log('aa');
@@ -61,7 +68,8 @@ export class ViewAppointmentNurseComponent implements OnInit {
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
 
-  this.apiService.getAppointments({
+  this.apiService.getAppointmentsByOptician({
+    id: this.user.id,
     term:  search
   }).subscribe((response : any) => {
     console.log('aa');

@@ -62,6 +62,14 @@ import { MenagerHomePageComponent } from './menager-home-page/menager-home-page.
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { SellerAppPreviousComponent } from './seller-app-previous/seller-app-previous.component';
+import { SellerAppTodayComponent } from './seller-app-today/seller-app-today.component';
+import { SellerAppFutureComponent } from './seller-app-future/seller-app-future.component';
+import { SellerDetailsComponent } from './seller-details/seller-details.component';
+import { AllOpticianComponent } from './all-optician/all-optician.component';
+import { AllOpticianPreviousComponent } from './all-optician-previous/all-optician-previous.component';
+import { AllOpticianTodayComponent } from './all-optician-today/all-optician-today.component';
+import { AllOpticianFutureComponent } from './all-optician-future/all-optician-future.component';
 
 
 @NgModule({
@@ -100,6 +108,14 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     UsersComponent,
     ProductsComponent,
     EditUserComponent,
+    SellerAppPreviousComponent,
+    SellerAppTodayComponent,
+    SellerAppFutureComponent,
+    SellerDetailsComponent,
+    AllOpticianComponent,
+    AllOpticianPreviousComponent,
+    AllOpticianTodayComponent,
+    AllOpticianFutureComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,30 @@ export class ApiService {
     return this.http.put(this.url + '/api/user/' + data.id, data, this.generateHeader());
   }
 
+  getAppointments(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/all?term=' + data.term, this.generateHeader());
+  }
+  getAppointmentsPrevious(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allPrevious?term=' + data.term, this.generateHeader());
+  }
+  getAppointmentsToday(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allToday?term=' + data.term, this.generateHeader());
+  }
+  getAppointmentsFuture(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allFuture?term=' + data.term, this.generateHeader());
+  }
+
+  getAppointmentsPreviousByOptician(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allPreviousByOptician/' + data.id + '?term=' + data.term, this.generateHeader());
+  }
+  getAppointmentsTodayByOptician(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allTodayByOptician/' + data.id + '?term=' + data.term, this.generateHeader());
+  }
+  getAppointmentsFutureByOptician(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allFutureByOptician/' + data.id + '?term=' + data.term, this.generateHeader());
+  }
+
+
   getAppointmentsByOptician(data: any){
     return this.http.get(this.url + '/api/opticianAppointment/allByOptician/' + data.id, this.generateHeader());
   }

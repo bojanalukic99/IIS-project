@@ -3,7 +3,12 @@
      
       <mat-sidenav-container class="example-container" autosize>
         <mat-toolbar  class="example-toolbar">
-          <h2>WELCOME!</h2>         
+          <h2>ALL EQUIPMENT!</h2>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+            <input class="inp" matInput placeholder="Search" formControlName="search">
+            <mat-icon class="spaceLeft" mat-icon-button (click)="onSubmit()">search</mat-icon>
+    
+            </form>            
         </mat-toolbar>
         <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
          
@@ -17,7 +22,8 @@
             </mat-list-item>
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
               <a mat-list-item href="/menager-home-page">Home page</a>
-              <a mat-list-item href="/edit-profile">Edit profile</a>
+              <a mat-list-item href="/edit-user">Edit profile</a>
+              <a mat-list-item href="/priceList">Price list</a>
               <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
                 <span class="full-width" *ngIf="isExpanded || isShowing">Register management</span>
                 <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>

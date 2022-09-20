@@ -6,6 +6,10 @@ import { AddOpticianAppointmentComponent } from './add-optician-appointment/add-
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddRequiredEquipmentComponent } from './add-required-equipment/add-required-equipment.component';
 import { AddWorkHoursComponent } from './add-work-hours/add-work-hours.component';
+import { AllOpticianFutureComponent } from './all-optician-future/all-optician-future.component';
+import { AllOpticianPreviousComponent } from './all-optician-previous/all-optician-previous.component';
+import { AllOpticianTodayComponent } from './all-optician-today/all-optician-today.component';
+import { AllOpticianComponent } from './all-optician/all-optician.component';
 import { AppPreviewComponent } from './app-preview/app-preview.component';
 import { AppointmentEquipmentComponent } from './appointment-equipment/appointment-equipment.component';
 import { AppointmentMaterialComponent } from './appointment-material/appointment-material.component';
@@ -27,7 +31,12 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsComponent } from './products/products.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { SellerAppFutureComponent } from './seller-app-future/seller-app-future.component';
+import { SellerAppPreviousComponent } from './seller-app-previous/seller-app-previous.component';
+import { SellerAppTodayComponent } from './seller-app-today/seller-app-today.component';
+import { SellerDetailsComponent } from './seller-details/seller-details.component';
 import { UsersComponent } from './users/users.component';
+import { ViewAppointmentNurseComponent } from './view-appointment-nurse/view-appointment-nurse.component';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { WorkHoursComponent } from './work-hours/work-hours.component';
 
@@ -50,6 +59,7 @@ const routes: Routes = [
   {path: 'new-product', component:AddProductComponent},
   {path: 'new-optician-appointment', component:AddOpticianAppointmentComponent},
   {path: 'view-appointment', component:ViewAppointmentComponent},
+  {path: 'view-app-seller', component: ViewAppointmentNurseComponent},
   {path: 'add-required-equipment', component:AddRequiredEquipmentComponent},
   {path: 'edit-equipment', component:EditEquipmentComponent},
   {path: 'edit-product', component:EditProductComponent},
@@ -63,6 +73,14 @@ const routes: Routes = [
   {path: 'users', component:UsersComponent},
   {path: 'products', component: ProductsComponent },
   {path: 'edit-user', component:EditUserComponent},
+  {path: 'appSellerPrevious', component:SellerAppPreviousComponent},
+  {path: 'appSellerToday', component:SellerAppTodayComponent},
+  {path: 'appSellerFuture', component:SellerAppFutureComponent},
+  {path: 'seller-details', component:SellerDetailsComponent},
+  {path: 'all-optician', component: AllOpticianComponent},
+  {path: 'all-optician-previous', component: AllOpticianPreviousComponent},
+  {path: 'all-optician-today', component: AllOpticianTodayComponent},
+  {path: 'all-optician-future', component: AllOpticianFutureComponent},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

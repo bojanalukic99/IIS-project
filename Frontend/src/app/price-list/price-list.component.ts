@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
 @Component({
   selector: 'app-price-list',
@@ -8,7 +11,24 @@ import { ApiService } from '../api.service';
   styleUrls: ['./price-list.component.css']
 })
 export class PriceListComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: MatSidenav | undefined;
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
+  data: any;
 
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
+  }
   user:any;
   priceLists:any;
   displayedColumns: string[] = ['Date', 'Product', 'Price'];

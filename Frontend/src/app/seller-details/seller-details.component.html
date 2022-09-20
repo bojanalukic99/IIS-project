@@ -1,0 +1,68 @@
+<div class="main">
+    <div class="blur">
+    
+      <mat-sidenav-container class="example-container" autosize>
+       <mat-toolbar color="primary" class="example-toolbar">
+         <h2 >APPOINTMENT DETAILS</h2>  
+         
+       </mat-toolbar>
+       <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">   
+         <mat-nav-list>
+         <button class="space" mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+ 
+          <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+           <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+              <mat-icon mat-list-icon>home</mat-icon>
+              <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+            </mat-list-item>
+            <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+                <a mat-list-item href="/nurse-home-page">Home page</a>
+                <a mat-list-item href="/edit-user">Edit profile</a>
+                 <a mat-list-item href="/product-view">Products</a>
+                 <a mat-list-item href="/priceList">Price list</a>
+                <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                  <span class="full-width" *ngIf="isExpanded || isShowing">Optician appointments</span>
+                  <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+                </mat-list-item>
+                <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                  <a mat-list-item  href="/view-app-seller">All</a>
+                  <a mat-list-item href="/appSellerPrevious">Previous</a>
+                  <a mat-list-item href="/appSellerToday">Today</a>
+                  <a mat-list-item href="/appSellerFuture">Future</a>
+                </div>
+                <a mat-list-item href="/home-page">Logout</a>
+    
+              </div>
+          </mat-nav-list>
+          <mat-nav-list>
+      </mat-nav-list>
+        </mat-sidenav>
+      
+        <div class="example-sidenav-content">
+                <h2>Product: </h2> <p class="par">{{app.product.name}}</p>
+                <h2>Date: </h2> <p class="par">{{app.date |  date:"yyyy"}}-{{app.date |  date:"MM"}}-{{app.date|  date:"dd"}}</p>
+                <h2>Time:</h2> <p class="par"> {{app.date | date:"HH:mm"}}</p>
+                <h2>Left eye -></h2>
+                <p class="par">Diopter: {{app.leftEye.diopter}}</p>
+                <p class="par">Astigmatism: {{app.leftEye.astigmatism}}</p>
+                <p class="par">Addition for reading: {{app.leftEye.addReading}}</p>
+               <h2>Right eye -></h2>
+               <p class="par">Diopter: {{app.rightEye.diopter}}</p>
+               <p class="par">Astigmatism: {{app.rightEye.astigmatism}}</p>
+               <p class="par">Addition for reading: {{app.rightEye.addReading}}</p>
+               <h2>Type of glass: </h2> <p class="left">{{app.typeOfGlass}}</p>
+               <h2>Distance between pupils:</h2> <p class="left2"> {{app.distanceBetweenPupils}}</p>     
+               <h2>Patient -></h2>
+                <p class="par">Name: {{app.patientName}}</p>
+                <p class="par">Email: {{app.email}}</p>
+                <p class="par">Phone: {{app.phone}}</p>    
+                <h2>Is product finished?</h2> <p class="left3"> {{finished}}</p>
+<button (click)="back()" class="button">BACK</button>
+        </div>
+      
+      </mat-sidenav-container>
+  
+  </div>
+  </div>
+ 
+   

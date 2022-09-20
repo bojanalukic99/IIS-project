@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 @Component({
-  selector: 'app-view-appointment-nurse',
-  templateUrl: './view-appointment-nurse.component.html',
-  styleUrls: ['./view-appointment-nurse.component.css']
+  selector: 'app-seller-app-future',
+  templateUrl: './seller-app-future.component.html',
+  styleUrls: ['./seller-app-future.component.css']
 })
-export class ViewAppointmentNurseComponent implements OnInit {
+export class SellerAppFutureComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
   isExpanded = true;
@@ -47,7 +47,7 @@ export class ViewAppointmentNurseComponent implements OnInit {
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
 
-    this.apiService.getAppointments({
+    this.apiService.getAppointmentsFuture({
       term:  search
     }).subscribe((response : any) => {
       console.log('aa');
@@ -60,8 +60,8 @@ export class ViewAppointmentNurseComponent implements OnInit {
   onSubmit(){
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
-
-  this.apiService.getAppointments({
+console.log(search)
+  this.apiService.getAppointmentsFuture({
     term:  search
   }).subscribe((response : any) => {
     console.log('aa');
@@ -69,9 +69,7 @@ export class ViewAppointmentNurseComponent implements OnInit {
     this.appointments = response  
   });
   }
-
   Details(data: any){
     this.router.navigate(['/seller-details'], {queryParams: {id: data}});
   }
-
 }
