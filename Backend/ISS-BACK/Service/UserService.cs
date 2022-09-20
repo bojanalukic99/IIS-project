@@ -210,7 +210,7 @@ namespace ISS_BACK.Service
             try
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
-                userData.UserType = UserType.Manager;
+                userData.UserType = userData.UserType;
                 userData.Password = BCrypt.Net.BCrypt.HashPassword(userData.Password);
                 userData.Enabled = true;
                 unitOfWord.Users.Add(userData);
@@ -230,12 +230,12 @@ namespace ISS_BACK.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(string term)
         {
             try
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
-                return unitOfWord.Users.GetAll();
+                return unitOfWord.Users.GetAll(term);
             }
             catch (Exception e)
             {
@@ -355,12 +355,12 @@ namespace ISS_BACK.Service
             }
         }
 
-        public IEnumerable<User> GetAllOpticians()
+        public IEnumerable<User> GetAllOpticians(string term)
         {
             try
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
-                return unitOfWord.Users.GetAllOpticians();
+                return unitOfWord.Users.GetAllOpticians(term);
             }
             catch (Exception e)
             {
@@ -369,12 +369,26 @@ namespace ISS_BACK.Service
             }
         }
 
-        public IEnumerable<User> GetPatients()
+        public IEnumerable<User> GetPatients(string term)
         {
             try
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
-                return unitOfWord.Users.GetPatients();
+                return unitOfWord.Users.GetPatients(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is UserService in CreateUserMethod {e.Message} {e.StackTrace}");
+                return new List<User>();
+            }
+        }
+
+        public IEnumerable<User> GetSellers(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.Users.GetSellers(term);
             }
             catch (Exception e)
             {

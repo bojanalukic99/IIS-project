@@ -36,24 +36,31 @@ namespace ISS_BACK.Controllers
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery(Name = "term")] string term)
         {
-            return Ok(_userService.GetAll());
+            return Ok(_userService.GetAll(term));
         }
 
 
         
         [HttpGet("allOpticians")]
-        public IActionResult GetAllOpticians()
+        public IActionResult GetAllOpticians([FromQuery(Name = "term")] string term)
         {
-            return Ok(_userService.GetAllOpticians());
+            return Ok(_userService.GetAllOpticians(term));
         }
 
         [Route("allPatients")]
         [HttpGet]
-        public virtual IActionResult GetAllPatients()
+        public virtual IActionResult GetAllPatients([FromQuery(Name = "term")] string term)
         {
-            return Ok(_userService.GetPatients());
+            return Ok(_userService.GetPatients(term));
+        }
+
+        [Route("allSellers")]
+        [HttpGet]
+        public virtual IActionResult GetAllSellers([FromQuery(Name = "term")] string term)
+        {
+            return Ok(_userService.GetSellers(term));
         }
 
 

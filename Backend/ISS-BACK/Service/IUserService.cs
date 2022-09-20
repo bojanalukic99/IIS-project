@@ -18,9 +18,10 @@ namespace ISS_BACK.Service
         bool RequestPasswordReset(string email);
         bool PasswordReset(string token, string password);
         bool Activate(string token);
-        IEnumerable<User> GetAll();
-        IEnumerable<User> GetPatients();
-        IEnumerable<User> GetAllOpticians();
+        IEnumerable<User> GetAll(string term);
+        IEnumerable<User> GetPatients(string term);
+        IEnumerable<User> GetAllOpticians(string term);
+        IEnumerable<User> GetSellers(string term);
 
         IEnumerable<User> Search(string id);
 

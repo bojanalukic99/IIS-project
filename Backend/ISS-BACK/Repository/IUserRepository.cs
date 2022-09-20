@@ -15,9 +15,11 @@ namespace ISS_BACK.Repository
         User GetUserWithRegistrationToken(string token);
         User GetUserWithResetToken(string token);
         User Search(string token);
+        IEnumerable<User> GetAll(string term);
 
-        IEnumerable<User> GetAllOpticians();
+        IEnumerable<User> GetAllOpticians(string term);
+        IEnumerable<User> GetSellers(string term);
 
-        IEnumerable<User> GetPatients();
+        IEnumerable<User> GetPatients(string term);
     }
 }

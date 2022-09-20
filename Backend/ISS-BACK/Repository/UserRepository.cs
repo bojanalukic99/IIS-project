@@ -14,9 +14,24 @@ namespace ISS_BACK.Repository
 
         }
 
-        public IEnumerable<User> GetAllOpticians()
+        public IEnumerable<User> GetAll(string term)
         {
-            return ApplicationContext.Users.Where(x => x.UserType == UserType.Optician);
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.Users.Where(x => !x.Deleted).ToList();
+            }
+            return ApplicationContext.Users.Where(x => !x.Deleted && (x.FirstName.Contains(term)) && x.LastName.Contains(term) && x.Email.Contains(term)).ToList();
+
+        }
+
+        public IEnumerable<User> GetAllOpticians(string term)
+        {
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.Users.Where(x => !x.Deleted).ToList();
+            }
+            return ApplicationContext.Users.Where(x => !x.Deleted && x.UserType==UserType.Optician && (x.FirstName.Contains(term)) && x.LastName.Contains(term) && x.Email.Contains(term)).ToList();
+
         }
 
         public User GetById(int id)
@@ -24,11 +39,22 @@ namespace ISS_BACK.Repository
             return ApplicationContext.Users.Where(x => x.Id == id).SingleOrDefault();
         }
 
-        public IEnumerable<User> GetPatients()
+        public IEnumerable<User> GetPatients(string term)
         {
-            return ApplicationContext.Users.Where(x => x.UserType == UserType.Patient).ToList();
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.Users.Where(x => !x.Deleted).ToList();
+            }
+            return ApplicationContext.Users.Where(x => !x.Deleted && x.UserType == UserType.Patient && (x.FirstName.Contains(term)) && x.LastName.Contains(term) && x.Email.Contains(term)).ToList();
         }
-
+        public IEnumerable<User> GetSellers(string term)
+        {
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.Users.Where(x => !x.Deleted).ToList();
+            }
+            return ApplicationContext.Users.Where(x => !x.Deleted && x.UserType == UserType.Seller && (x.FirstName.Contains(term)) && x.LastName.Contains(term) && x.Email.Contains(term)).ToList();
+        }
         public User GetUserWithEmail(string email)
         {
             return ApplicationContext.Users.Where(x => x.Email == email).SingleOrDefault();
