@@ -14,6 +14,7 @@ import { EditEquipmentComponent } from './edit-equipment/edit-equipment.componen
 import { EditMaterialComponent } from './edit-material/edit-material.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 import { EquipmentViewComponent } from './equipment-view/equipment-view.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
@@ -61,6 +62,7 @@ const routes: Routes = [
   {path: 'menager-home-page', component: MenagerHomePageComponent},
   {path: 'users', component:UsersComponent},
   {path: 'products', component: ProductsComponent },
+  {path: 'edit-user', component:EditUserComponent},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

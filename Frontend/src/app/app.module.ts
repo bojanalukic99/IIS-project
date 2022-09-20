@@ -61,6 +61,7 @@ import { EditWorkHoursComponent } from './edit-work-hours/edit-work-hours.compon
 import { MenagerHomePageComponent } from './menager-home-page/menager-home-page.component';
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { ProductsComponent } from './products/products.component';
     MenagerHomePageComponent,
     UsersComponent,
     ProductsComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

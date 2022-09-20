@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -11,10 +13,29 @@ export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
   selectedType: any;
+  selectedUserType: any;
 
+  message: string = ""
+  cancelButtonText = "Cancel"
+  user: any;
+  local_data: any;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router) 
-  {
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<RegistrationComponent>) { 
+
+    this.user = this.api.getUserFromLocalstorage();
+
+    this.local_data = {...data};
+  
+    if (data) {
+      this.message = data.message || this.message;
+      if (data.buttonText) {
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+    }
+
+ 
+
+    this.dialogRef.updateSize('600px','700px')
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
       password: ['', Validators.required],
@@ -29,39 +50,20 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+ onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
   ngOnInit(): void {
   }
 
-  onSubmit() {
 
-      this.api.userRegistration({
-        email: this.form.get('email')?.value,
-        password: this.form.get('password')?.value,
-        posswordConformation : this.form.get('passwordConformation')?.value,
-        firstName: this.form.get('firstName')?.value,
-        lastName: this.form.get('lastName')?.value,
-        userType: 2,
-        gender: this.selectedType,
-        phone: this.form.get('phone')?.value,
-        birthDate: this.form.get('birthDate')?.value,
-        address: this.form.get('address')?.value,
-        }).subscribe((response: any) => {
-        this.router.navigate(['/login']);
-      })
-    }
 
-    navigate(data : any){
-      if(data === 'login'){
-        this.router.navigate(['/login']);
-      }
-  
-      else if(data === 'registration'){
-        this.router.navigate(['/registration']);
-      }
-      else if(data === 'home'){
-        this.router.navigate(['/home-page']);
-      }
-      
-    }
-  
+  yesDialog() {
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
+  noDialog() {
+    this.dialogRef.close({ event: 'no-option', data: this.form.value });
+  }
+  onSubmit(){}
+
+}

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,13 +12,29 @@ import { ApiService } from '../api.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  selectedType: any;
-  form: FormGroup;
-  user:any;
 
+  selecedType: any;
+  message: string = ""
+  cancelButtonText = "Cancel"
+  user: any;
+  local_data: any;
+form: FormGroup;
+id: any;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<EditProfileComponent>, private router: Router, private activatedRoute: ActivatedRoute) { 
 
+    this.user = this.api.getUserFromLocalstorage();
+
+    this.local_data = {...data};
+  
+    if (data) {
+      this.message = data.message || this.message;
+      if (data.buttonText) {
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+    }
+
+    this.id = data.id;
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
       firstName: ['', Validators.required],
@@ -36,7 +54,7 @@ export class EditProfileComponent implements OnInit {
       return;
     }
 
-    this.api.getCurrentUser().subscribe((response: any) => {
+    this.api.getUser({id: this.id}).subscribe((response: any) => {
 
       console.log(response);
 
@@ -49,38 +67,25 @@ export class EditProfileComponent implements OnInit {
       address: [response.address, Validators.required]
     });
   });  
+    this.dialogRef.updateSize('600px','600px')
   
-}
 
+  }
 
+ onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.api.editProfile({
-      id: this.user.id,
-      email: this.form.get('email')?.value,
-      firstName: this.form.get('firstName')?.value,
-      lastName: this.form.get('lastName')?.value,
-      address: this.form.get('address')?.value,
-      phone: this.form.get('phone')?.value,
-      birthDate: this.form.get('userType')?.value,
-    }).subscribe((response: any) => {
-      this.router.navigate(['/optician-home-page']);
-    })
+
+
+  yesDialog() {
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
-
-
-  navigate(data : any){
-    if(data === 'home'){
-      if(this.user.userType == 1){
-        this.router.navigate(['/optician-home-page']);
-
-      }else {
-        this.router.navigate(['/nurse-home-page']);
-      }
-    }
-
-   
+  noDialog() {
+    this.dialogRef.close({ event: 'no-option', data: this.form.value });
   }
+  onSubmit(){}
+
 }

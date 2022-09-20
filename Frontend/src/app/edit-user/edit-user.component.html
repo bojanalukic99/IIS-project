@@ -16,18 +16,7 @@
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
             </mat-list-item>
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-              <a mat-list-item href="/menager-home-page">Home page</a>
-              <a mat-list-item href="/edit-user">Edit profile</a>
-              <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-                <span class="full-width" *ngIf="isExpanded || isShowing">Register management</span>
-                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-              </mat-list-item>
-              <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-                <a mat-list-item href="/users">Users</a>
-                <a mat-list-item href="/products">Products</a>
-                <a mat-list-item href="/material-view">Material</a>
-                <a mat-list-item href="/equipment-view">Equipment</a>
-              </div>
+             
               <a mat-list-item href="/home-page">Logout</a>
   
             </div>
@@ -37,6 +26,27 @@
         </mat-sidenav>
       
         <div class="example-sidenav-content">
+            <mat-card>
+                <mat-card-content>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <h2>Edit profile</h2>
+                        <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email" required>
+                        </mat-form-field> 
+                        <mat-form-field>
+                            <input matInput placeholder="First name" formControlName="firstName" required>
+                        </mat-form-field>  
+                        <mat-form-field>
+                            <input matInput placeholder="Last name" formControlName="lastName" required>
+                        </mat-form-field> 
+                        <mat-form-field>
+                            <input matInput placeholder="Phone" formControlName="phone" required>
+                        </mat-form-field> 
+                     
+                        <button mat-raised-button class="button">Edit</button>
+                    </form>
+                </mat-card-content>
+            </mat-card>
         </div>
       
       </mat-sidenav-container>

@@ -54,12 +54,11 @@ export class ApiService {
   getEquipmentById(data: any){
     return this.http.get(this.url + '/api/equipment/getById/' + data.id, this.generateHeader());
   }
-  getAllOpticians(){
-    return this.http.get(this.url + '/api/user/allOpticians', this.generateHeader());
-  }
+
   getAllPatient(){
     return this.http.get(this.url + '/api/user/allPatients', this.generateHeader());
   }
+
 
   getAllProducts(data: any){
     return this.http.get(this.url + '/api/product/all?term=' + data.term, this.generateHeader());
@@ -80,6 +79,17 @@ export class ApiService {
   getAllEquipment(data: any){
     return this.http.get(this.url + '/api/equipment/all?term=' + data.term, this.generateHeader());
   }
+
+  getAllUsers(data: any){
+    return this.http.get(this.url + '/api/user/all?term=' + data.term, this.generateHeader());
+  }
+  getAllOpticians(data: any){
+    return this.http.get(this.url + '/api/user/all?term=' + data.term, this.generateHeader());
+  }
+  getAllSellers(data: any){
+    return this.http.get(this.url + '/api/user/all?term=' + data.term, this.generateHeader());
+  }
+
 
   getProductById(data: any){
     return this.http.get(this.url + '/api/product/getById/' + data.id, this.generateHeader());
@@ -160,6 +170,9 @@ export class ApiService {
 
   deleteProduct(data: any){
     return this.http.delete(this.url + '/api/product/' + data.id, this.generateHeader());
+  }
+  deleteUser(data: any){
+    return this.http.delete(this.url + '/api/user/' + data.id, this.generateHeader());
   }
 
   deleteEquipment(data: any){
