@@ -11,5 +11,6 @@ namespace ISS_BACK.Model
         public string Price { get; set; }
         public float MakingTime { get; set; }
         public string Photo { get; set; }
+        public productType ProductType { get; set; }
     }
 }

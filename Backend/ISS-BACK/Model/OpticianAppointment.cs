@@ -20,5 +20,7 @@ namespace ISS_BACK.Model
   
         public string TypeOfGlass { get; set; }
         public string DistanceBetweenPupils { get; set; }
+
+        public string LensColor { get; set; }
     }
 }

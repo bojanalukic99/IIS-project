@@ -42,7 +42,7 @@ namespace ISS_BACK
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IRequiredEquipmentService, RequiredEquipmentService>();
             services.AddScoped<IWorkingHourService, WorkingHourService>();
-
+            services.AddScoped<IRequiredMaterialService, RequiredMaterialService>();
 
             ProjectConfiguration config = new ProjectConfiguration();
             Configuration.Bind("ProjectConfiguration", config);

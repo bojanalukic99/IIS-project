@@ -22,6 +22,17 @@ namespace ISS_BACK.DTO
         public string TypeOfGlass { get; set; }
         public string DistanceBetweenPupils { get; set; }
 
+        public string LensPowerLeft { get; set; }
+        public string AxisFigureLeft { get; set; }
+        public string AdditionFigureLeft { get; set; }
+        public string CylinderLeft { get; set; }
+
+        public string LensPowerRight { get; set; }
+        public string AxisFigureRight { get; set; }
+        public string AdditionFigureRight { get; set; }
+        public string CylinderRight { get; set; }
+
+        public string LensColor { get; set; }
         public long OpticianId { get; set; }
     }
 }

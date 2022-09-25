@@ -191,11 +191,19 @@ namespace ISS_BACK.Service
                 leftEye.Diopter = dto.DiopterLeft;
                 leftEye.Astigmatism = dto.AstigmatismLeft;
                 leftEye.AdditionForReading = dto.AdditionForReadingLeft;
+                leftEye.AxisFigure = dto.AxisFigureLeft;
+                leftEye.AdditionFigure = dto.AdditionFigureLeft;
+                leftEye.Cylinder = dto.CylinderLeft;
+                leftEye.LensPower = dto.LensPowerLeft;
 
                 EyeDetails rightEye = new EyeDetails();
                 rightEye.Diopter = dto.DiopterRight;
                 rightEye.Astigmatism = dto.AstigmatismRight;
                 rightEye.AdditionForReading = dto.AdditionForReadingRight;
+                rightEye.AxisFigure = dto.AxisFigureRight;
+                rightEye.AdditionFigure = dto.AdditionFigureRight;
+                rightEye.Cylinder = dto.CylinderRight;
+                rightEye.LensPower = dto.LensPowerRight;
 
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
                opticianAppointment.Optician = unitOfWork.Users.Get(dto.OpticianId);
@@ -209,6 +217,7 @@ namespace ISS_BACK.Service
                 opticianAppointment.RightEye = rightEye;
                 opticianAppointment.DistanceBetweenPupils = dto.DistanceBetweenPupils;
                 opticianAppointment.TypeOfGlass = dto.TypeOfGlass;
+                opticianAppointment.LensColor = dto.LensColor;
 
                 unitOfWork.OpticianAppointments.Add(opticianAppointment);
                 _ = unitOfWork.Complete();

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace ISS_BACK.Model
 {
-    public class Material : Entity
+    public class RequairedMaterial : Entity
     {
-        public string Name { get; set; }
+        public Material Material { get; set; }
+        public OpticianAppointment Appointment { get; set; }
         public int Quatity { get; set; }
-        public string Manufacturer { get; set; }
     }
 }

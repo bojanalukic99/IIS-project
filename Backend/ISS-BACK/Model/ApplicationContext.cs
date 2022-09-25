@@ -30,6 +30,7 @@ namespace ISS_BACK.Model
         public DbSet<WorkingHour> WorkingHours { get; set; }
 
         public DbSet<OpticianAppointment> OpticianAppointments { get; set; }
+        public DbSet<RequairedMaterial> RequairedMaterials { get; set; }
 
 
 

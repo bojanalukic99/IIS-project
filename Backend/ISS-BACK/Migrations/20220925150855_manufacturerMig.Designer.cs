@@ -4,14 +4,16 @@ using ISS_BACK.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ISS_BACK.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220925150855_manufacturerMig")]
+    partial class manufacturerMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,40 +309,6 @@ namespace ISS_BACK.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ISS_BACK.Model.RequairedMaterial", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long?>("AppointmentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("MaterialId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Quatity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.HasIndex("MaterialId");
-
-                    b.ToTable("RequairedMaterials");
-                });
-
             modelBuilder.Entity("ISS_BACK.Model.RequiredEquipment", b =>
                 {
                     b.Property<long>("Id")
@@ -528,21 +496,6 @@ namespace ISS_BACK.Migrations
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("ISS_BACK.Model.RequairedMaterial", b =>
-                {
-                    b.HasOne("ISS_BACK.Model.OpticianAppointment", "Appointment")
-                        .WithMany()
-                        .HasForeignKey("AppointmentId");
-
-                    b.HasOne("ISS_BACK.Model.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId");
-
-                    b.Navigation("Appointment");
-
-                    b.Navigation("Material");
                 });
 
             modelBuilder.Entity("ISS_BACK.Model.RequiredEquipment", b =>

@@ -127,6 +127,6 @@ namespace ISS_BACK.Controllers
         {
             return Ok(opticianAppointmentService.AddOpticianAppointment(dto));
         }
-        
+
     }
 }

@@ -4,14 +4,16 @@ using ISS_BACK.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ISS_BACK.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220925173751_requiredMaterialMig2")]
+    partial class requiredMaterialMig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -328,9 +330,6 @@ namespace ISS_BACK.Migrations
 
                     b.Property<long?>("MaterialId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("Quatity")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
