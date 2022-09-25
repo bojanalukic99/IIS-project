@@ -3,6 +3,15 @@
     <form  [formGroup]="form">
         <mat-form-field>
             <input matInput placeholder="Name" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select type</mat-label>
+            <mat-select [(ngModel)]="selectedType">
+                <mat-option value="0">Sunglasses</mat-option>
+                <mat-option value="1">Frame</mat-option>
+                <mat-option value="2">SoftLans</mat-option>
+                <mat-option value="3">HardLans</mat-option>
+            </mat-select>
         </mat-form-field> 
         <mat-form-field>
             <input matInput placeholder="Price" formControlName="price" required>
@@ -10,6 +19,7 @@
         <mat-form-field>
             <input matInput placeholder="MakingTime" formControlName="makingTime" required>
         </mat-form-field>
+        
 </form>     
 </mat-dialog-content>
 <div md-dialog-actions>

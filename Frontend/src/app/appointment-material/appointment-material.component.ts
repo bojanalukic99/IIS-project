@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComfirmAdditionComponent } from '../comfirm-addition/comfirm-addition.component';
 
 @Component({
   selector: 'app-appointment-material',
@@ -10,72 +12,45 @@ import { ApiService } from '../api.service';
 })
 export class AppointmentMaterialComponent implements OnInit {
 
-  form: FormGroup;
-  selectedMaterial: any;
-  materialId: any
-  materials: any
-  name: any;
-  newQuantity: any;
-  appointmentId: any
+  message: string = ""
+  cancelButtonText = "Cancel"
+  user: any;
+  local_data: any;
+form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { 
+  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<AppointmentMaterialComponent>, private dialog: MatDialog) { 
 
+    this.user = this.api.getUserFromLocalstorage();
+
+    this.local_data = {...data};
+  
+    if (data) {
+      this.message = data.message || this.message;
+      if (data.buttonText) {
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+    }
+
+    this.dialogRef.updateSize('600px','250px')
     this.form = this.formBuilder.group({
-      material: ['', Validators.email],
       quatity: ['', Validators.required]
     });
+  }
 
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.appointmentId = params['id'];
+ onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
+  ngOnInit(): void {
+  }
 
-      console.log(params['id'])
-    });
  
 
-    this.api.getMaterialById({ id: this.selectedMaterial }).subscribe((response: any) => {
-
-      this.name = response.name
-
-
-  });  
-  
-
-
-}
-
-
-  ngOnInit(): void {
-
-   
+  yesDialog() {
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
-
-  onSubmit() {
-    this.api.changeQuantity({
-      id: parseInt(this.selectedMaterial),
-      quatity: parseInt(this.form.get('quatity')?.value),
-    }).subscribe((response: any) => {
-      this.router.navigate(['/view-appointment'],  {queryParams: {id: this.appointmentId}});
-    })
+  noDialog() {
+    this.dialogRef.close({ event: 'no-option', data: this.form.value });
   }
+  onSubmit(){}
 
-
-  navigate(data : any){
-    if(data === 'home'){
-      this.router.navigate(['/optician-home-page']);
-    }
-
-    else if(data === 'edit'){
-      this.router.navigate(['/edit-profile']);
-    }
-    else if(data === 'material'){
-      this.router.navigate(['/material-view']);
-    }
-    else if(data === 'equipment'){
-      this.router
-      .navigate(['/equipment-view']);
-    }
-    else if(data === 'workHour'){
-      this.router.navigate(['/view-work-hour']);
-    }
-  }
 }

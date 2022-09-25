@@ -38,29 +38,100 @@
       </mat-nav-list>
         </mat-sidenav>
       
-        <div class="example-sidenav-content">
+        <div *ngIf="glasses" class="example-sidenav-content">
                 <h2>Product: </h2> <p class="par">{{app.product.name}}</p>
+                <p class="line">__________________________________________________</p>
                 <h2>Date: </h2> <p class="par">{{app.date |  date:"yyyy"}}-{{app.date |  date:"MM"}}-{{app.date|  date:"dd"}}</p>
+                <p class="line">__________________________________________________</p>
+
                 <h2>Time:</h2> <p class="par"> {{app.date | date:"HH:mm"}}</p>
+                <p class="line">__________________________________________________</p>
+
                 <h2>Left eye -></h2>
                 <p class="par">Diopter: {{app.leftEye.diopter}}</p>
                 <p class="par">Astigmatism: {{app.leftEye.astigmatism}}</p>
-                <p class="par">Addition for reading: {{app.leftEye.addReading}}</p>
-               <h2>Right eye -></h2>
+                <p class="par">Addition for reading: {{app.leftEye.additionForReading}}</p>
+                <p class="line">__________________________________________________</p>
+
+                <h2>Right eye -></h2>
                <p class="par">Diopter: {{app.rightEye.diopter}}</p>
                <p class="par">Astigmatism: {{app.rightEye.astigmatism}}</p>
-               <p class="par">Addition for reading: {{app.rightEye.addReading}}</p>
+               <p class="par">Addition for reading: {{app.rightEye.additionForReading}}</p>
+               <p class="line">__________________________________________________</p>
+
                <h2>Type of glass: </h2> <p class="left">{{app.typeOfGlass}}</p>
+               <p class="line">__________________________________________________</p>
+
                <h2>Distance between pupils:</h2> <p class="left2"> {{app.distanceBetweenPupils}}</p>     
+               <p class="line">__________________________________________________</p>
+
                <h2>Patient -></h2>
                 <p class="par">Name: {{app.patientName}}</p>
                 <p class="par">Email: {{app.email}}</p>
-                <p class="par">Phone: {{app.phone}}</p>    
+                <p class="par">Phone: {{app.phone}}</p>  
+                <p class="line">__________________________________________________</p>
+
+                <h2>Optician comment: </h2>
+                <p class="left3"> {{app.comment}}</p> 
+                <p class="line">__________________________________________________</p>
+
+                <br>
+
                 <h2>Is product finished?</h2> <p class="left3"> {{finished}}</p>
-<button (click)="back()" class="button">BACK</button>
-        </div>
+                <p class="line">__________________________________________________</p>
+
+                <button (click)="back()" class="back">BACK</button>       
+               </div>
       
-      </mat-sidenav-container>
+      <div *ngIf="!glasses" class="example-sidenav-content">
+        <h2>Product: </h2> <p class="par">{{app.product.name}}</p>
+        <p class="line">__________________________________________________</p>
+        <h2>Date: </h2> <p class="par">{{app.date |  date:"yyyy"}}-{{app.date |  date:"MM"}}-{{app.date|  date:"dd"}}</p>
+        <p class="line">__________________________________________________</p>
+
+        <h2>Time:</h2> <p class="par"> {{app.date | date:"HH:mm"}}</p>
+        <p class="line">__________________________________________________</p>
+
+        <h2>Left eye -></h2>
+        <p class="par">Lens power: {{app.leftEye.lensPower}}</p>
+        <p class="par">Cylinder: {{app.leftEye.cylinder}}</p>
+        <p class="par">Axis figure: {{app.leftEye.axisFigure}}</p>
+        <p class="par">Addition figure: {{app.leftEye.additionFigure}}</p>
+        <p class="line">__________________________________________________</p>
+
+        <h2>Right eye -></h2>
+        <p class="par">Lens power: {{app.rightEye.lensPower}}</p>
+        <p class="par">Cylinder: {{app.rightEye.cylinder}}</p>
+        <p class="par">Axis figure: {{app.rightEye.axisFigure}}</p>
+        <p class="par">Addition figure: {{app.rightEye.additionFigure}}</p>
+       <p class="line">__________________________________________________</p>
+
+       <h2>Type of glass: </h2> <p class="left">{{app.lensColor}}</p>
+       <p class="line">__________________________________________________</p>
+
+       <h2>Patient -></h2>
+        <p class="par">Name: {{app.patientName}}</p>
+        <p class="par">Email: {{app.email}}</p>
+        <p class="par">Phone: {{app.phone}}</p>  
+        <p class="line">__________________________________________________</p>
+
+        <h2>Optician comment: </h2>
+        <p class="left3"> {{app.comment}}</p> 
+        <p class="line">__________________________________________________</p>
+
+        <br>
+
+        <h2>Is product finished?</h2> <p class="left3"> {{finished}}</p>
+        <div *ngIf="optician">
+          <button class="button" (click)="finish()">FINISH</button>
+        </div>
+        <p class="line">__________________________________________________</p>
+
+        <button (click)="back()" class="back">BACK</button>  
+     
+       </div>
+
+</mat-sidenav-container>
   
   </div>
   </div>

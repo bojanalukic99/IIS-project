@@ -24,6 +24,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDialogModule } from '@angular/material/dialog';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { MatRadioModule} from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -70,6 +71,10 @@ import { AllOpticianComponent } from './all-optician/all-optician.component';
 import { AllOpticianPreviousComponent } from './all-optician-previous/all-optician-previous.component';
 import { AllOpticianTodayComponent } from './all-optician-today/all-optician-today.component';
 import { AllOpticianFutureComponent } from './all-optician-future/all-optician-future.component';
+import { ComfirmAdditionComponent } from './comfirm-addition/comfirm-addition.component';
+import { ComfirmEditingComponent } from './comfirm-editing/comfirm-editing.component';
+import { ComfirmDeletingComponent } from './comfirm-deleting/comfirm-deleting.component';
+import { NotifMaterialComponent } from './notif-material/notif-material.component';
 
 
 @NgModule({
@@ -116,6 +121,10 @@ import { AllOpticianFutureComponent } from './all-optician-future/all-optician-f
     AllOpticianPreviousComponent,
     AllOpticianTodayComponent,
     AllOpticianFutureComponent,
+    ComfirmAdditionComponent,
+    ComfirmEditingComponent,
+    ComfirmDeletingComponent,
+    NotifMaterialComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,6 +152,7 @@ import { AllOpticianFutureComponent } from './all-optician-future/all-optician-f
     MatDialogModule,
     NgbModalModule,
     CalendarModule,
+    MatRadioModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

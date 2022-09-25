@@ -13,6 +13,9 @@ import { AllOpticianComponent } from './all-optician/all-optician.component';
 import { AppPreviewComponent } from './app-preview/app-preview.component';
 import { AppointmentEquipmentComponent } from './appointment-equipment/appointment-equipment.component';
 import { AppointmentMaterialComponent } from './appointment-material/appointment-material.component';
+import { ComfirmAdditionComponent } from './comfirm-addition/comfirm-addition.component';
+import { ComfirmDeletingComponent } from './comfirm-deleting/comfirm-deleting.component';
+import { ComfirmEditingComponent } from './comfirm-editing/comfirm-editing.component';
 import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 import { EditEquipmentComponent } from './edit-equipment/edit-equipment.component';
 import { EditMaterialComponent } from './edit-material/edit-material.component';
@@ -81,6 +84,9 @@ const routes: Routes = [
   {path: 'all-optician-previous', component: AllOpticianPreviousComponent},
   {path: 'all-optician-today', component: AllOpticianTodayComponent},
   {path: 'all-optician-future', component: AllOpticianFutureComponent},
+  {path: 'comfirm-addition', component:ComfirmAdditionComponent},
+  {path: 'comfirm-editing', component:ComfirmEditingComponent},
+  {path: 'comfirm-deleting', component:ComfirmDeletingComponent},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

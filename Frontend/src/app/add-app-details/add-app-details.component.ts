@@ -38,20 +38,29 @@ export class AddAppDetailsComponent implements OnInit {
 
   });
   secondFormGroup = this.formBuilder.group({
-    diopterLeft: ['', Validators.required],
-    astigmatismLeft: ['', Validators.required],
-    additionForReadingLeft: ['', Validators.required],
+    diopterLeft: [''],
+    astigmatismLeft: [''],
+    additionForReadingLeft: [''],
+    lensPowerLeft: [''],
+    cylinderLeft: [''],
+    axisFigureLeft: [''],
+    additionFigureLeft: ['']
   
   });
   thridFormGroup = this.formBuilder.group({
-    diopterRight: ['', Validators.required],
-    astigmatismRight: ['', Validators.required],
-    additionForReadingRight: ['', Validators.required],
+    diopterRight: [''],
+    astigmatismRight: [''],
+    additionForReadingRight: [''],
+    lensPowerRight: [''],
+    cylinderRight: [''],
+    axisFigureRight: [''],
+    additionFigureRight: ['']
   });
 
   fourthFormGroup = this.formBuilder.group({
-    distanceBetweenPupils: ['', Validators.required],
-    typeOfGlass: ['', Validators.required],
+    distanceBetweenPupils: [''],
+    typeOfGlass: [''],
+    lensColor: ['']
   });
 
   isLinear = false;
@@ -82,7 +91,7 @@ export class AddAppDetailsComponent implements OnInit {
   patientVar = 0;
   patients: any;
   selectedPatient: any;
-  
+  glasses = false;
   displayedColumns: string[] = ['Date', 'Time','Optician','Schedule'];
 
   constructor(private location: Location, private formBuilder: FormBuilder, private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, public datepipe: DatePipe, private dialog: MatDialog) { 
@@ -102,6 +111,11 @@ export class AddAppDetailsComponent implements OnInit {
 
     this.api.getProductById({ id: this.productId }).subscribe((response: any) => {
       this.productName = response.name;
+
+      if(response.productType == 0 || response.productType == 1){
+          this.glasses=true;
+      }
+
       console.log(response)
 
 });
@@ -174,6 +188,15 @@ export class AddAppDetailsComponent implements OnInit {
         additionForReadingRight: this.thridFormGroup.get('additionForReadingRight')?.value,   
         distanceBetweenPupils : this.fourthFormGroup.get('distanceBetweenPupils')?.value,
         typeOfGlass: this.fourthFormGroup.get('typeOfGlass')?.value,
+        lensColor: this.fourthFormGroup.get('lensColor')?.value,
+        lensPowerLeft: this.secondFormGroup.get('lensPowerLeft')?.value,
+        cylinderLeft: this.secondFormGroup.get('cylinderLeft')?.value,
+        axisFigureLeft: this.secondFormGroup.get('axisFigureLeft')?.value,
+        additionFigureLeft: this.secondFormGroup.get('additionFigureLeft')?.value,
+        lensPowerRight: this.thridFormGroup.get('lensPowerRight')?.value,
+        cylinderRight: this.thridFormGroup.get('cylinderRight')?.value,
+        axisFigureRight: this.thridFormGroup.get('axisFigureRight')?.value,
+        additionFigureRight: this.thridFormGroup.get('additionFigureRight')?.value
     }).subscribe((response: any) => {
 
  

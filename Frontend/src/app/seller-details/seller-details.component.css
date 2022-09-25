@@ -208,6 +208,12 @@ span {
     text-align: center;
   }
 
+  .line{
+    margin-left: 20px;
+    margin-top: -10px;
+  }
+
+
   .button {
     background: #0b296c;
     color: white;
@@ -303,6 +309,16 @@ margin-bottom: 5px;
     color: #263047;
     margin-top: -35px;
     margin-left: 170px;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+  .par1{
+
+    align-items: center;
+    justify-content: center;
+    color: #263047;
+    margin-top: -35px;
+    margin-left: 300px;
     margin-bottom: 30px;
     font-size: 20px;
   }

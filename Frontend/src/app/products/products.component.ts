@@ -7,6 +7,7 @@ import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
 import { EditProductComponent } from '../edit-product/edit-product.component';
 import {Location} from '@angular/common';
+import { ComfirmDeletingComponent } from '../comfirm-deleting/comfirm-deleting.component';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -33,8 +34,9 @@ export class ProductsComponent implements OnInit {
   }
   form: any;
   user:any;
+  id: any;
   products:any;
-  displayedColumns: string[] = ['Name', 'Price', 'MakingTime', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['Name', 'Type','Price', 'MakingTime', 'Edit', 'Delete'];
   productId: any
   selectedRow: any;
 
@@ -89,9 +91,8 @@ export class ProductsComponent implements OnInit {
   }
 
   link2CLick(id: any){
-    this.apiService.deleteProduct({id: id}).subscribe((response) => {
-      this.ngOnInit();
-    });
+    this.id = id;
+    this.openAlertDialogDelete();
   }
 
   onSubmit(){
@@ -137,9 +138,10 @@ export class ProductsComponent implements OnInit {
       switch (res.event) {
         case "yes-option":
           this.data = res.data;
-
+console.log(this.data.selectedType)
           this.apiService.createProduct({
             name: this.data.name, 
+            productType: this.data.selectedType,
             price: this.data.price, 
             makingTime: parseInt(this.data.makingTime),    
           }).subscribe((response: any) => {
@@ -156,16 +158,7 @@ export class ProductsComponent implements OnInit {
   }
 
   openAlertDialogEdit(id: any) {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-  
-    dialogConfig.data = {
-        id: 1,
-        title: 'New'
-    };
-  
+    console.log(id)
     const dialogRef = this.dialog.open(EditProductComponent,{
       data:{
         message: 'Edit product',
@@ -185,7 +178,7 @@ export class ProductsComponent implements OnInit {
             id: id,
             name: this.data.name, 
             price: this.data.price, 
-            makingTime: this.data.makingTime,  
+            makingTime: parseInt(this.data.makingTime),  
           }).subscribe((response: any) => {
             this.ngOnInit();
           })
@@ -198,6 +191,31 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-
+  openAlertDialogDelete() {
+    const dialogRef = this.dialog.open(ComfirmDeletingComponent,{
+      data:{
+        message: 'Deleted successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+          this.apiService.deleteProduct({id: this.id}).subscribe((response) => {
+            this.ngOnInit();
+          });
+          
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
  
 }

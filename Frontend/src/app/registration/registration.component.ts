@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComfirmAdditionComponent } from '../comfirm-addition/comfirm-addition.component';
 
 @Component({
   selector: 'app-registration',
@@ -12,15 +13,16 @@ import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dia
 export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
-  selectedType: any;
-  selectedUserType: any;
+  gender: any;
+  userType: any;
 
   message: string = ""
   cancelButtonText = "Cancel"
   user: any;
   local_data: any;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<RegistrationComponent>) { 
+  constructor(
+    private dialog: MatDialog, private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<RegistrationComponent>) { 
 
     this.user = this.api.getUserFromLocalstorage();
 
@@ -55,11 +57,21 @@ export class RegistrationComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(ComfirmAdditionComponent,{
+      data:{
+        message: 'Added successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+  }
 
 
   yesDialog() {
-    this.dialogRef.close({ event: 'yes-option', data: this.form.value });
+    this.openAlertDialog();
+    this.dialogRef.close({ event: 'yes-option', data: this.form.value});
   }
   noDialog() {
     this.dialogRef.close({ event: 'no-option', data: this.form.value });

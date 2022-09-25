@@ -8,6 +8,7 @@ import { AddProductComponent } from '../add-product/add-product.component';
 import { ApiService } from '../api.service';
 import { EditEquipmentComponent } from '../edit-equipment/edit-equipment.component';
 import {Location} from '@angular/common';
+import { ComfirmDeletingComponent } from '../comfirm-deleting/comfirm-deleting.component';
 
 @Component({
   selector: 'app-equipment-view',
@@ -39,6 +40,7 @@ export class EquipmentViewComponent implements OnInit {
   displayedColumns: string[] = ['Name', 'Edit','Delete'];
   equipmentId: any
   selectedRow: any;
+  id: any;
 
   constructor(private location: Location,private dialog: MatDialog,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
@@ -61,15 +63,40 @@ export class EquipmentViewComponent implements OnInit {
     });
   }
 
-
+openAlertDialogDelete() {
+    const dialogRef = this.dialog.open(ComfirmDeletingComponent,{
+      data:{
+        message: 'Deleted successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+          this.apiService.deleteEquipment({id: this.id}).subscribe((response) => {
+            this.ngOnInit();
+          });
+          
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+ 
   linkCLick(id: any){
     this.openAlertDialogEdit(id);
   }
 
   link2CLick(id: any){
-    this.apiService.deleteEquipment({id: id}).subscribe((response) => {
-      this.ngOnInit();
-    });
+    this.id = id;
+    this.openAlertDialogDelete();
   }
 
   onSubmit(){

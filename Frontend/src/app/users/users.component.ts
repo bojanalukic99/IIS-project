@@ -7,6 +7,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RegistrationComponent } from '../registration/registration.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import {Location} from '@angular/common';
+import { ComfirmDeletingComponent } from '../comfirm-deleting/comfirm-deleting.component';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -34,6 +36,7 @@ export class UsersComponent implements OnInit {
   }
   form: any;
   user:any;
+  id: any;
   users:any;
   displayedColumns: string[] = ['FirstName', 'LastName','Gender', 'Email', 'Phone', 'UserType', 'Edit', 'Delete'];
   usertId: any
@@ -67,9 +70,8 @@ export class UsersComponent implements OnInit {
   }
 
   link2CLick(id: any){
-    this.apiService.deleteUser({id: id}).subscribe((response) => {
-      this.ngOnInit();
-    });
+    this.id = id;
+    this.openAlertDialogDelete();
   }
 
 
@@ -120,19 +122,48 @@ export class UsersComponent implements OnInit {
         case "yes-option":
           this.data = res.data;
 
+
+
           this.apiService.userRegistration({
             email: this.data.email,
             password: this.data.password,
             posswordConformation : this.data.password,
             firstName: this.data.firstName,
             lastName: this.data.lastName,
-            userType: this.data.selectedUserType,
-            gender: this.data.selectedType,
+            userType: parseInt(this.data.userType),
+            gender: parseInt(this.data.gender),
             phone: this.data.phone,
             birthDate: this.data.birthDate,
           }).subscribe((response: any) => {
               this.ngOnInit();
           })
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  openAlertDialogDelete() {
+    const dialogRef = this.dialog.open(ComfirmDeletingComponent,{
+      data:{
+        message: 'Deleted successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+          this.apiService.deleteUser({id: this.id}).subscribe((response) => {
+            this.ngOnInit();
+          });
+          
           break;
         case "no-option":
           console.log('No Clicked');

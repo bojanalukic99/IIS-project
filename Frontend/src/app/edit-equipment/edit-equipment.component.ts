@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComfirmEditingComponent } from '../comfirm-editing/comfirm-editing.component';
 
 @Component({
   selector: 'app-edit-equipment',
@@ -19,7 +20,7 @@ export class EditEquipmentComponent implements OnInit {
 form: FormGroup;
 id: any;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<EditEquipmentComponent>, private router: Router, private activatedRoute: ActivatedRoute) { 
+  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<EditEquipmentComponent>, private router: Router, private activatedRoute: ActivatedRoute) { 
 
     this.user = this.api.getUserFromLocalstorage();
 
@@ -57,10 +58,20 @@ id: any;
   }
   ngOnInit(): void {
   }
-
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(ComfirmEditingComponent,{
+      data:{
+        message: 'Edited successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+  }
 
 
   yesDialog() {
+    this.openAlertDialog();
     this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
   noDialog() {

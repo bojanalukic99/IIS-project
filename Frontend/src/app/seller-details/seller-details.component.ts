@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import {Location} from '@angular/common';
+import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-seller-details',
@@ -34,6 +35,9 @@ export class SellerDetailsComponent implements OnInit {
   appId: any
   app: any;
   finished: any;
+  glasses= false;
+  optician= false;
+
 
   constructor(private location: Location, private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private activatedRoute: ActivatedRoute,) { 
     this.user = this.apiService.getUserFromLocalstorage();
@@ -52,10 +56,30 @@ export class SellerDetailsComponent implements OnInit {
         else{
           this.finished = 'NO!'
         }
+
+        if(this.app.product.productType == 0 || this.app.product.productType == 1){
+          this.glasses = true;
+        }
+    });
+
+    this.form = this.formBuilder.group({
+      comment: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
+    this.apiService.getCurrentUser().subscribe((response2: any) => {
+
+      console.log(response2);
+
+     localStorage.setItem('user', JSON.stringify(response2))
+
+     this.user = this.apiService.getUserFromLocalstorage();
+
+      if(this.user.userType === 2){
+        this.optician = true
+      }
+  }); 
 
   }
 
@@ -64,4 +88,11 @@ export class SellerDetailsComponent implements OnInit {
   this.location.back()
  }
 
+ done(){
+  this.location.back()
+ }
+
+ finish(){
+  this.router.navigate(['/view-appointment'], {queryParams: {id: this.appId}});
+}
 }

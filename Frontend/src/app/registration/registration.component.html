@@ -26,21 +26,18 @@
             <mat-form-field>
                 <input matInput placeholder="Address" formControlName="address" required>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Select gender</mat-label>
-                <mat-select [(ngModel)]="selectedType">
-                    <mat-option value="1">FEMALE</mat-option>
-                    <mat-option value="2">MALE</mat-option>
-                    <mat-option value="3">OTHER</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Select user type</mat-label>
-                <mat-select [(ngModel)]="selectedUserType">
-                    <mat-option value="2">OPTICIAN</mat-option>
-                    <mat-option value="3">SELLER</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <mat-radio-group  formControlName="gender" aria-label="Gender" >  
+                <mat-radio-button value="1">Male   </mat-radio-button>  
+                
+                <mat-radio-button value="0">Female</mat-radio-button>  
+            </mat-radio-group> 
+            <br>
+            <br>
+            <mat-radio-group  formControlName="userType" aria-label="UserType" >  
+                <mat-radio-button value="2">Optician</mat-radio-button>  
+                
+                <mat-radio-button value="3">Seller</mat-radio-button>  
+            </mat-radio-group> 
         </form>
 </mat-dialog-content>
 <div md-dialog-actions>

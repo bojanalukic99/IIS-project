@@ -113,8 +113,12 @@ export class ApiService {
   getAllSellers(data: any){
     return this.http.get(this.url + '/api/user/all?term=' + data.term, this.generateHeader());
   }
-
-
+  getMaterailByApp(data: any){
+    return this.http.get(this.url + '/api/requiredMaterial/allByApp/' + data.id, this.generateHeader());
+  }
+  addRequiredMaterial(data: any){
+    return this.http.post(this.url + '/api/requiredMaterial/add', data, this.generateHeader());
+  }
   getProductById(data: any){
     return this.http.get(this.url + '/api/product/getById/' + data.id, this.generateHeader());
   }
@@ -165,6 +169,7 @@ export class ApiService {
   addComment(data: any){
     return this.http.put(this.url + '/api/opticianAppointment/addComment/' + data.id + '/' + data.comment, data, this.generateHeader());
   }
+
   finish(data: any){
     return this.http.put(this.url + '/api/opticianAppointment/finish/' + data.id, data, this.generateHeader());
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComfirmAdditionComponent } from '../comfirm-addition/comfirm-addition.component';
 
 @Component({
   selector: 'app-new-material',
@@ -16,7 +17,7 @@ export class NewMaterialComponent implements OnInit {
   local_data: any;
 form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<NewMaterialComponent>) { 
+  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private api: ApiService,  @Inject(MAT_DIALOG_DATA) public data: any,  private dialogRef: MatDialogRef<NewMaterialComponent>) { 
 
     this.user = this.api.getUserFromLocalstorage();
 
@@ -34,6 +35,7 @@ form: FormGroup;
     this.dialogRef.updateSize('600px','400px')
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
+      manufacturer: ['', Validators.required],
       quatity: ['', Validators.required]
     });
 
@@ -47,7 +49,20 @@ form: FormGroup;
 
 
 
+
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(ComfirmAdditionComponent,{
+      data:{
+        message: 'Added successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+  }
+
   yesDialog() {
+    this.openAlertDialog();
     this.dialogRef.close({ event: 'yes-option', data: this.form.value });
   }
   noDialog() {

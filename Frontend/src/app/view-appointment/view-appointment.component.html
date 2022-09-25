@@ -1,6 +1,6 @@
 <div class="main">
     <div class="blur">
-     
+
       <mat-sidenav-container class="example-container" autosize>
         <mat-toolbar  class="example-toolbar">
           <h2>Appointment details</h2>         
@@ -17,7 +17,7 @@
             </mat-list-item>
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
               <a mat-list-item href="/optician-home-page">Home page</a>
-              <a mat-list-item href="/edit-profile">Edit profile</a>
+              <a mat-list-item href="/edit-user">Edit profile</a>
                <a mat-list-item href="/view-work-hour">Work hours</a>
               <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
                 <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
@@ -35,7 +35,8 @@
       </mat-nav-list>
         </mat-sidenav>
       
-        <div class="example-sidenav-content">
+        <div *ngIf="glasses" class="example-sidenav-content">
+
           <div class="info">
             <div class="page">
             <h2>Product: {{productName}}</h2>
@@ -65,14 +66,111 @@
               <input class="inp" matInput placeholder="comment" formControlName="comment" required>
               
             </mat-form-field>
-            <div>
+            <h2 class="title">ADD REQUIRED MATERIAL</h2>
+
+            <mat-table mat-table [dataSource]="materials">
+              <ng-container matColumnDef="Name">
+                 <th mat-header-cell *matHeaderCellDef>Name</th>
+                 <td mat-cell *matCellDef="let material">{{material.name}}</td>                  
+               </ng-container>
+               <ng-container matColumnDef="Manufacturer">
+                <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+                <td mat-cell *matCellDef="let material">{{material.manufacturer}}</td>
+              </ng-container>
+               <ng-container matColumnDef="Quatity">
+                 <th mat-header-cell *matHeaderCellDef>Quatity</th>
+                 <td mat-cell *matCellDef="let material">{{material.quatity}} </td>
+              </ng-container>
+              <ng-container matColumnDef="ADD">
+                  <th mat-header-cell *matHeaderCellDef>Add</th>
+                  <td mat-cell *matCellDef="let material"><button class="add" (click)="linkCLick(material.id)">ADD</button></td>
+               </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+         </mat-table>
+         <div class="materialView">
+          <h2>Added material:</h2>
+           <div *ngFor="let requiredMaterial of addedMaterials">
+              <p>{{requiredMaterial.material.name}} : {{requiredMaterial.quatity}}</p>
+           </div>
+        </div>
+            <div class="bottom">
               <button (click)="back()" class="back">BACK</button>
               <button class="btn" (click)="done()" mat-raised-button >SAVE</button>
               <button class="btn" (click)="finish()" mat-raised-button >FINISH</button>
             </div>
           </form>
         </div>
-      
+        <div *ngIf="!glasses" class="example-sidenav-content">
+          <div class="info">
+            <div class="page">
+            <h2>Product: {{productName}}</h2>
+            <h2>Date: {{appDate |  date:"yyyy"}}-{{appDate |  date:"MM"}}-{{appDate|  date:"dd"}}</h2>
+            <h2>Time: {{appDate | date:"HH:mm"}}</h2>
+            </div>
+            <div class="pageLeft">
+            <h2>Left eye</h2>
+            <p >Lens power: {{appointment.leftEye.lensPower}}</p>
+            <p >Cylinder: {{appointment.leftEye.cylinder}}</p>
+            <p >Axis figure: {{appointment.leftEye.axisFigure}}</p>
+            <p >Addition figure: {{appointment.leftEye.additionFigure}}</p>
+            </div>
+            <div class="pageRight">
+            <h2>Right eye</h2>
+            <p >Lens power: {{appointment.rightEye.lensPower}}</p>
+            <p >Cylinder: {{appointment.rightEye.cylinder}}</p>
+            <p >Axis figure: {{appointment.rightEye.axisFigure}}</p>
+            <p >Addition figure: {{appointment.rightEye.additionFigure}}</p>
+          </div>
+          <div class="page2">
+            <h2>Lens color: {{appointment.lensColor}}</h2>
+          </div>
+        </div>
+
+          <form [formGroup]="form">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Your comment</mat-label>
+              <input class="inp" matInput placeholder="comment" formControlName="comment" required>
+
+            </mat-form-field>
+            <h2 class="title">ADD REQUIRED MATERIAL</h2>
+
+            <mat-table mat-table [dataSource]="materials">
+              <ng-container matColumnDef="Name">
+                 <th mat-header-cell *matHeaderCellDef>Name</th>
+                 <td mat-cell *matCellDef="let material">{{material.name}}</td>                  
+               </ng-container>
+               <ng-container matColumnDef="Manufacturer">
+                <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+                <td mat-cell *matCellDef="let material">{{material.manufacturer}}</td>
+              </ng-container>
+               <ng-container matColumnDef="Quatity">
+                 <th mat-header-cell *matHeaderCellDef>Quatity</th>
+                 <td mat-cell *matCellDef="let material">{{material.quatity}} </td>
+              </ng-container>
+              <ng-container matColumnDef="ADD">
+                  <th mat-header-cell *matHeaderCellDef>Add</th>
+                  <td mat-cell *matCellDef="let material"><button class="add" (click)="linkCLick(material.id)">ADD</button></td>
+               </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+         </mat-table>
+         <div class="materialView">
+          <h2>Added material:</h2>
+           <div *ngFor="let requiredMaterial of addedMaterials">
+              <p>{{requiredMaterial.material.name}} : {{requiredMaterial.quatity}}</p>
+           </div>
+        </div>
+            <div class="bottom">
+              <button (click)="back()" class="back">BACK</button>
+              <button class="btn" (click)="done()" mat-raised-button >SAVE</button>
+              <button class="btn" (click)="finish()" mat-raised-button >FINISH</button>
+            </div>
+          </form>
+    
+        </div>
+    
       </mat-sidenav-container>
      
   </div>

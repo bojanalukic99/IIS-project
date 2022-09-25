@@ -16,6 +16,7 @@ import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dia
 import { AppPreviewComponent } from '../app-preview/app-preview.component';
 import { FinishAppComponent } from '../finish-app/finish-app.component';
 import {Location} from '@angular/common';
+import { AppointmentMaterialComponent } from '../appointment-material/appointment-material.component';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class ViewAppointmentComponent implements OnInit {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+  data: any;
 
   mouseenter() {
     if (!this.isExpanded) {
@@ -48,11 +50,12 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   activeDayIsOpen: boolean = true;
+  materials:any;
 
   user:any;
   highlightedRows = [];
   appointment:any;
-  displayedColumns: string[] = ['Date','Product','View'];
+  displayedColumns: string[] = ['Name', 'Manufacturer','Quatity', 'ADD'];
   appointmentId : any;
 
   productName: any;
@@ -66,6 +69,7 @@ export class ViewAppointmentComponent implements OnInit {
   addReadingRight: any;
   glass: any;
   distance: any;
+  addedMaterials: any;
 
 
   CalendarView = CalendarView;
@@ -87,8 +91,9 @@ export class ViewAppointmentComponent implements OnInit {
   maxDate: Date = endOfDay(addMonths(new Date(), 1));
 
   form: FormGroup;
+  glasses= false;
   
-  
+
 
   prevBtnDisabled: boolean = false;
   nextBtnDisabled: boolean = false;
@@ -116,13 +121,14 @@ export class ViewAppointmentComponent implements OnInit {
 
   @ViewChild(CalendarSchedulerViewComponent) calendarScheduler: CalendarSchedulerViewComponent | undefined;
 
-
   constructor(private location: Location, private formBuilder: FormBuilder, private apiService: ApiService, private router: Router,  private activatedRoute: ActivatedRoute, private dialog: MatDialog) { 
 
+    
     this.form = this.formBuilder.group({
       comment: ['']
     });
 
+    
     this.activatedRoute.queryParams.subscribe(params => {
       this.appointmentId = params['id'];
     });
@@ -144,6 +150,12 @@ export class ViewAppointmentComponent implements OnInit {
       this.glass= response.typeOfGlass;
       this.distance= response.distanceBetweenPupils;
 
+      if(response.product.productType==0 || response.product.productType==1){
+        this.glasses=true;
+      }
+
+      this.appointment = response;
+
       this.form = this.formBuilder.group({
         comment: [response.comment]
       });
@@ -154,13 +166,34 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+    this.apiService.getAllMaterial({
+      term:  search
+    }).subscribe((response : any) => {
+      console.log('aa');
+      console.log(response);
+      this.materials = response 
+     
+    });
    
-   
+
+    this.apiService.getMaterailByApp({id: this.appointmentId}).subscribe((response : any)=> {
+      this.addedMaterials = response;
+      console.log('MATERIAL')
+      console.log(response)
+      
+    })
   }
   back(){
     this.location.back()
    } 
   
+   linkCLick(id: any){
+      this.openAlertDialogAddMaterial(id);
+
+  }
 
   navigate(data : any){
     if(data === 'home'){
@@ -182,8 +215,8 @@ export class ViewAppointmentComponent implements OnInit {
     }
   }
 
-  addMaterial(id: any){
-    this.router.navigate(['/appointment-material'],  {queryParams: {id: id}});
+  addMaterial(){
+    this.router.navigate(['/appointment-material'],  {queryParams: {id: this.appointment.id}});
   }
 
   addEquipment(){
@@ -199,6 +232,8 @@ export class ViewAppointmentComponent implements OnInit {
       this.router.navigate(['/optician-home-page']);
 
     })
+
+
   }
 
   openAlertDialog() {
@@ -222,6 +257,48 @@ export class ViewAppointmentComponent implements OnInit {
           }).subscribe((response)=> {
             this.router.navigate(['/optician-home-page']);    
           })
+          
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  openAlertDialogAddMaterial(id: any) {
+   
+    const dialogRef = this.dialog.open(AppointmentMaterialComponent,{
+      data:{
+        message: 'Enter quantity',
+        buttonText: {
+        cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+           
+          this.data = res.data;
+
+          this.apiService.addRequiredMaterial({
+            materialId: parseInt(id),
+            appointmentId : parseInt(this.appointmentId),
+            quatity: parseInt(this.data.quatity)
+          }).subscribe((response : any)=> {
+            this.ngOnInit();
+          })
+          this.apiService.changeQuantity({
+            id: parseInt(id),
+            quatity: parseInt(this.data.quatity)
+          }).subscribe((response: any) => {
+            this.ngOnInit();
+          })
+          this.ngOnInit();
           
           break;
         case "no-option":

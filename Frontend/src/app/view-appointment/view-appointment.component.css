@@ -16,13 +16,13 @@
 .btn{
     width: 100px;
     height: 40px;
-    background: #142e69;
+    background: #448b4abd;
     border: 2px solid white;
     margin-top:23px;
     margin-right: 50px;
     color: white;
     font-size: 18px;
-    left: 800px;
+    left: 710px;
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -31,6 +31,35 @@
 
 .btn:focus{
     outline: none;
+}
+
+.add{
+    background: #0b296c;
+    color: white;
+    font-size: 15px;
+    width: 80px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+border-radius: 5px;
+margin-bottom: 5px;
+}
+
+.material{
+    width: 180px;
+    height: 50px;
+    background: #142e69;
+    border: 2px solid white;
+    margin-top:23px;
+    margin-right: 50px;
+    color: white;
+    font-size: 18px;
+    left: 470px;
+    text-align: left;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .main {
     width: 100%;
@@ -46,8 +75,8 @@
 
 .page2{
     width: 280px;
-    height: 180px;
-    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    height: 200px;
+    background: linear-gradient(to top, hsla(221, 23%, 54%, 0.068) 50%, hsla(221, 23%, 54%, 0.068) 50%);
     position: absolute;
     right: 20px;
     border-radius: 10px;
@@ -64,13 +93,13 @@
     border-radius: 10px;
     margin: 2px;
     padding: 8px;
-    color: white;
+    color: #142d69;
     margin-bottom: 20px;
 }
 .page{
     width: 280px;
-    height: 180px;
-    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    height: 200px;
+    background: linear-gradient(to top, hsla(221, 23%, 54%, 0.068) 50%, hsla(221, 23%, 54%, 0.068) 50%);
     position: absolute;
     right: 990px;
     border-radius: 10px;
@@ -87,7 +116,7 @@
     border-radius: 10px;
     margin: 2px;
     padding: 8px;
-    color: white;
+    color: #142d69;
     margin-bottom: 20px;
 }
 
@@ -108,8 +137,8 @@
 
 .pageLeft{
     width: 280px;
-    height: 180px;
-    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    height: 200px;
+    background: linear-gradient(to top, hsla(221, 23%, 54%, 0.068) 50%, hsla(221, 23%, 54%, 0.068) 50%);
     position: absolute;
     right: 670px;
     border-radius: 10px;
@@ -119,7 +148,7 @@
 }
 
 .pageLeft p{
-    color: white;
+    color: #142d69;
     margin-bottom: 20px;
 }
 
@@ -131,7 +160,7 @@
     border-radius: 10px;
     margin: 2px;
     padding: 8px;
-    color: white;
+    color: #142d69;
     margin-bottom: 20px;
 }
 
@@ -152,8 +181,8 @@
 
 .pageRight{
     width: 280px;
-    height: 180px;
-    background: linear-gradient(to top, #142e69 50%, #142e69 50%);
+    height: 200px;
+    background: linear-gradient(to top, hsla(221, 23%, 54%, 0.068) 50%, hsla(221, 23%, 54%, 0.068) 50%);
     position: absolute;
     right: 350px;
     border-radius: 10px;
@@ -163,7 +192,7 @@
 }
 
 .pageRight p{
-    color: white;
+    color: #142d69;
     margin-bottom: 20px;
 }
 
@@ -175,10 +204,42 @@
     border-radius: 10px;
     margin: 2px;
     padding: 8px;
-    color: white;
+    color: #142d69;
     margin-bottom: 20px;
 }
+.mat-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 10%;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
 
+  .mat-table a {
+    color: #0b296c;
+  }
+  
+  td, th {
+    border: 0px solid #142e69;
+    text-align: left;
+    padding: 10px;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+
+  }
+  
+  tr:nth-child(even) {
+    background-color: #9fb7e941;
+  }
+.bottom{
+    margin-top: 200px;
+}
+  .materialView{
+    margin-left: 800px;
+    margin-top: -180px;
+    color: #0b296c;
+  }
 .pageRight input{
     width: 40px;
     height: 35px;
@@ -263,6 +324,7 @@
 }
 .mat-form-field {
     display: block;
+
 }
 
 mat-card {
@@ -305,12 +367,12 @@ span {
 }
 
 .info{
-    color: #142e69;
+    color: #142d69a2;
 }
 
 .info h3{
     margin-top: 10px;
-    color: #142e69;
+    color: #142d69;
 }
 
 
@@ -322,9 +384,13 @@ span {
 
 .mat-form-field {
     display: block;
-    width: 900px;
+    width: 1270px;
     margin-top: 300px;
-    margin-left: 150px;
+    margin-left: 20px;
+}
+.mat-form-field p{
+    color: #0b296c;
+    margin-top: -50px;
 }
 
 mat-card {
@@ -357,6 +423,7 @@ span {
 .button {
     background: #eee5c6;
 border-radius: 12px;
+margin-top: 10px;
 }
 
 ::ng-deep th.mat-header-cell{

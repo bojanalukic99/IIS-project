@@ -8,6 +8,8 @@ import { ApiService } from '../api.service';
 import { EditMaterialComponent } from '../edit-material/edit-material.component';
 import { NewMaterialComponent } from '../new-material/new-material.component';
 import {Location} from '@angular/common';
+import { ComfirmDeletingComponent } from '../comfirm-deleting/comfirm-deleting.component';
+import { NotifMaterialComponent } from '../notif-material/notif-material.component';
 
 @Component({
   selector: 'app-material-view',
@@ -33,10 +35,12 @@ export class MaterialViewComponent implements OnInit {
       this.isShowing = false;
     }
   }
+  id: any;
+
   form: any;
   user:any;
   materials:any;
-  displayedColumns: string[] = ['Name', 'Quatity', 'Edit','Delete'];
+  displayedColumns: string[] = ['Name', 'Manufacturer','Quatity', 'Edit','Delete'];
   materialId: any
   selectedRow: any;
 
@@ -59,8 +63,19 @@ export class MaterialViewComponent implements OnInit {
     }).subscribe((response : any) => {
       console.log('aa');
       console.log(response);
-      this.materials = response  
+      this.materials = response 
+      this.materials.forEach((_materail: any) => {
+        if(_materail.quatity <= 3){
+          console.log(_materail)
+          this.openAlertDialogMaterial(_materail);
+        }
+      }); 
     });
+
+
+    
+
+   
   }
 
 
@@ -69,9 +84,8 @@ export class MaterialViewComponent implements OnInit {
   }
 
   link2CLick(id: any){
-    this.apiService.deleteMaterial({id: id}).subscribe((response) => {
-      this.ngOnInit();
-    });
+    this.id = id;
+    this.openAlertDialogDelete();
   }
 
   onSubmit(){
@@ -95,7 +109,32 @@ export class MaterialViewComponent implements OnInit {
   back(){
     this.location.back()
    } 
-
+   openAlertDialogDelete() {
+    const dialogRef = this.dialog.open(ComfirmDeletingComponent,{
+      data:{
+        message: 'Deleted successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+          this.apiService.deleteMaterial({id: this.id}).subscribe((response) => {
+            this.ngOnInit();
+          });
+          
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
 
   openAlertDialog() {
     const dialogConfig = new MatDialogConfig();
@@ -124,11 +163,42 @@ export class MaterialViewComponent implements OnInit {
 
           this.apiService.createMaterial({
             name: this.data.name,
+            manufacturer : this.data.manufacturer,
             quatity: parseInt(this.data.quatity)
           }).subscribe((response: any) => {
               this.ngOnInit();
           })
         
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+  openAlertDialogMaterial(data: any) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+  
+ 
+  
+    const dialogRef = this.dialog.open(NotifMaterialComponent,{
+      data:{
+        message: data.name + ' stocks are running low. Remaining quantity: ' + data.quatity,
+        buttonText: {
+          cancel: 'OK'
+        },
+        id: data.id
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
           break;
         case "no-option":
           console.log('No Clicked');

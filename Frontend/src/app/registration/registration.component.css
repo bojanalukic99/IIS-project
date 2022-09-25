@@ -18,7 +18,9 @@ mat-card {
     width: 50%;
     margin: 0 auto;
 }
-
+.mat-radio-button{
+    margin-left: 10px;
+}
 .title {
     font-style: italic;
     font-size: 20;

@@ -4,6 +4,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import {Location} from '@angular/common';
+import { ComfirmEditingComponent } from '../comfirm-editing/comfirm-editing.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-user',
@@ -32,7 +34,7 @@ export class EditUserComponent implements OnInit {
   }
   user:any;
   
-  constructor(
+  constructor(private dialog: MatDialog,
     private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
     this.form = this.formBuilder.group({
@@ -78,6 +80,18 @@ export class EditUserComponent implements OnInit {
 
   }
 
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(ComfirmEditingComponent,{
+      data:{
+        message: 'Edited successfully!',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+  }
+ 
+
   navigate(data : any){
     console.log(data)
     if(data.userType === 1){
@@ -102,6 +116,7 @@ export class EditUserComponent implements OnInit {
       phone: this.form.get('phone')?.value,
       birthDate: this.form.get('userType')?.value,
     }).subscribe((response: any) => {
+      this.openAlertDialog();
       this.navigate(this.user)
     })
   }
