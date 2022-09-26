@@ -81,7 +81,7 @@
             </mat-step>
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>PATIENT INFORMATION</ng-template>
+                <ng-template matStepLabel>CUSTOMER INFORMATION</ng-template>
                 <mat-form-field appearance="fill">
                   <mat-label>Name</mat-label>
                   <input class="black" matInput placeholder="name" formControlName="name" required>
@@ -240,9 +240,9 @@
           <p class="black">DATE :{{appointmentDate |  date:"yyyy"}}-{{appointmentDate |  date:"MM"}}-{{appointmentDate |  date:"dd"}} </p>
           <p class="black">TIME : {{appointmentDate |  date:"HH:mm"}}</p>
           <p class="black">OPTICIAN : {{opticianName}} {{opticianLastName}}</p>
-          <p class="black">PATIENT NAME: {{patientName}}</p>
-          <p class="black">PATIENT EMAIL: {{patientEmail}} </p>
-          <P class="black">PATIENT PHONE NUMBER: {{patientPhone}}</P>
+          <p class="black">CUSTOMER NAME: {{patientName}}</p>
+          <p class="black">CUSTOMER EMAIL: {{patientEmail}} </p>
+          <P class="black">CUSTOMER PHONE NUMBER: {{patientPhone}}</P>
          </div>
      
          

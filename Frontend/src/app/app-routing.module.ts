@@ -13,6 +13,7 @@ import { AllOpticianComponent } from './all-optician/all-optician.component';
 import { AppPreviewComponent } from './app-preview/app-preview.component';
 import { AppointmentEquipmentComponent } from './appointment-equipment/appointment-equipment.component';
 import { AppointmentMaterialComponent } from './appointment-material/appointment-material.component';
+import { CanceledAppComponent } from './canceled-app/canceled-app.component';
 import { ComfirmAdditionComponent } from './comfirm-addition/comfirm-addition.component';
 import { ComfirmDeletingComponent } from './comfirm-deleting/comfirm-deleting.component';
 import { ComfirmEditingComponent } from './comfirm-editing/comfirm-editing.component';
@@ -34,6 +35,7 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsComponent } from './products/products.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { RescheduleComponent } from './reschedule/reschedule.component';
 import { SellerAppFutureComponent } from './seller-app-future/seller-app-future.component';
 import { SellerAppPreviousComponent } from './seller-app-previous/seller-app-previous.component';
 import { SellerAppTodayComponent } from './seller-app-today/seller-app-today.component';
@@ -87,6 +89,9 @@ const routes: Routes = [
   {path: 'comfirm-addition', component:ComfirmAdditionComponent},
   {path: 'comfirm-editing', component:ComfirmEditingComponent},
   {path: 'comfirm-deleting', component:ComfirmDeletingComponent},
+  {path: 'all-canceled', component:CanceledAppComponent},
+  {path: 'reschedule', component:RescheduleComponent},
+
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -113,4 +113,37 @@ export class ProductViewComponent implements OnInit {
     this.products = response  
   });
   }
+
+  tab(number: any){
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+    if(number == 1){
+          this.apiService.getSunglasses({
+              term : search
+          }).subscribe((response:any)=> {
+             this.products = response;
+          })
+    }
+    else if(number == 2){
+      this.apiService.getFrames({
+        term : search
+    }).subscribe((response:any)=> {
+       this.products = response;
+    })
+    }
+    else if(number == 3){
+      this.apiService.getSoftLens({
+        term : search
+    }).subscribe((response:any)=> {
+       this.products = response;
+    })
+    }
+    else if(number == 4){
+      this.apiService.getHardLens({
+        term : search
+    }).subscribe((response:any)=> {
+       this.products = response;
+    })
+    }
+  }
 }

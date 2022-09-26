@@ -75,6 +75,8 @@ import { ComfirmAdditionComponent } from './comfirm-addition/comfirm-addition.co
 import { ComfirmEditingComponent } from './comfirm-editing/comfirm-editing.component';
 import { ComfirmDeletingComponent } from './comfirm-deleting/comfirm-deleting.component';
 import { NotifMaterialComponent } from './notif-material/notif-material.component';
+import { CanceledAppComponent } from './canceled-app/canceled-app.component';
+import { RescheduleComponent } from './reschedule/reschedule.component';
 
 
 @NgModule({
@@ -125,6 +127,8 @@ import { NotifMaterialComponent } from './notif-material/notif-material.componen
     ComfirmEditingComponent,
     ComfirmDeletingComponent,
     NotifMaterialComponent,
+    CanceledAppComponent,
+    RescheduleComponent,
   ],
   imports: [
     BrowserModule,

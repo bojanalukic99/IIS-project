@@ -45,7 +45,9 @@ export class ApiService {
   getAppointmentsFuture(data: any){
     return this.http.get(this.url + '/api/opticianAppointment/allFuture?term=' + data.term, this.generateHeader());
   }
-
+  getCanceled(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/allCanceled?term=' + data.term, this.generateHeader());
+  }
   getAppointmentsPreviousByOptician(data: any){
     return this.http.get(this.url + '/api/opticianAppointment/allPreviousByOptician/' + data.id + '?term=' + data.term, this.generateHeader());
   }
@@ -56,7 +58,11 @@ export class ApiService {
     return this.http.get(this.url + '/api/opticianAppointment/allFutureByOptician/' + data.id + '?term=' + data.term, this.generateHeader());
   }
 
+  cancelApp(data: any)
+  {
+    return this.http.put(this.url + '/api/opticianAppointment/cancel/' + data.id, data, this.generateHeader());
 
+  }
   getAppointmentsByOptician(data: any){
     return this.http.get(this.url + '/api/opticianAppointment/allByOptician/' + data.id, this.generateHeader());
   }
@@ -87,13 +93,28 @@ export class ApiService {
   getAllProducts(data: any){
     return this.http.get(this.url + '/api/product/all?term=' + data.term, this.generateHeader());
   }
-
+  getSunglasses(data: any){
+    return this.http.get(this.url + '/api/product/sunglasses?term=' + data.term, this.generateHeader());
+  }
+  getFrames(data: any){
+    return this.http.get(this.url + '/api/product/frames?term=' + data.term, this.generateHeader());
+  }
+  getSoftLens(data: any){
+    return this.http.get(this.url + '/api/product/soft?term=' + data.term, this.generateHeader());
+  }
+  getHardLens(data: any){
+    return this.http.get(this.url + '/api/product/hard?term=' + data.term, this.generateHeader());
+  }
   getAllWorkingHourByOptician(data: any){
     return this.http.get(this.url + '/api/workingHour/getBy/' + data.id, this.generateHeader());
   }
 
   createWorkingHour(data: any){
     return this.http.post(this.url + '/api/workingHour/add', data)
+  }
+
+  createEquipmentAppointment(data: any){
+    return this.http.post(this.url + '/api/equipmentAppointment/add', data)
   }
 
   addRequiredEquipment(data: any){
@@ -159,8 +180,8 @@ export class ApiService {
     return this.http.post(this.url + '/api/workingHour/add', data);
   }
 
-  getAllPriceList(){
-    return this.http.get(this.url + '/api/priceList/all', this.generateHeader());
+  getAllPriceList(data: any){
+    return this.http.get(this.url + '/api/priceList/all?term=' + data.term, this.generateHeader());
   }
 
   editMaterial(data: any){
@@ -172,6 +193,15 @@ export class ApiService {
 
   finish(data: any){
     return this.http.put(this.url + '/api/opticianAppointment/finish/' + data.id, data, this.generateHeader());
+  }
+  pickUp(data: any){
+    return this.http.put(this.url + '/api/opticianAppointment/pickUp/' + data.id, data, this.generateHeader());
+  }
+  notify(){
+    return this.http.get(this.url + '/api/email/sendEmail', this.generateHeader());
+  }
+  getAllFinished(data: any){
+    return this.http.get(this.url + '/api/opticianAppointment/getAllFinished?term=' + data.term, this.generateHeader())
   }
   changeQuantity(data: any){
     return this.http.put(this.url + '/api/material/changeQuantity/' + data.id + '/' + data.quatity, data, this.generateHeader());

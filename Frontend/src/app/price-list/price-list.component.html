@@ -4,7 +4,10 @@
     <mat-sidenav-container class="example-container" autosize>
       <mat-toolbar  class="example-toolbar">
         <h2>PRICE LIST</h2>  
-          
+        <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+          <input class="inp" matInput placeholder="Search" formControlName="search">
+          <mat-icon class="spaceLeft" mat-icon-button (click)="onSubmit()">search</mat-icon>
+          </form> 
       </mat-toolbar>
       <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
        

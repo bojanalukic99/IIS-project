@@ -14,12 +14,13 @@
     font-family: Arial;
 }
 .btn{
-    width: 100px;
+    width: 150px;
     height:  40px;
-    background: #b0b8ca;
-    border: 2px solid #b0b8ca;
-    margin-left: 15px;
-    color: #000;
+    background: #062671;
+    border: 2px solid #062671;
+    margin-left: 30px;
+    margin-top: 15px;
+    color: white;
     font-size: 18px;
     border-bottom-right-radius: 5px;
     border-bottom-right-radius: 5px;

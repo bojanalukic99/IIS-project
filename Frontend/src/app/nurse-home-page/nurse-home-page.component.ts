@@ -15,6 +15,7 @@ export class NurseHomePageComponent implements OnInit {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+  form: FormGroup;
 
   mouseenter() {
     if (!this.isExpanded) {
@@ -29,20 +30,23 @@ export class NurseHomePageComponent implements OnInit {
   }
   user:any;
   appointments:any;
-  displayedColumns: string[] = ['Date', 'Product', 'Optician'];
+  displayedColumns: string[] = ['Optician', 'Product', 'Patient', 'Contact','Email', 'PickUp'];
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.user = this.apiService.getUserFromLocalstorage();
   
+    this.form = this.formBuilder.group({
+      search: [''] 
+    });
   
   }
 
   ngOnInit(): void {
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
-    this.apiService.getAppointmentsByNurse({
-      id: this.user.id
+    this.apiService.getAllFinished({
+      term: search 
     }).subscribe((response : any) => {
-      console.log('aaa')
       this.appointments = response  
     });
   }
@@ -65,18 +69,24 @@ export class NurseHomePageComponent implements OnInit {
     }
   }
 
-  new(){
-    this.router.navigate(['/new-optician-appointment']);
-  }
+ 
+ PickUp(id: any)
+ {
+  this.apiService.pickUp({
+    id: id
+  }).subscribe((response : any) => {
+    this.ngOnInit();
+  });
+ }
 
-  order()
-  {
-    this.router.navigate(['/product-view']);
-  }
-  register()
-  {
-    this.router.navigate(['/registartion']);
-  }
+ onSubmit(){
+  let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
+  this.apiService.getAllFinished({
+    term: search 
+  }).subscribe((response : any) => {
+    this.appointments = response  
+  });
+ }
 
 }

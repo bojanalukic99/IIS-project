@@ -1,17 +1,16 @@
-import { Component, TemplateRef, ChangeDetectionStrategy, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import {Location} from '@angular/common';
 @Component({
-  selector: 'app-all-optician-future',
-  templateUrl: './all-optician-future.component.html',
-  styleUrls: ['./all-optician-future.component.css']
+  selector: 'app-canceled-app',
+  templateUrl: './canceled-app.component.html',
+  styleUrls: ['./canceled-app.component.css']
 })
-export class AllOpticianFutureComponent implements OnInit {
+export class CanceledAppComponent implements OnInit {
 
-  
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
   isExpanded = true;
   showSubmenu: boolean = false;
@@ -32,7 +31,7 @@ export class AllOpticianFutureComponent implements OnInit {
   form: any;
   user:any;
   appointments:any;
-  displayedColumns: string[] = ['Date', 'Time', 'Optician', 'Product', 'Patient', 'Details', 'Cancel'];
+  displayedColumns: string[] = ['Date', 'Time', 'Optician', 'Product', 'Patient', 'Details', 'Reschedule'];
   productId: any
   selectedRow: any;
 
@@ -42,12 +41,6 @@ export class AllOpticianFutureComponent implements OnInit {
     this.form = this.formBuilder.group({
       search: [''] 
     });
-
-    this.apiService.getCurrentUser().subscribe((response: any) => {
-
-      console.log(response);
-      this.user= response;
-  });  
   }
 
   ngOnInit(): void {
@@ -55,8 +48,7 @@ export class AllOpticianFutureComponent implements OnInit {
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
 
-    this.apiService.getAppointmentsFutureByOptician({
-      id: this.user.id,
+    this.apiService.getCanceled({
       term:  search
     }).subscribe((response : any) => {
       console.log('aa');
@@ -64,14 +56,15 @@ export class AllOpticianFutureComponent implements OnInit {
       this.appointments = response  
     });
   }
-
+  back(){
+    this.location.back()
+   } 
 
   onSubmit(){
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
-
-  this.apiService.getAppointmentsFutureByOptician({
-    id: this.user.id,
+console.log(search)
+  this.apiService.getCanceled({
     term:  search
   }).subscribe((response : any) => {
     console.log('aa');
@@ -79,18 +72,10 @@ export class AllOpticianFutureComponent implements OnInit {
     this.appointments = response  
   });
   }
-
   Details(data: any){
     this.router.navigate(['/seller-details'], {queryParams: {id: data}});
   }
-  back(){
-    this.location.back()
-   } 
-   Cancel(id: any){
-    this.apiService.cancelApp({
-      id: id
-    }).subscribe((response : any) => {
-      this.ngOnInit();
-    });
-   }
+  Reschedule(id: any){
+    this.router.navigate(['/reschedule'], {queryParams: {id: id}});
+  }
 }

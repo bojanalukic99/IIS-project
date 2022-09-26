@@ -40,7 +40,7 @@ export class MaterialViewComponent implements OnInit {
   form: any;
   user:any;
   materials:any;
-  displayedColumns: string[] = ['Name', 'Manufacturer','Quatity', 'Edit','Delete'];
+  displayedColumns: string[] = ['Name', 'Manufacturer', 'Mesure','Quatity', 'Edit','Delete'];
   materialId: any
   selectedRow: any;
 

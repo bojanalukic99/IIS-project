@@ -237,6 +237,16 @@ border-radius: 5px;
   .mat-table a {
     color: #0b296c;
   }
+  .inp{
+    height: 25px;
+    border-bottom: 2px solid #142e69;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+   margin-left: -200px;
+   
+   }
+   
   
   td, th {
     border: 0px solid #142e69;

@@ -43,6 +43,11 @@
        </mat-sidenav>
      
        <div class="example-sidenav-content">
+        <button class="btn" (click)="tab(1)">SUNGLASSES</button>
+        <button class="btn" (click)="tab(2)">FRAMES</button>
+        <button class="btn" (click)="tab(3)">SOFT LENS</button>
+        <button class="btn" (click)="tab(4)">HARD LENS</button>
+
          <div class="container">
         
             <table mat-table [dataSource]="products" class="mat-elevation-z8">

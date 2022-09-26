@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
@@ -31,19 +31,40 @@ export class PriceListComponent implements OnInit {
     }
   }
   user:any;
+  form: FormGroup;
   priceLists:any;
   displayedColumns: string[] = ['Date', 'Product', 'Price'];
 
   constructor(private location: Location,private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { 
-      this.apiService.getAllPriceList().subscribe((response : any)=> {
-        this.priceLists = response;
-      })
+    this.form = this.formBuilder.group({
+      search: [''] 
+    });
+   
   }
 
   ngOnInit(): void {
 
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+
+    this.apiService.getAllPriceList({
+      term:  search
+    }).subscribe((response : any) => {
+      this.priceLists = response  
+    });
   }
 
+
+  onSubmit(){
+    let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
+
+
+    this.apiService.getAllPriceList({
+      term:  search
+    }).subscribe((response : any) => {
+      this.priceLists = response  
+    });
+  }
   back(){
     this.location.back()
    } 

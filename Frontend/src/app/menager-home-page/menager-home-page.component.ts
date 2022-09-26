@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 
 @Component({
@@ -25,9 +28,26 @@ export class MenagerHomePageComponent implements OnInit {
       this.isShowing = false;
     }
   }
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  users(){
+    this.router.navigate(['/users']);
+
+  }
+  products(){
+    this.router.navigate(['/products']);
+
+  }
+  materials(){
+    this.router.navigate(['/material-view']);
+
+  }
+  equipment(){
+    this.router.navigate(['/equipment-view']);
+
   }
 
 }

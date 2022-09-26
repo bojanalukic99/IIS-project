@@ -39,6 +39,7 @@
         </mat-sidenav>
       
         <div *ngIf="glasses" class="example-sidenav-content">
+          <div class="leftSide">
                 <h2>Product: </h2> <p class="par">{{app.product.name}}</p>
                 <p class="line">__________________________________________________</p>
                 <h2>Date: </h2> <p class="par">{{app.date |  date:"yyyy"}}-{{app.date |  date:"MM"}}-{{app.date|  date:"dd"}}</p>
@@ -64,7 +65,8 @@
 
                <h2>Distance between pupils:</h2> <p class="left2"> {{app.distanceBetweenPupils}}</p>     
                <p class="line">__________________________________________________</p>
-
+              </div>
+              <div class="rightSide">
                <h2>Patient -></h2>
                 <p class="par">Name: {{app.patientName}}</p>
                 <p class="par">Email: {{app.email}}</p>
@@ -80,7 +82,8 @@
                 <h2>Is product finished?</h2> <p class="left3"> {{finished}}</p>
                 <p class="line">__________________________________________________</p>
 
-                <button (click)="back()" class="back">BACK</button>       
+                <button (click)="back()" class="back">BACK</button>
+              </div>       
                </div>
       
       <div *ngIf="!glasses" class="example-sidenav-content">
@@ -108,7 +111,7 @@
 
        <h2>Type of glass: </h2> <p class="left">{{app.lensColor}}</p>
        <p class="line">__________________________________________________</p>
-
+<div class="rightSide">
        <h2>Patient -></h2>
         <p class="par">Name: {{app.patientName}}</p>
         <p class="par">Email: {{app.email}}</p>
@@ -128,7 +131,7 @@
         <p class="line">__________________________________________________</p>
 
         <button (click)="back()" class="back">BACK</button>  
-     
+      </div>
        </div>
 
 </mat-sidenav-container>
