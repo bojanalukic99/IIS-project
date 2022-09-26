@@ -38,12 +38,12 @@ namespace ISS_BACK.Service
             }
         }
 
-        public IEnumerable<PriceList> GetAll()
+        public IEnumerable<PriceList> GetAll(string term)
         {
             try
             {
                 using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
-                return unitOfWord.PriceLists.GetAll();
+                return unitOfWord.PriceLists.GetAll(term);
             }
             catch (Exception e)
             {

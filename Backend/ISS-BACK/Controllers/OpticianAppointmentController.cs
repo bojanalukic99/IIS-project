@@ -55,6 +55,23 @@ namespace ISS_BACK.Controllers
             return Ok(response);
         }
 
+        [HttpPut("pickUp/{id}")]
+        public IActionResult PickUp(long id)
+        {
+
+            bool response = opticianAppointmentService.PickUp(id);
+
+            return Ok(response);
+        }
+        [HttpPut("cancel/{id}")]
+        public IActionResult Cancel(long id)
+        {
+
+            bool response = opticianAppointmentService.Cancel(id);
+
+            return Ok(response);
+        }
+
         [HttpGet("getFreeApointments/{date}/{productId}")]
         public virtual IActionResult GetFreeApointments(DateTime date, long productId) {
             return Ok(opticianAppointmentService.GetFreeApointments(date, productId));
@@ -64,6 +81,12 @@ namespace ISS_BACK.Controllers
         public virtual IActionResult GetAllByOptician(long id)
         {
             return Ok(opticianAppointmentService.GetAllByOptician(id));
+        }
+
+        [HttpGet("getAllFinished")]
+        public virtual IActionResult GetAllFinished(string term)
+        {
+            return Ok(opticianAppointmentService.GetAllFinished(term));
         }
 
 
@@ -77,6 +100,11 @@ namespace ISS_BACK.Controllers
         public virtual IActionResult GetAll(string term)
         {
             return Ok(opticianAppointmentService.GetAll(term));
+        }
+        [HttpGet("allCanceled")]
+        public virtual IActionResult GetAllCanceled(string term)
+        {
+            return Ok(opticianAppointmentService.GetAllCanceled(term));
         }
 
         [HttpGet("allPrevious")]

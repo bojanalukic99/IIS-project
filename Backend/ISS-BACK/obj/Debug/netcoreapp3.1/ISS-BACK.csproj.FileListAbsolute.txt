@@ -130,3 +130,10 @@ C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\obj\Debug\n
 C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\obj\Debug\netcoreapp3.1\ISS-BACK.dll
 C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\obj\Debug\netcoreapp3.1\ISS-BACK.pdb
 C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\obj\Debug\netcoreapp3.1\ISS-BACK.genruntimeconfig.cache
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\ServiceEmail.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ISS-BACK\bin\Debug\netcoreapp3.1\ServiceEmail.pdb

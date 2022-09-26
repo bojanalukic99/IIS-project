@@ -10,6 +10,8 @@ namespace ISS_BACK.Service
     public interface IOpticianAppointmentService
     {
         IEnumerable<OpticianAppointment> GetAllByOptician(long id);
+        IEnumerable<OpticianAppointment> GetAllFinished(string term);
+        IEnumerable<OpticianAppointment> GetAllCanceled(string term);
 
         bool Update(long id, OpticianAppointment appointment);
 
@@ -35,6 +37,10 @@ namespace ISS_BACK.Service
 
         bool AddComment(long id, string comment);
         bool Finish(long id);
+
+        bool PickUp(long id);
+        bool Cancel(long id);
+
 
     }
 }

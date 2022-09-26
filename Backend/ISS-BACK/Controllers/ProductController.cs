@@ -46,12 +46,33 @@ namespace ISS_BACK.Controllers
         {
             return Ok(productService.GetAll(term));
         }
+        [HttpGet("sunglasses")]
+        public virtual IActionResult GetAllByType([FromQuery(Name = "term")] string term)
+        {
+            return Ok(productService.GetSunglasses(term));
+        }
+        [HttpGet("frames")]
+        public virtual IActionResult GetFrames([FromQuery(Name = "term")] string term)
+        {
+            return Ok(productService.GetFrames(term));
+        }
+        [HttpGet("soft")]
+        public virtual IActionResult GetSoft([FromQuery(Name = "term")] string term)
+        {
+            return Ok(productService.GetSoft(term));
+        }
+        [HttpGet("hard")]
+        public virtual IActionResult GetHard([FromQuery(Name = "term")] string term)
+        {
+            return Ok(productService.GetHard(term));
+        }
 
         [HttpGet("getById/{id}")]
         public virtual IActionResult GetById(int id)
         {
             return Ok(productService.GetById(id));
         }
+
     }
 
 

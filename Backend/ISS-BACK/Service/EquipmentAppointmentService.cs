@@ -28,31 +28,25 @@ namespace ISS_BACK.Service
             }
         }
 
-        public EquipmentAppointment AddAppointment(EquipmentAppointment entity)
+        public EquipmentAppointment AddAppointment(RequiredEquipment equipment, OpticianAppointment appointment)
         {
-            if (entity == null)
-            {
-                return null;
-            }
             EquipmentAppointment equipmentAppointment = new EquipmentAppointment();
             try
             {
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
-                equipmentAppointment.Optician = entity.Optician;
-                equipmentAppointment.Duration = entity.Duration;
-                equipmentAppointment.Date = entity.Date;
-                equipmentAppointment.StartTime = entity.StartTime;
-                equipmentAppointment.IsScheduled = entity.IsScheduled;
-                equipmentAppointment.EndTime = entity.EndTime;
-                equipmentAppointment.Equipment = entity.Equipment;
-                equipmentAppointment.Product = entity.Product;
+                equipmentAppointment.Duration = equipment.MakingTime;
+                equipmentAppointment.Date = appointment.Date;
+                equipmentAppointment.StartHoure = appointment.Date.Hour;
+                equipmentAppointment.StartMinut = appointment.Date.Minute;
+                equipmentAppointment.IsScheduled = true;
+                equipmentAppointment.Equipment = equipment;
 
 
                 unitOfWork.EquipmentAppointments.Add(equipmentAppointment);
                 _ = unitOfWork.Complete();
 
 
-                return entity;
+                return equipmentAppointment;
             }
             catch (Exception e)
             {
@@ -73,11 +67,9 @@ namespace ISS_BACK.Service
 
                 equipmentAppointmentDB.Date = appointment.Date;
                 equipmentAppointmentDB.Duration = appointment.Duration;
-                equipmentAppointmentDB.EndTime = appointment.EndTime;
                 equipmentAppointmentDB.Equipment = appointment.Equipment;
                 equipmentAppointmentDB.IsScheduled = appointment.IsScheduled;
-                equipmentAppointmentDB.Optician = appointment.Optician;
-                equipmentAppointmentDB.StartTime = appointment.StartTime;
+                equipmentAppointmentDB.StartHoure = appointment.StartHoure;
 
                 unitOfWork.EquipmentAppointments.Update(equipmentAppointmentDB);
                 _ = unitOfWork.Complete();

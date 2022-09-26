@@ -21,9 +21,9 @@ namespace ISS_BACK.Controllers
         }
 
         [HttpGet("all")]
-        public virtual IActionResult GetAll()
+        public virtual IActionResult GetAll([FromQuery(Name = "term")] string term)
         {
-            return Ok(priceListService.GetAll());
+            return Ok(priceListService.GetAll(term));
         }
     }   
 }

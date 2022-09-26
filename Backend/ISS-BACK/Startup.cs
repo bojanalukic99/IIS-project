@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ServiceEmail;
 
 namespace ISS_BACK
 {
@@ -43,7 +44,7 @@ namespace ISS_BACK
             services.AddScoped<IRequiredEquipmentService, RequiredEquipmentService>();
             services.AddScoped<IWorkingHourService, WorkingHourService>();
             services.AddScoped<IRequiredMaterialService, RequiredMaterialService>();
-
+            services.AddScoped<IEmailSender, EmailSender>();
             ProjectConfiguration config = new ProjectConfiguration();
             Configuration.Bind("ProjectConfiguration", config);
             services.AddSingleton(config);
@@ -75,6 +76,12 @@ namespace ISS_BACK
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
+
+            var emailConfig = Configuration.GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

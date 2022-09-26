@@ -9,5 +9,7 @@ namespace ISS_BACK.Repository
     public interface IEquipmentAppointmentRepository : IBaseRepository<EquipmentAppointment>
     {
         IEnumerable<EquipmentAppointment> GetAllByEquipment(Equipment id);
+        IEnumerable<EquipmentAppointment> GetAllByProduct(long id);
+
     }
 }

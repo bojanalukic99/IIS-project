@@ -20,6 +20,16 @@ namespace ISS_BACK.Repository
 
             return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted || (x.Optician.FirstName.Contains(term)) || (x.Optician.LastName.Contains(term)) || (x.PatientName.Contains(term)) || (x.PatientName.Contains(term)) || (x.Phone.Contains(term)) || (x.Email.Contains(term)) || (x.Product.Name.Contains(term)) || (x.Comment.Contains(term))).ToList();
         }
+
+        public IEnumerable<OpticianAppointment> GetAllFinished(string term)
+        {
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.IsScheduled == true && x.IsPickedUp == false).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => !x.Deleted && x.IsPickedUp == false && x.IsScheduled == true && (x.PatientName.Contains(term))).ToList();
+        }
         public IEnumerable<OpticianAppointment> GetAllPrevious(string term)
         {
             DateTime today = DateTime.Today;
@@ -122,6 +132,15 @@ namespace ISS_BACK.Repository
             DateTime today = new DateTime();
             return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Where(x => !x.Deleted && x.Optician == id && x.Date <= today).ToList();
         }
-      
+
+        public IEnumerable<OpticianAppointment> GetAllCanceled(string term)
+        {
+            if (term is null || term == string.Empty)
+            {
+                return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x => x.IsCanceled == true ).ToList();
+            }
+
+            return ApplicationContext.OpticianAppointments.Include(x => x.Product).Include(x => x.Optician).Where(x =>  x.IsCanceled == false && (x.PatientName.Contains(term))).ToList();
+        }
     }
 }

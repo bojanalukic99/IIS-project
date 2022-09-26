@@ -45,7 +45,7 @@ namespace ISS_BACK.Service
             }
         }
 
-        public IEnumerable<RequiredEquipment> GetAllByEquipment(Equipment id)
+        public IEnumerable<RequiredEquipment> GetAllByEquipment(long id)
         {
 
             try
@@ -60,7 +60,7 @@ namespace ISS_BACK.Service
             }
         }
 
-        public IEnumerable<RequiredEquipment> GetAllByProduct(Product id)
+        public IEnumerable<RequiredEquipment> GetAllByProduct(long id)
         {
             try
             {

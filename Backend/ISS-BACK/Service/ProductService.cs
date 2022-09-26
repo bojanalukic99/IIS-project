@@ -75,6 +75,20 @@ namespace ISS_BACK.Service
             }
         }
 
+        public IEnumerable<Product> GetSunglasses(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.Products.GetSunglasses(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<Product>();
+            }
+        }
+
         public Product GetById(int id) {
             using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
             return unitOfWord.Products.Get(id);
@@ -105,6 +119,48 @@ namespace ISS_BACK.Service
             catch (Exception e)
             {
                 return false;
+            }
+        }
+
+        public IEnumerable<Product> GetFrames(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.Products.GetFrames(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<Product>();
+            }
+        }
+
+        public IEnumerable<Product> GetSoft(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.Products.GetSoft(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<Product>();
+            }
+        }
+
+        public IEnumerable<Product> GetHard(string term)
+        {
+            try
+            {
+                using UnitOfWork unitOfWord = new UnitOfWork(new ApplicationContext());
+                return unitOfWord.Products.GetHard(term);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error is JobService in GetAll {e.Message} {e.StackTrace}");
+                return new List<Product>();
             }
         }
     }

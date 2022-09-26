@@ -24,12 +24,12 @@ namespace ISS_BACK.Controllers
         }
 
         [HttpGet("allByProduct/{id}")]
-        public virtual IActionResult GetAllByProduct(Product id)
+        public virtual IActionResult GetAllByProduct(long id)
         {
             return Ok(equipmentService.GetAllByProduct(id));
         }
         [HttpGet("allByEquipment/{id}")]
-        public virtual IActionResult GetAllByEquipment(Equipment id)
+        public virtual IActionResult GetAllByEquipment(long id)
         {
             return Ok(equipmentService.GetAllByEquipment(id));
         }

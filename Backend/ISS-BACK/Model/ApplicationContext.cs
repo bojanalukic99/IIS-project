@@ -22,22 +22,15 @@ namespace ISS_BACK.Model
 
         public DbSet<User> Users { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
-        public DbSet<EquipmentAppointment> EquipmentsAppointments { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<PriceList> PriceLists { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<RequiredEquipment> RequiredEquipments { get; set; }
         public DbSet<WorkingHour> WorkingHours { get; set; }
-
         public DbSet<OpticianAppointment> OpticianAppointments { get; set; }
         public DbSet<RequairedMaterial> RequairedMaterials { get; set; }
-
-
-
-
-
-
-
+        public DbSet<EquipmentAppointment> EquipmentsAppointments { get; set; }
+        public DbSet<AppForEquipment> AppForEquipments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

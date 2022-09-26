@@ -11,11 +11,14 @@ namespace ISS_BACK.Repository
         IEnumerable<OpticianAppointment> GetAllByOptician(long id);
         public IEnumerable<OpticianAppointment> GetTodayByOptician(User id);
             public IEnumerable<OpticianAppointment> GetPreviousByOptician(User id);
+        public IEnumerable<OpticianAppointment> GetAllFinished(string term);
 
         IEnumerable<OpticianAppointment> GetAll(string term);
         IEnumerable<OpticianAppointment> GetAllPrevious(string term);
 
         IEnumerable<OpticianAppointment> GetAllToday(string term);
+        IEnumerable<OpticianAppointment> GetAllCanceled(string term);
+
 
         IEnumerable<OpticianAppointment> GetAllFuture(string term);
         IEnumerable<OpticianAppointment> GetAllPreviousByOptician(string term, long id);
@@ -30,6 +33,7 @@ namespace ISS_BACK.Repository
         OpticianAppointment GetById(long id);
 
         IEnumerable<OpticianAppointment> GetAllByDate(DateTime date);
+
 
     }
 }

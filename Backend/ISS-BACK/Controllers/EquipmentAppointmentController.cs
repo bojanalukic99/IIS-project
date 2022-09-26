@@ -37,11 +37,7 @@ namespace ISS_BACK.Controllers
             return Ok(equipmentAppointmentService.GetAllByEquipment(id));
         }
 
-        [HttpPost("add")]
-        public virtual IActionResult AddAppointment(EquipmentAppointment appointment)
-        {
-            return Ok(equipmentAppointmentService.AddAppointment(appointment));
-        }
+    
     }
 
 

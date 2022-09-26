@@ -8,8 +8,8 @@ namespace ISS_BACK.Service
 {
     public interface IRequiredEquipmentService
     {
-        IEnumerable<RequiredEquipment> GetAllByEquipment(Equipment id);
-        IEnumerable<RequiredEquipment> GetAllByProduct(Product id);
+        IEnumerable<RequiredEquipment> GetAllByEquipment(long id);
+        IEnumerable<RequiredEquipment> GetAllByProduct(long id);
 
         RequiredEquipment AddRequiredEquipment(RequiredEquipment requiredEquipment, long productId, int equipmentId);
     }

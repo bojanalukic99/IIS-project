@@ -8,6 +8,6 @@ namespace ISS_BACK.Repository
 {
     public interface IPriceListRepository : IBaseRepository<PriceList>
     {
-        IEnumerable<PriceList> GetAll();
+        IEnumerable<PriceList> GetAll(string term);
     }
 }

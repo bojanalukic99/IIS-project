@@ -9,7 +9,7 @@ namespace ISS_BACK.Service
 {
     public interface IPriceListService
     {
-        public IEnumerable<PriceList> GetAll();
+        public IEnumerable<PriceList> GetAll(string term);
 
         PriceList Add(long productId, DateTime date);
     }

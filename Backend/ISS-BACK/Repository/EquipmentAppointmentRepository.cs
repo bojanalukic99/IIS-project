@@ -1,4 +1,5 @@
 ﻿using ISS_BACK.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace ISS_BACK.Repository
 
         public IEnumerable<EquipmentAppointment> GetAllByEquipment(Equipment id)
         {
-            return ApplicationContext.EquipmentsAppointments.Where(x => !x.Deleted && x.Equipment == id).ToList();
+            return ApplicationContext.EquipmentsAppointments.Include(x => x.Equipment).Include(x => x.OpticianAppointment).Where(x => !x.Deleted && x.Equipment.Equipment == id).ToList();
+        }
+        public IEnumerable<EquipmentAppointment> GetAllByProduct(long id)
+        {
+            return ApplicationContext.EquipmentsAppointments.Include(x => x.Equipment).Include(x => x.OpticianAppointment).Where(x => !x.Deleted && x.OpticianAppointment.Product.Id == id).ToList();
         }
 
-   
     }
 }
 

@@ -10,5 +10,6 @@ namespace ISS_BACK.Model
         public string Name { get; set; }
         public int Quatity { get; set; }
         public string Manufacturer { get; set; }
+        public string UnitOfMeasure { get; set; }
     }
 }

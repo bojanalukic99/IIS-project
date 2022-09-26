@@ -10,7 +10,7 @@ namespace ISS_BACK.Service
     {
         IEnumerable<EquipmentAppointment> GetAllByEquipment(Equipment id);
         bool Update(long id, EquipmentAppointment appointment);
-        EquipmentAppointment AddAppointment(EquipmentAppointment appointment);
+        EquipmentAppointment AddAppointment(RequiredEquipment equipment, OpticianAppointment opticianAppointment);
 
     }
 }

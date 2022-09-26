@@ -9,6 +9,6 @@ namespace ISS_BACK.Model
     {
         public Product Product { get; set; }
         public Equipment Equipment { get; set; }
-        public float MakingTime { get; set; }
+        public int MakingTime { get; set; }
     }
 }

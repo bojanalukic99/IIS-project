@@ -22,5 +22,7 @@ namespace ISS_BACK.Model
         public string DistanceBetweenPupils { get; set; }
 
         public string LensColor { get; set; }
+        public bool IsPickedUp { get; set; }
+        public bool IsCanceled { get; set; }
     }
 }

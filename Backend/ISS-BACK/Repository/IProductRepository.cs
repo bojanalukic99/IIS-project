@@ -10,5 +10,12 @@ namespace ISS_BACK.Repository
     {
         IEnumerable<Product> GetAll(string term);
         Product GetById(int id);
+        IEnumerable<Product> GetSunglasses(string term);
+        IEnumerable<Product> GetFrames(string term);
+
+        IEnumerable<Product> GetSoft(string term);
+
+        IEnumerable<Product> GetHard(string term);
+
     }
 }

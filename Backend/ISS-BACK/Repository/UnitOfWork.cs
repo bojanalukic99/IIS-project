@@ -17,7 +17,6 @@ namespace ISS_BACK.Repository
     
             _context = context;
             Users = new UserRepository(_context);
-            EquipmentAppointments = new EquipmentAppointmentRepository(_context);
             Equipments= new EquipmentRepository(_context);
             Materials = new MaterialRepository(_context);
             OpticianAppointments = new OpticianAppointmentRepository(_context);
@@ -27,10 +26,11 @@ namespace ISS_BACK.Repository
             WorkingHours = new WorkinHourRepository(_context);
             EyeDetails = new EyeDetailsRepository(_context);
             RequairedMaterials = new RequairedMaterialRepository(_context);
+            EquipmentAppointments = new EquipmentAppointmentRepository(_context);
+            AppForEquipments = new AppForEquipmentRepository(_context);
         }
 
         public IUserRepository Users { get; private set; }
-        public IEquipmentAppointmentRepository EquipmentAppointments { get; private set; }
         public IEquipmentRepository Equipments { get; private set; }
         public IMaterialRepository Materials{ get; private set; }
         public IOpticianAppointmentRepository OpticianAppointments { get; private set; }
@@ -41,6 +41,9 @@ namespace ISS_BACK.Repository
 
         public IEyeDetailsRepository EyeDetails { get; private set; }
         public IRequairedMaterialRepository RequairedMaterials { get; private set; }
+        public IEquipmentAppointmentRepository EquipmentAppointments { get; private set; }
+
+        public IAppForEquipmentRepository AppForEquipments { get; set; }
 
 
         public IBaseRepository<TEntity> GetRepository<TEntity>() where TEntity : class

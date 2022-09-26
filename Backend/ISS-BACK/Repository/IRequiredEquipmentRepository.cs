@@ -8,7 +8,7 @@ namespace ISS_BACK.Repository
 {
     public interface IRequiredEquipmentRepository : IBaseRepository<RequiredEquipment>
     {
-        IEnumerable<RequiredEquipment> GetAllByEquipment(Equipment id);
-        IEnumerable<RequiredEquipment> GetAllByProduct(Product id);
+        IEnumerable<RequiredEquipment> GetAllByEquipment(long id);
+        IEnumerable<RequiredEquipment> GetAllByProduct(long id);
     }
 }

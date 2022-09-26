@@ -19,6 +19,49 @@ namespace ISS_BACK.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ISS_BACK.Model.AppForEquipment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("EquipmentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("OpticianId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("StartTimeHoure")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartTimeMinute")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.HasIndex("OpticianId");
+
+                    b.ToTable("AppForEquipments");
+                });
+
             modelBuilder.Entity("ISS_BACK.Model.Equipment", b =>
                 {
                     b.Property<long>("Id")
@@ -62,11 +105,8 @@ namespace ISS_BACK.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<float>("Duration")
-                        .HasColumnType("real");
-
-                    b.Property<float>("EndTime")
-                        .HasColumnType("real");
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
                     b.Property<long?>("EquipmentId")
                         .HasColumnType("bigint");
@@ -77,24 +117,17 @@ namespace ISS_BACK.Migrations
                     b.Property<long?>("OpticianAppointmentId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OpticianId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("StartHoure")
+                        .HasColumnType("int");
 
-                    b.Property<long?>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.Property<float>("StartTime")
-                        .HasColumnType("real");
+                    b.Property<int>("StartMinut")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EquipmentId");
 
                     b.HasIndex("OpticianAppointmentId");
-
-                    b.HasIndex("OpticianId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("EquipmentsAppointments");
                 });
@@ -166,6 +199,9 @@ namespace ISS_BACK.Migrations
                     b.Property<int>("Quatity")
                         .HasColumnType("int");
 
+                    b.Property<string>("UnitOfMeasure")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Materials");
@@ -198,6 +234,12 @@ namespace ISS_BACK.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsCanceled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPickedUp")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsScheduled")
                         .HasColumnType("bit");
@@ -360,8 +402,8 @@ namespace ISS_BACK.Migrations
                     b.Property<long?>("EquipmentId")
                         .HasColumnType("bigint");
 
-                    b.Property<float>("MakingTime")
-                        .HasColumnType("real");
+                    b.Property<int>("MakingTime")
+                        .HasColumnType("int");
 
                     b.Property<long?>("ProductId")
                         .HasColumnType("bigint");
@@ -467,9 +509,24 @@ namespace ISS_BACK.Migrations
                     b.ToTable("WorkingHours");
                 });
 
-            modelBuilder.Entity("ISS_BACK.Model.EquipmentAppointment", b =>
+            modelBuilder.Entity("ISS_BACK.Model.AppForEquipment", b =>
                 {
                     b.HasOne("ISS_BACK.Model.Equipment", "Equipment")
+                        .WithMany()
+                        .HasForeignKey("EquipmentId");
+
+                    b.HasOne("ISS_BACK.Model.User", "Optician")
+                        .WithMany()
+                        .HasForeignKey("OpticianId");
+
+                    b.Navigation("Equipment");
+
+                    b.Navigation("Optician");
+                });
+
+            modelBuilder.Entity("ISS_BACK.Model.EquipmentAppointment", b =>
+                {
+                    b.HasOne("ISS_BACK.Model.RequiredEquipment", "Equipment")
                         .WithMany()
                         .HasForeignKey("EquipmentId");
 
@@ -477,21 +534,9 @@ namespace ISS_BACK.Migrations
                         .WithMany()
                         .HasForeignKey("OpticianAppointmentId");
 
-                    b.HasOne("ISS_BACK.Model.User", "Optician")
-                        .WithMany()
-                        .HasForeignKey("OpticianId");
-
-                    b.HasOne("ISS_BACK.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
                     b.Navigation("Equipment");
 
-                    b.Navigation("Optician");
-
                     b.Navigation("OpticianAppointment");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ISS_BACK.Model.OpticianAppointment", b =>
