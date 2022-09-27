@@ -7,6 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppPreviewComponent } from '../app-preview/app-preview.component';
 import {Location} from '@angular/common';
+import { addMinutes } from 'date-fns';
 
 @Component({
   selector: 'app-add-app-details',
@@ -91,6 +92,7 @@ export class AddAppDetailsComponent implements OnInit {
   patientVar = 0;
   patients: any;
   selectedPatient: any;
+  makingTime: any;
   glasses = false;
   displayedColumns: string[] = ['Date', 'Time','Optician','Schedule'];
 
@@ -115,8 +117,11 @@ export class AddAppDetailsComponent implements OnInit {
       if(response.productType == 0 || response.productType == 1){
           this.glasses=true;
       }
+      this.makingTime = response.makingTime;
 
       console.log(response)
+
+
 
 });
 
@@ -163,6 +168,9 @@ export class AddAppDetailsComponent implements OnInit {
     this.opticianName = data.optician.firstName;
     this.opticianLastName = data.optician.lastName;
     console.log(this.appointmentDate)
+    this.predictTime = addMinutes(new Date(data.date), this.makingTime)
+    //this.predictTime.setMinutes(this.predictTime.getTime + this.makingTime)
+    console.log(this.predictTime)
   }
 
 
@@ -218,10 +226,11 @@ export class AddAppDetailsComponent implements OnInit {
   openAlertDialog() {
     const dialogRef = this.dialog.open(AppPreviewComponent,{
       data:{
-        message: 'You have successfully made an appointment! Predicted time of finished product is',
+        message: 'You have successfully made an appointment! Predicted time of finished product is ',
         buttonText: {
           cancel: 'DONE'
-        }
+        },
+        predictTime: this.predictTime
       },
     });
   }

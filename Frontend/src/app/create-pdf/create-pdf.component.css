@@ -9,7 +9,95 @@
     background: #817482;
     height: 100%;
 }
+.par{
 
+    align-items: center;
+    justify-content: center;
+    color: #263047;
+    margin-top: -45px;
+    margin-left: 150px;
+    margin-bottom: 60px;
+    font-size: 17px;
+  }
+  .par1{
+
+    align-items: center;
+    justify-content: center;
+    color: #263047;
+    margin-top: -45px;
+    margin-left: 300px;
+    margin-bottom: 30px;
+    font-size: 17px;
+  }
+  .left{
+
+    align-items: center;
+    justify-content: center;
+    color: #263047;
+    margin-top: -45px;
+    margin-left: 170px;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  
+  .left2{
+
+    align-items: center;
+    justify-content: center;
+    color: #263047;
+    margin-top: -45px;
+    margin-left: 280px;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  .left3{
+
+    align-items: center;
+    justify-content: center;
+    color: #263047;
+    margin-top: -45px;
+    margin-left: 220px;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+.logo{
+    background-image: url(Images/eye2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 80px;
+    height: 80px;
+    background-position: center;
+    position: absolute;
+    margin-left: 650px;
+    margin-top: -100px;
+}
+
+.back {
+    background: #b51d1d;
+    border: #b51d1d;
+    color: white;
+    font-size: 15px;
+    width: 80px;
+    height: 40px;
+    margin-left: 430px;
+    margin-top: 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  }
+  .convert {
+    background: #0b296c;
+    border: #0b296c;
+    color: white;
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  }
 .mat-form-field {
     display: block;
 }
@@ -22,10 +110,16 @@ mat-card {
 .title {
     font-style: italic;
     font-size: 20;
-    width: 20%;
+    width: 40%;
     margin: 0 auto;
+    height: 80px;
+    
+    color: #0b296c;
+    margin-top: -10px;
 }
-
+.h2{
+    color: #0b296c;
+}
 .navbar {
     justify-content: space-between;
     ;

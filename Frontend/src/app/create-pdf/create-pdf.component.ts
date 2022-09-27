@@ -4,6 +4,10 @@ import html2canvas from 'html2canvas';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Location} from '@angular/common';
+import { th } from 'date-fns/locale';
+import { addMinutes } from 'date-fns';
+
 @Component({
   selector: 'app-create-pdf',
   templateUrl: './create-pdf.component.html',
@@ -13,16 +17,36 @@ export class CreatePdfComponent implements OnInit {
 
  
   form: any;
+  user:any;
   appointments: any;
   date: any;
+  appId: any;
+  app: any;
+  glasses = false;
+  predictTime = new Date();
   displayedColumns: string[] = ['Optician', 'Date', 'Product'];
+  optician= false;
 
-  constructor(private formBuilder: FormBuilder, private api : ApiService, private activatedRoute: ActivatedRoute, private router: Router) 
+  constructor(private location: Location,private formBuilder: FormBuilder, private api : ApiService, private activatedRoute: ActivatedRoute, private router: Router) 
   {
+    this.user = this.api.getUserFromLocalstorage();
 
-    this.form = this.formBuilder.group({
-      date: ['', Validators.required]
-    }); 
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.appId = params['id'];
+
+    });
+
+
+    this.api.getAppointmentsById({id: this.appId}).subscribe((response: any)=> {
+        this.app = response;
+        this.predictTime = addMinutes(new Date(response.date), response.product.makingTime)
+
+
+        if(this.app.product.productType == 0 || this.app.product.productType == 1){
+          this.glasses = true;
+        }
+    });
+
  
   }
 
@@ -42,7 +66,18 @@ export class CreatePdfComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.api.getCurrentUser().subscribe((response2: any) => {
 
+      console.log(response2);
+
+     localStorage.setItem('user', JSON.stringify(response2))
+
+     this.user = this.api.getUserFromLocalstorage();
+
+      if(this.user.userType === 2){
+        this.optician = true
+      }
+    }); 
   }
 
   onSubmit(){
@@ -51,4 +86,12 @@ export class CreatePdfComponent implements OnInit {
       this.appointments = response;
     })
   }
-  }
+
+  back(){
+    this.location.back()
+   }
+  
+   done(){
+    this.location.back()
+   }
+}

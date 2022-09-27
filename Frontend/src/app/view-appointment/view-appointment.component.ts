@@ -55,7 +55,7 @@ export class ViewAppointmentComponent implements OnInit {
   user:any;
   highlightedRows = [];
   appointment:any;
-  displayedColumns: string[] = ['Name', 'Manufacturer','Quatity', 'ADD'];
+  displayedColumns: string[] = ['Name', 'Manufacturer','UnitOfMesure','Quatity', 'ADD'];
   appointmentId : any;
 
   productName: any;
@@ -157,6 +157,11 @@ export class ViewAppointmentComponent implements OnInit {
       this.appointment = response;
 
       this.form = this.formBuilder.group({
+        product: [response.product.name],
+        date: [response.date],
+        time: [response.data.getTime],
+        typeofGlasses: [response.typeOfGlass],
+        distanceBetweenPupils: [response.distanceBetweenPupils],
         comment: [response.comment]
       });
     })

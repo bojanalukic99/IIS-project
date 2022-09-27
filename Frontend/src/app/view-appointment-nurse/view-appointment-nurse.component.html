@@ -20,23 +20,25 @@
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
             </mat-list-item>
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-                <a mat-list-item href="/nurse-home-page">Home page</a>
-                <a mat-list-item href="/edit-user">Edit profile</a>
-                 <a mat-list-item href="/product-view">Products</a>
-                 <a mat-list-item href="/priceList">Price list</a>
-                <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-                  <span class="full-width" *ngIf="isExpanded || isShowing">Optician appointments</span>
-                  <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-                </mat-list-item>
-                <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-                  <a mat-list-item  href="/view-app-seller">All</a>
-                  <a mat-list-item href="/appSellerPrevious">Previous</a>
-                  <a mat-list-item href="/appSellerToday">Today</a>
-                  <a mat-list-item href="/appSellerFuture">Future</a>
-                </div>
-                <a mat-list-item href="/home-page">Logout</a>
-    
+              <a mat-list-item href="/nurse-home-page">Home page</a>
+              <a mat-list-item href="/edit-user">Edit profile</a>
+               <a mat-list-item href="/product-view">Products</a>
+               <a mat-list-item href="/priceList">Price list</a>
+              <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                <span class="full-width" *ngIf="isExpanded || isShowing">Optician appointments</span>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+              </mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                <a mat-list-item  href="/view-app-seller">All</a>
+                <a mat-list-item href="/appSellerPrevious">Previous</a>
+                <a mat-list-item href="/appSellerToday">Today</a>
+                <a mat-list-item href="/appSellerFuture">Future</a>
+                <a mat-list-item href="/all-canceled">Canceled</a>
+  
               </div>
+              <a mat-list-item href="/home-page">Logout</a>
+  
+            </div>
           </mat-nav-list>
           <mat-nav-list>
       </mat-nav-list>

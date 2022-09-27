@@ -218,12 +218,19 @@ span {
     background: #0b296c;
     color: white;
     font-size: 15px;
-    width: 80px;
-    height: 40px;
-    margin-left: 30px;
-    margin-top: 15px;
+    width: 120px;
+    height: 50px;
+    margin-left: 70px;
 border-radius: 5px;
-margin-bottom: 5px;
+  }
+  .finish {
+    background: #3cc347;
+    color: white;
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+    margin-left: 230px;
+border-radius: 5px;
   }
   .back {
     background: #b51d1d;
@@ -231,11 +238,10 @@ margin-bottom: 5px;
     color: white;
     font-size: 15px;
     width: 80px;
-    height: 40px;
+    height: 50px;
     margin-left: 30px;
     margin-top: 15px;
   border-radius: 5px;
-  margin-bottom: 5px;
   }
 ::ng-deep th.mat-header-cell{
     width: 140px;

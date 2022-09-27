@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import {Location} from '@angular/common';
 import { th } from 'date-fns/locale';
+import { addMinutes } from 'date-fns';
 
 @Component({
   selector: 'app-seller-details',
@@ -37,6 +38,7 @@ export class SellerDetailsComponent implements OnInit {
   finished: any;
   glasses= false;
   optician= false;
+  predictTime = new Date();
 
 
   constructor(private location: Location, private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private activatedRoute: ActivatedRoute,) { 
@@ -48,8 +50,10 @@ export class SellerDetailsComponent implements OnInit {
     });
 
 
-    this.apiService.getAppointmentsById({id: this.appId}).subscribe((response)=> {
+    this.apiService.getAppointmentsById({id: this.appId}).subscribe((response : any)=> {
         this.app = response;
+        this.predictTime = addMinutes(new Date(response.date), response.product.makingTime)
+
         if(this.app.isScheduled == true){
           this.finished= 'YES!'
         }
@@ -60,6 +64,7 @@ export class SellerDetailsComponent implements OnInit {
         if(this.app.product.productType == 0 || this.app.product.productType == 1){
           this.glasses = true;
         }
+
     });
 
     this.form = this.formBuilder.group({
@@ -86,6 +91,10 @@ export class SellerDetailsComponent implements OnInit {
 
  back(){
   this.location.back()
+ }
+
+ report(){
+  this.router.navigate(['/create-pdf'], {queryParams: {id: this.appId}});
  }
 
  done(){

@@ -1,5 +1,5 @@
 <mat-dialog-content>
-    {{message}}
+    {{message}}: {{predictTime |  date:"yyyy"}}-{{predictTime |  date:"MM"}}-{{predictTime |  date:"dd"}}  {{predictTime |  date:"HH:mm"}}
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>

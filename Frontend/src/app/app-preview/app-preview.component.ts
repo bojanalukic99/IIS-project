@@ -9,11 +9,13 @@ import { MatDialogRef, MatDialog,  MAT_DIALOG_DATA } from '@angular/material/dia
 export class AppPreviewComponent implements OnInit {
   message: string = ""
   cancelButtonText = "Cancel"
+  predictTime = new Date();
 
   constructor( private location: Location, @Inject(MAT_DIALOG_DATA) private data: any,  private dialogRef: MatDialogRef<AppPreviewComponent>) { 
 
     if (data) {
       this.message = data.message || this.message;
+      this.predictTime = data.predictTime;
       if (data.buttonText) {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
       }

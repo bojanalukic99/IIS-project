@@ -1,40 +1,89 @@
-<div>
-    <input type="button" value="Convert" (click)="captureScreen()"/>
-</div>
+
   <div id="contentToConvert">
-    <h2 class="title">Appointments by month</h2>
-    <mat-card>
-        <div>
-            <mat-card>
-                <mat-card-content>
-                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                        <mat-form-field>
-                            <input matInput placeholder="Date" formControlName="date" required>
-                        </mat-form-field>   
-                        <button mat-raised-button color="primary">Find</button>            
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </mat-card> 
-<mat-card>
-    <div>
-        <mat-table mat-table [dataSource]="appointments" class="mat-elevation-z8">
-            <ng-container matColumnDef="Optician">
-               <th mat-header-cell *matHeaderCellDef>Optician</th>
-               <td mat-cell *matCellDef="let appointment">{{appointment.optician.firstName}} {{appointment.optician.lastName}}</td>
-             </ng-container>
-              <ng-container matColumnDef="Date">
-               <th mat-header-cell *matHeaderCellDef>Date</th>
-               <td mat-cell *matCellDef="let appointment">{{appointment.date}}</td>
-             </ng-container>  
-             <ng-container matColumnDef="Product">
-                <th mat-header-cell *matHeaderCellDef>Appointment</th>
-                <td mat-cell *matCellDef="let appointment">{{appointment.product.name}}</td>
-              </ng-container>   
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-       </mat-table>
+    
+    <div class="logo">
+        
     </div>
+    <mat-card>  
+        <p>Contact: +381 568 785</p>
+        <p>Email: optica@gmail.com</p>
+        <p>Address: Milana Milovanovica 53a</p>       
+        <h2 class="logo">OPTICA</h2>
+        <h2 class="title">APPOINTMENT REPORT</h2>
+          <div class="leftSide">
+                <h2>Product : </h2> <p class="par">{{app.product.name}}</p>
+                <h2>Date : </h2> <p class="par">{{app.date |  date:"yyyy"}}-{{app.date |  date:"MM"}}-{{app.date|  date:"dd"}}</p>
+
+                <h2>Time :</h2> <p class="par"> {{app.date | date:"HH:mm"}}</p>
+
+                <h2>Left eye :</h2>
+                <p class="par">Diopter: {{app.leftEye.diopter}}</p>
+                <p class="par">Astigmatism: {{app.leftEye.astigmatism}}</p>
+                <p class="par">Addition for reading: {{app.leftEye.additionForReading}}</p>
+
+                <h2>Right eye :</h2>
+               <p class="par">Diopter: {{app.rightEye.diopter}}</p>
+               <p class="par">Astigmatism: {{app.rightEye.astigmatism}}</p>
+               <p class="par">Addition for reading: {{app.rightEye.additionForReading}}</p>
+
+               <h2>Type of glass : </h2> <p class="left">{{app.typeOfGlass}}</p>
+
+               <h2>Distance between pupils :</h2> <p class="left2"> {{app.distanceBetweenPupils}}</p>     
+              </div>
+              <div class="rightSide">
+               <h2>Customer :</h2>
+                <p class="par">Name: {{app.patientName}}</p>
+                <p class="par">Email: {{app.email}}</p>
+                <p class="par">Phone: {{app.phone}}</p> 
+                
+                <h2>Optician comment : </h2>
+                <p class="left3"> {{app.comment}}</p> 
+
+                <br>
+                <h2>Predicted time when the product will be ready:</h2>
+                <h2>Date: {{predictTime |  date:"yyyy"}}-{{predictTime |  date:"MM"}}-{{predictTime |  date:"dd"}}   </h2>
+                <h2>Time: {{predictTime |  date:"HH:mm"}}</h2>
+                   
+               </div>
+      
+      <div *ngIf="!glasses" class="example-sidenav-content">
+        <h2>Product : </h2> <p class="par">{{app.product.name}}</p>
+        <h2>Date : </h2> <p class="par">{{app.date |  date:"yyyy"}}-{{app.date |  date:"MM"}}-{{app.date|  date:"dd"}}</p>
+
+        <h2>Time :</h2> <p class="par"> {{app.date | date:"HH:mm"}}</p>
+
+        <h2>Left eye :</h2>
+        <p class="par">Lens power: {{app.leftEye.lensPower}}</p>
+        <p class="par">Cylinder: {{app.leftEye.cylinder}}</p>
+        <p class="par">Axis figure: {{app.leftEye.axisFigure}}</p>
+        <p class="par">Addition figure: {{app.leftEye.additionFigure}}</p>
+
+        <h2>Right eye :</h2>
+        <p class="par">Lens power: {{app.rightEye.lensPower}}</p>
+        <p class="par">Cylinder: {{app.rightEye.cylinder}}</p>
+        <p class="par">Axis figure: {{app.rightEye.axisFigure}}</p>
+        <p class="par">Addition figure: {{app.rightEye.additionFigure}}</p>
+
+       <h2>Type of glass: </h2> <p class="left">{{app.lensColor}}</p>
+<div class="rightSide">
+       <h2>Customer :</h2>
+        <p class="par">Name: {{app.patientName}}</p>
+        <p class="par">Email: {{app.email}}</p>
+        <p class="par">Phone: {{app.phone}}</p>  
+        <br>
+        <h2>Optician comment : </h2>
+                <p class="left3"> {{app.comment}}</p> 
+                <p class="line">__________________________________________________</p>
+
+                <br>
+                <h2>Predicted time when the product will be ready:</h2>
+                <h2>Date: {{predictTime |  date:"yyyy"}}-{{predictTime |  date:"MM"}}-{{predictTime |  date:"dd"}}   </h2>
+                <h2>Time: {{predictTime |  date:"HH:mm"}}</h2>
+      </div>
+       </div>
+       
  </mat-card>
+ 
   </div>
+  <button (click)="back()" class="back">BACK</button> 
+ <button class="convert" (click)="captureScreen()">DOWNLOAD</button> 

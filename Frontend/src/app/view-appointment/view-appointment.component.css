@@ -22,7 +22,7 @@
     margin-right: 50px;
     color: white;
     font-size: 18px;
-    left: 710px;
+    left: 910px;
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -83,6 +83,7 @@ margin-bottom: 5px;
     margin: 6px;
     margin-top: -270px;
     padding: 8px;
+    border: solid #0b296c;
 }
 
 .page2 h2{
@@ -106,6 +107,8 @@ margin-bottom: 5px;
     margin: 6px;
     margin-top: -270px;
     padding: 8px;
+    border: solid #0b296c;
+
 }
 
 .page h2{
@@ -145,6 +148,8 @@ margin-bottom: 5px;
     margin: 6px;
     margin-top: -270px;
     padding: 8px;
+    border: solid #0b296c;
+
 }
 
 .pageLeft p{
@@ -177,6 +182,7 @@ margin-bottom: 5px;
     letter-spacing: 1px;
     margin-top: 100px;
     font-family: sans-serif;
+
 }
 
 .pageRight{
@@ -189,6 +195,8 @@ margin-bottom: 5px;
     margin: 6px;
     margin-top: -270px;
     padding: 8px;
+    border: solid #0b296c;
+
 }
 
 .pageRight p{
@@ -209,10 +217,16 @@ margin-bottom: 5px;
 }
 .mat-table {
     font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 10%;
-    margin-left: 30px;
+    width: 90%;
+    margin-left: 60px;
     margin-top: 30px;
+    border-top: solid #0b296c;
+    border-bottom: solid #0b296c;
+    border-right: solid #0b296c;
+
+    border-left: solid #0b296c;
+
+
   }
 
   .mat-table a {
@@ -220,7 +234,6 @@ margin-bottom: 5px;
   }
   
   td, th {
-    border: 0px solid #142e69;
     text-align: left;
     padding: 10px;
     color: #000;
@@ -236,7 +249,7 @@ margin-bottom: 5px;
     margin-top: 200px;
 }
   .materialView{
-    margin-left: 800px;
+    margin-left: 900px;
     margin-top: -180px;
     color: #0b296c;
   }
@@ -335,6 +348,7 @@ mat-card {
 .title {
     font-style: italic;
     font-size: 20;
+    margin-top: 50px;
     text-align: center;
     color: #142e69;
 }

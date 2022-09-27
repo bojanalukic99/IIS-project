@@ -16,23 +16,25 @@
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
             </mat-list-item>
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-                <a mat-list-item href="/nurse-home-page">Home page</a>
-                <a mat-list-item href="/edit-user">Edit profile</a>
-                 <a mat-list-item href="/product-view">Products</a>
-                 <a mat-list-item href="/priceList">Price list</a>
-                <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-                  <span class="full-width" *ngIf="isExpanded || isShowing">Optician appointments</span>
-                  <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-                </mat-list-item>
-                <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-                  <a mat-list-item  href="/view-app-seller">All</a>
-                  <a mat-list-item href="/appSellerPrevious">Previous</a>
-                  <a mat-list-item href="/appSellerToday">Today</a>
-                  <a mat-list-item href="/appSellerFuture">Future</a>
-                </div>
-                <a mat-list-item href="/home-page">Logout</a>
-    
+              <a mat-list-item href="/nurse-home-page">Home page</a>
+              <a mat-list-item href="/edit-user">Edit profile</a>
+               <a mat-list-item href="/product-view">Products</a>
+               <a mat-list-item href="/priceList">Price list</a>
+              <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                <span class="full-width" *ngIf="isExpanded || isShowing">Optician appointments</span>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+              </mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                <a mat-list-item  href="/view-app-seller">All</a>
+                <a mat-list-item href="/appSellerPrevious">Previous</a>
+                <a mat-list-item href="/appSellerToday">Today</a>
+                <a mat-list-item href="/appSellerFuture">Future</a>
+                <a mat-list-item href="/all-canceled">Canceled</a>
+  
               </div>
+              <a mat-list-item href="/home-page">Logout</a>
+  
+            </div>
           </mat-nav-list>
           <mat-nav-list>
       </mat-nav-list>
@@ -67,7 +69,7 @@
                <p class="line">__________________________________________________</p>
               </div>
               <div class="rightSide">
-               <h2>Patient -></h2>
+               <h2>Customer -></h2>
                 <p class="par">Name: {{app.patientName}}</p>
                 <p class="par">Email: {{app.email}}</p>
                 <p class="par">Phone: {{app.phone}}</p>  
@@ -80,9 +82,19 @@
                 <br>
 
                 <h2>Is product finished?</h2> <p class="left3"> {{finished}}</p>
+                <div *ngIf="optician && !finished">
+                  <button class="finish" (click)="finish()">FINISH</button>
+                </div>
                 <p class="line">__________________________________________________</p>
 
+                <h2>Predicted time when the product will be ready:</h2>
+                <h2>Date: {{predictTime |  date:"yyyy"}}-{{predictTime |  date:"MM"}}-{{predictTime |  date:"dd"}} </h2>
+               <h2>Time:    {{predictTime |  date:"HH:mm"}}</h2>
+               <p class="line">__________________________________________________</p>
+        
                 <button (click)="back()" class="back">BACK</button>
+                <button (click)="report()" class="button">DOWNLOAD REPORT</button>  
+
               </div>       
                </div>
       
@@ -112,7 +124,7 @@
        <h2>Type of glass: </h2> <p class="left">{{app.lensColor}}</p>
        <p class="line">__________________________________________________</p>
 <div class="rightSide">
-       <h2>Patient -></h2>
+       <h2>Customer -></h2>
         <p class="par">Name: {{app.patientName}}</p>
         <p class="par">Email: {{app.email}}</p>
         <p class="par">Phone: {{app.phone}}</p>  
@@ -125,12 +137,21 @@
         <br>
 
         <h2>Is product finished?</h2> <p class="left3"> {{finished}}</p>
-        <div *ngIf="optician">
-          <button class="button" (click)="finish()">FINISH</button>
+        <div *ngIf="optician && !finished">
+          <button class="finish" (click)="finish()">FINISH</button>
         </div>
         <p class="line">__________________________________________________</p>
 
-        <button (click)="back()" class="back">BACK</button>  
+        <h2>Predicted time when the product will be ready:</h2>
+        <h2>Date: {{predictTime |  date:"yyyy"}}-{{predictTime |  date:"MM"}}-{{predictTime |  date:"dd"}} </h2>
+       <h2>Time:    {{predictTime |  date:"HH:mm"}}</h2>
+        <p class="line">__________________________________________________</p>
+
+
+
+        <button (click)="back()" class="back">BACK</button> 
+        <button (click)="report()" class="button">DOWNLOAD REPORT</button>  
+ 
       </div>
        </div>
 
