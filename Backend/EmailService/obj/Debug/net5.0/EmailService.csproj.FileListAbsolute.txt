@@ -1,0 +1,5 @@
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\EmailService\obj\Debug\net5.0\EmailService.csproj.AssemblyReference.cache
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\EmailService\obj\Debug\net5.0\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\EmailService\obj\Debug\net5.0\EmailService.AssemblyInfoInputs.cache
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\EmailService\obj\Debug\net5.0\EmailService.AssemblyInfo.cs
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\EmailService\obj\Debug\net5.0\EmailService.csproj.CoreCompileInputs.cache

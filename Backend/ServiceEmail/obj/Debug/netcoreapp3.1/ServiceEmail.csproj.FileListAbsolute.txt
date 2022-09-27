@@ -1,0 +1,10 @@
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\bin\Debug\netcoreapp3.1\ServiceEmail.deps.json
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\bin\Debug\netcoreapp3.1\ServiceEmail.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\bin\Debug\netcoreapp3.1\ServiceEmail.pdb
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.csproj.AssemblyReference.cache
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.AssemblyInfoInputs.cache
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.AssemblyInfo.cs
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.csproj.CoreCompileInputs.cache
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.dll
+C:\Users\lukic\OneDrive\Radna površina\IIS-project\Backend\ServiceEmail\obj\Debug\netcoreapp3.1\ServiceEmail.pdb
