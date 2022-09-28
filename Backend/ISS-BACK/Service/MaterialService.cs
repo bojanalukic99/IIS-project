@@ -30,6 +30,8 @@ namespace ISS_BACK.Service
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
                 material.Name = entity.Name;
                 material.Quatity = entity.Quatity;
+                material.UnitOfMeasure = entity.UnitOfMeasure;
+                material.Manufacturer = entity.Manufacturer;
                 unitOfWork.Materials.Add(material);
                 _ = unitOfWork.Complete();
 
