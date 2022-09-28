@@ -36,6 +36,7 @@ form: FormGroup;
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       manufacturer: ['', Validators.required],
+      unitOfMeasure: ['', Validators.required],
       quatity: ['', Validators.required]
     });
 

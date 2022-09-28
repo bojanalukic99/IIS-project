@@ -30,7 +30,7 @@ export class ProductViewComponent implements OnInit {
   form: any;
   user:any;
   products:any;
-  displayedColumns: string[] = ['Name', 'Type','Price', 'MakingTime', 'Action', 'Edit'];
+  displayedColumns: string[] = ['Name', 'Type','Price', 'MakingTime', 'Action'];
   productId: any
   selectedRow: any;
 

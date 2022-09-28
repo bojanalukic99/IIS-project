@@ -125,7 +125,8 @@ export class ViewAppointmentComponent implements OnInit {
 
     
     this.form = this.formBuilder.group({
-      comment: ['']
+      comment: [''],
+      search: ['']
     });
 
     
@@ -228,7 +229,18 @@ export class ViewAppointmentComponent implements OnInit {
     this.router.navigate(['/appointment-equipment']);
   } 
    
+  onSubmit(){
+     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
+
+  this.apiService.getAllMaterial({
+    term:  search
+  }).subscribe((response : any) => {
+    console.log('aa');
+    console.log(response);
+    this.materials = response  
+  });
+  }
   done(){
     this.apiService.addComment({
       id: this.appointmentId,

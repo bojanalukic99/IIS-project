@@ -85,6 +85,10 @@ export class ApiService {
     return this.http.get(this.url + '/api/equipment/getById/' + data.id, this.generateHeader());
   }
 
+  getEquipmentByProduct(data: any){
+    return this.http.get(this.url + '/api/requieredEquipment/allByProduct/' + data.id, this.generateHeader());
+  }
+
   getAllPatient(){
     return this.http.get(this.url + '/api/user/allPatients', this.generateHeader());
   }

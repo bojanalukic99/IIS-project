@@ -10,6 +10,7 @@ import { AllOpticianFutureComponent } from './all-optician-future/all-optician-f
 import { AllOpticianPreviousComponent } from './all-optician-previous/all-optician-previous.component';
 import { AllOpticianTodayComponent } from './all-optician-today/all-optician-today.component';
 import { AllOpticianComponent } from './all-optician/all-optician.component';
+import { AllRequiredEquipmentComponent } from './all-required-equipment/all-required-equipment.component';
 import { AppPreviewComponent } from './app-preview/app-preview.component';
 import { AppointmentEquipmentComponent } from './appointment-equipment/appointment-equipment.component';
 import { AppointmentMaterialComponent } from './appointment-material/appointment-material.component';
@@ -91,6 +92,7 @@ const routes: Routes = [
   {path: 'comfirm-deleting', component:ComfirmDeletingComponent},
   {path: 'all-canceled', component:CanceledAppComponent},
   {path: 'reschedule', component:RescheduleComponent},
+  {path: 'required-equipment', component: AllRequiredEquipmentComponent},
 
 ]
 @NgModule({

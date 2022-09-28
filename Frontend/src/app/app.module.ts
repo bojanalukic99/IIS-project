@@ -77,6 +77,7 @@ import { ComfirmDeletingComponent } from './comfirm-deleting/comfirm-deleting.co
 import { NotifMaterialComponent } from './notif-material/notif-material.component';
 import { CanceledAppComponent } from './canceled-app/canceled-app.component';
 import { RescheduleComponent } from './reschedule/reschedule.component';
+import { AllRequiredEquipmentComponent } from './all-required-equipment/all-required-equipment.component';
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import { RescheduleComponent } from './reschedule/reschedule.component';
     NotifMaterialComponent,
     CanceledAppComponent,
     RescheduleComponent,
+    AllRequiredEquipmentComponent,
   ],
   imports: [
     BrowserModule,

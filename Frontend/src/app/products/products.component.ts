@@ -8,6 +8,8 @@ import { ApiService } from '../api.service';
 import { EditProductComponent } from '../edit-product/edit-product.component';
 import {Location} from '@angular/common';
 import { ComfirmDeletingComponent } from '../comfirm-deleting/comfirm-deleting.component';
+import { AddRequiredEquipmentComponent } from '../add-required-equipment/add-required-equipment.component';
+import { AllRequiredEquipmentComponent } from '../all-required-equipment/all-required-equipment.component';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -36,7 +38,7 @@ export class ProductsComponent implements OnInit {
   user:any;
   id: any;
   products:any;
-  displayedColumns: string[] = ['Name', 'Type','Price', 'MakingTime', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['Name', 'Type','Price', 'MakingTime', 'Equipment','Edit', 'Delete'];
   productId: any
   selectedRow: any;
 
@@ -95,6 +97,13 @@ export class ProductsComponent implements OnInit {
     this.openAlertDialogDelete();
   }
 
+  link3CLick(id: any){
+    this.openAlertDialogEquipment(id);
+  }
+  link4CLick(id: any){
+    this.openAlertDialogView(id);
+  }
+
   onSubmit(){
     let search = this.form.get('search')?.value ? this.form.get('search')?.value : ''
 
@@ -146,6 +155,87 @@ console.log(this.data.selectedType)
             makingTime: parseInt(this.data.makingTime),    
           }).subscribe((response: any) => {
               this.ngOnInit();
+          })
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+  openAlertDialogEquipment(id: any) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+  
+    dialogConfig.data = {
+        id: 1,
+        title: 'New'
+    };
+  
+    const dialogRef = this.dialog.open(AddRequiredEquipmentComponent,{
+      data:{
+        message: 'Add equipment',
+        buttonText: {
+          cancel: 'DONE'
+        }
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog 
+      switch (res.event) {
+        case "yes-option":
+          var data = res;
+          console.log(data)
+          this.apiService.addRequiredEquipment({
+            productId: id, 
+            equipmentId: parseInt(data.data.equipment), 
+            makingTime: parseFloat(data.data.makingTime),    
+          }).subscribe((response: any) => {
+            this.ngOnInit();
+          })
+          break;
+        case "no-option":
+          console.log('No Clicked');
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  openAlertDialogView(id: any) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+  
+    dialogConfig.data = {
+        id: 1,
+        title: 'New'
+    };
+  
+    const dialogRef = this.dialog.open(AllRequiredEquipmentComponent,{
+      data:{
+        message: 'Add equipment',
+        buttonText: {
+          cancel: 'DONE'
+        },
+        id: id
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // Trigger After Dialog Closed 
+      switch (res.event) {
+        case "yes-option":
+          var data = res;
+          this.apiService.getEquipmentByProduct({
+            id: id
+          }).subscribe((response: any) => {
+            this.ngOnInit();
           })
           break;
         case "no-option":

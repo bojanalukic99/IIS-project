@@ -250,9 +250,13 @@ margin-bottom: 5px;
 }
   .materialView{
     margin-left: 900px;
-    margin-top: -180px;
+    margin-top: -1100px;
+    margin-bottom: 1100px;
     color: #0b296c;
   }
+
+
+
 .pageRight input{
     width: 40px;
     height: 35px;
@@ -283,6 +287,23 @@ margin-bottom: 5px;
     color: #142e69;
     width: 100%;
 }
+
+.inp2{
+    height: 25px;
+    border-bottom: 2px solid #142e69;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    margin-left: 20px;
+    
+    }
+    .spaceLeft{
+        margin-right: 750px;
+        margin-left: 10px;
+        height: 20px;
+        transform: scale(1.5);
+        color:  #142e69;;
+      }
 
 .content .par{
     padding-left: 20px;

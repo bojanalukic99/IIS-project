@@ -221,6 +221,17 @@ margin-bottom: 5px;
 
 }
 
+.view{
+  background: #0b296c;
+  color: white;
+  font-size: 15px;
+  width: 60px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
 
 .back {
   background: #b51d1d;
@@ -256,7 +267,7 @@ margin-bottom: 5px;
   td, th {
     border: 0px solid #142e69;
     text-align: left;
-    padding: 10px;
+    padding: 20px;
     color: #000;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;

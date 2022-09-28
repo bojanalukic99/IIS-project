@@ -160,10 +160,10 @@ export class MaterialViewComponent implements OnInit {
       switch (res.event) {
         case "yes-option":
           this.data = res.data;
-
           this.apiService.createMaterial({
             name: this.data.name,
             manufacturer : this.data.manufacturer,
+            unitOfMeasure: this.data.unitOfMeasure,
             quatity: parseInt(this.data.quatity)
           }).subscribe((response: any) => {
               this.ngOnInit();
