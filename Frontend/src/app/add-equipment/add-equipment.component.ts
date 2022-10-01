@@ -35,7 +35,8 @@ form: FormGroup;
 
     this.dialogRef.updateSize('600px','400px')
     this.form = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: ['', Validators.required],
+      manufacturer: ['', Validators.required]
     });
 
   }

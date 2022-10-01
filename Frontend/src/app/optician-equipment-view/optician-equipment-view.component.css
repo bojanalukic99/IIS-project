@@ -14,15 +14,27 @@
     font-family: Arial;
 }
 .btn{
-    width: 100px;
-    height:  40px;
-    background: #b0b8ca;
-    border: 2px solid #b0b8ca;
-    margin-left: 15px;
-    color: #000;
-    font-size: 18px;
-    border-bottom-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    background: #0b296c;
+    color: white;
+    font-size: 15px;
+    width: 80px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+border-radius: 5px;
+margin-bottom: 5px;
+}
+.back {
+  background: #b51d1d;
+  border: #b51d1d;
+  color: white;
+  font-size: 15px;
+  width: 80px;
+  height: 40px;
+  margin-left: 330px;
+  margin-top: 30px;
+border-radius: 5px;
+margin-bottom: 5px;
 }
 
 .btn:focus{
@@ -208,31 +220,17 @@ span {
     text-align: center;
   }
 
-
-  .back {
-    background: #b51d1d;
-    border: #b51d1d;
-    color: white;
-    font-size: 15px;
-    width: 80px;
-    height: 40px;
-    margin-left: 30px;
-    margin-top: 15px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  }
-
   .button {
     background: #0b296c;
     color: white;
     font-size: 15px;
-    width: 85px;
+    width: 80px;
     height: 40px;
-    margin-left: 30px;
+    margin-left: 330px;
     margin-top: 15px;
 border-radius: 5px;
-margin-bottom: 5px;
-  }
+}
+
 
 ::ng-deep th.mat-header-cell{
     width: 140px;
@@ -243,8 +241,8 @@ margin-bottom: 5px;
 .mat-table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 90%;
-    margin-left: 30px;
+    width: 10%;
+    margin-left: 330px;
     margin-top: 30px;
   }
 

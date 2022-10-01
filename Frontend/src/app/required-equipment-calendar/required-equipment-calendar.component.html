@@ -1,0 +1,151 @@
+<div class="main">
+    <div class="blur">
+     
+      <mat-sidenav-container class="example-container" autosize>
+        <mat-toolbar  class="example-toolbar">
+          <h2>Equipment calendar</h2>         
+        </mat-toolbar>
+        <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+         
+          <mat-nav-list>
+            <button class="space" mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+  
+            <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+              <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+              <mat-icon mat-list-icon>home</mat-icon>
+              <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+            </mat-list-item>
+            <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+              <a mat-list-item href="/optician-home-page">Home page</a>
+              <a mat-list-item href="/edit-user">Edit profile</a>
+               <a mat-list-item href="/view-work-hour">Work hours</a>
+               <a mat-list-item href="/all-equipment">Equipment</a>
+
+              <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+              </mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                <a mat-list-item href="/all-optician">All</a>
+                <a mat-list-item href="/all-optician-previous">Previous</a>
+                <a mat-list-item href="/all-optician-today">Today</a>
+                <a mat-list-item href="/all-optician-future">Future</a>
+              </div>
+              <a mat-list-item href="/home-page">Logout</a>
+  
+            </div>
+          </mat-nav-list>
+          <mat-nav-list>
+      </mat-nav-list>
+      
+        </mat-sidenav>
+        
+      
+    <div class="example-sidenav-content">
+        
+        <div class="row text-center">
+            <div class="col-md-4">
+          
+              <div class="btn-group">
+                <button type="button"
+                  class="btn btn-primary"
+                  mwlCalendarPreviousView
+                  [view]="view"
+                  [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()"
+                >
+                  Previous
+                </button>
+                <button type="button" 
+                  class="btn btn-outline-secondary"
+                  mwlCalendarToday
+                  [(viewDate)]="viewDate"
+                >
+                  Today
+                </button>
+                <button type="button" 
+                  class="btn btn-primary"
+                  mwlCalendarNextView
+                  [view]="view"
+                  [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+            </div>
+            <div class="col-md-4">
+              <div class="btn-group">
+                <button type="button" 
+                  class="btn btn-primary"
+                  (click)="setView(CalendarView.Month)"
+                  [class.active]="view === CalendarView.Month"
+                >
+                  Month
+                </button>
+                <button type="button" 
+                  class="btn btn-primary"
+                  (click)="setView(CalendarView.Week)"
+                  [class.active]="view === CalendarView.Week"
+                >
+                  Week
+                </button>
+                <button type="button" 
+                  class="btn btn-primary"
+                  (click)="setView(CalendarView.Day)"
+                  [class.active]="view === CalendarView.Day"
+                >
+                  Day
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view
+              *ngSwitchCase="CalendarView.Month"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              [activeDayIsOpen]="activeDayIsOpen"
+              (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="eventClicked($event)"
+              (eventTimesChanged)="eventTimesChanged($event)"
+            >
+            </mwl-calendar-month-view>
+            <mwl-calendar-week-view
+              *ngSwitchCase="CalendarView.Week"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              (eventClicked)="eventClicked($event)"
+              (eventTimesChanged)="eventTimesChanged($event)"
+            >
+            </mwl-calendar-week-view>
+            <mwl-calendar-day-view
+              *ngSwitchCase="CalendarView.Day"
+              [viewDate]="viewDate"
+              [events]="events"
+              [dayStartHour]="6"
+              [dayEndHour]="22"
+              [refresh]="refresh"
+              (eventClicked)="eventClicked($event)"
+              (eventTimesChanged)="eventTimesChanged($event)"
+            >
+            </mwl-calendar-day-view>
+          </div>
+          
+          <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+          
+          <br /><br /><br />
+          <button (click)="back()" class="back">BACK</button>
+
+    </div>
+      
+      </mat-sidenav-container>
+     
+  </div>
+  </div>

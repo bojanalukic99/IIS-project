@@ -40,9 +40,7 @@ id: any;
       email: ['', Validators.email],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required ],
-      phone: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      address: ['', Validators.required]
+      phone: ['', Validators.required]
     });
 
     let jsonUser = localStorage.getItem('user');
@@ -63,9 +61,7 @@ id: any;
       email: [response.email, Validators.email],
       firstName: [response.firstName, Validators.required],
       lastName: [response.lastName, Validators.required ],
-      phone: [response.phone, Validators.required],
-      birthDate: [response.birthDate, Validators.required],
-      address: [response.address, Validators.required]
+      phone: [response.phone, Validators.required]
     });
   });  
     this.dialogRef.updateSize('600px','600px')

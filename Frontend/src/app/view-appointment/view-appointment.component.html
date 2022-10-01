@@ -19,6 +19,8 @@
             <a mat-list-item href="/optician-home-page">Home page</a>
             <a mat-list-item href="/edit-user">Edit profile</a>
              <a mat-list-item href="/view-work-hour">Work hours</a>
+             <a mat-list-item href="/all-equipment">Equipment</a>
+
             <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
               <span class="full-width" *ngIf="isExpanded || isShowing">Appointments</span>
               <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>

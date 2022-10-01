@@ -32,10 +32,12 @@ import { MenagerHomePageComponent } from './menager-home-page/menager-home-page.
 import { NewMaterialComponent } from './new-material/new-material.component';
 import { NurseHomePageComponent } from './nurse-home-page/nurse-home-page.component';
 import { OphthalmologistHomePageComponent } from './ophthalmologist-home-page/ophthalmologist-home-page.component';
+import { OpticianEquipmentViewComponent } from './optician-equipment-view/optician-equipment-view.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsComponent } from './products/products.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { RequiredEquipmentCalendarComponent } from './required-equipment-calendar/required-equipment-calendar.component';
 import { RescheduleComponent } from './reschedule/reschedule.component';
 import { SellerAppFutureComponent } from './seller-app-future/seller-app-future.component';
 import { SellerAppPreviousComponent } from './seller-app-previous/seller-app-previous.component';
@@ -93,6 +95,8 @@ const routes: Routes = [
   {path: 'all-canceled', component:CanceledAppComponent},
   {path: 'reschedule', component:RescheduleComponent},
   {path: 'required-equipment', component: AllRequiredEquipmentComponent},
+  {path: 'equipmentAppointment-calendar', component:RequiredEquipmentCalendarComponent},
+  {path: 'all-equipment', component: OpticianEquipmentViewComponent},
 
 ]
 @NgModule({

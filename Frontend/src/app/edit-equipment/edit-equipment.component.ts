@@ -36,14 +36,16 @@ id: any;
     this.id = data.id;
 
     this.form = this.formBuilder.group({
-      name: ['', Validators.email]
+      name: ['', Validators.email],
+      manufacturer: ['', Validators.required]
     });
 
 
     this.api.getEquipmentById({ id: this.id }).subscribe((response: any) => {
 
       this.form = this.formBuilder.group({
-      name: [response.name, Validators.email]
+      name: [response.name, Validators.email],
+      manufacturer: [response.manufacturer, Validators.required]
     });
 
   });  

@@ -78,6 +78,8 @@ import { NotifMaterialComponent } from './notif-material/notif-material.componen
 import { CanceledAppComponent } from './canceled-app/canceled-app.component';
 import { RescheduleComponent } from './reschedule/reschedule.component';
 import { AllRequiredEquipmentComponent } from './all-required-equipment/all-required-equipment.component';
+import { RequiredEquipmentCalendarComponent } from './required-equipment-calendar/required-equipment-calendar.component';
+import { OpticianEquipmentViewComponent } from './optician-equipment-view/optician-equipment-view.component';
 
 
 @NgModule({
@@ -131,6 +133,8 @@ import { AllRequiredEquipmentComponent } from './all-required-equipment/all-requ
     CanceledAppComponent,
     RescheduleComponent,
     AllRequiredEquipmentComponent,
+    RequiredEquipmentCalendarComponent,
+    OpticianEquipmentViewComponent,
   ],
   imports: [
     BrowserModule,

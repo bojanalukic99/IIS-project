@@ -82,7 +82,7 @@ export class AllOpticianPreviousComponent implements OnInit {
   }
 
   Details(data: any){
-    this.router.navigate(['/seller-details'], {queryParams: {id: data}});
+    this.router.navigate(['/view-appointment'], {queryParams: {id: data}});
   }
   back(){
     this.location.back()

@@ -37,7 +37,7 @@ export class EquipmentViewComponent implements OnInit {
   form: any;
   user:any;
   equipments:any;
-  displayedColumns: string[] = ['Name', 'Edit','Delete'];
+  displayedColumns: string[] = ['Name', 'Manufacturer','Edit','Delete'];
   equipmentId: any
   selectedRow: any;
   id: any;
@@ -146,7 +146,8 @@ openAlertDialogDelete() {
           this.data = res.data;
 
           this.apiService.createEquipment({
-            name: this.data.name
+            name: this.data.name,
+            manufacturer: this.data.manufacturer
           }).subscribe((response: any) => {
               this.ngOnInit();
           })
@@ -189,8 +190,8 @@ openAlertDialogDelete() {
 
           this.apiService.editEquipment({
             id: id,
-            name: this.data.name
-            
+            name: this.data.name,
+            manufacturer: this.data.manufacturer
           }).subscribe((response: any) => {
               this.ngOnInit();
           })

@@ -166,6 +166,9 @@ export class ApiService {
   getAllAppointmentsByDate(data: any){
     return this.http.get(this.url + '/api/opticianAppointment/allByDate/' + data.date, this.generateHeader())
   }
+  getEquipmentAppByEquipment(data: any){
+    return this.http.get(this.url + '/api/equipmentAppointment/allByEquipment/' + data.id, this.generateHeader())
+  }
 
   createProduct(data: any){
     return this.http.post(this.url + '/api/product/add', data);

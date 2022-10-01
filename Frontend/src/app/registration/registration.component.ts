@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
 
  
 
-    this.dialogRef.updateSize('600px','700px')
+    this.dialogRef.updateSize('600px','800px')
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
       password: ['', Validators.required],
@@ -46,9 +46,7 @@ export class RegistrationComponent implements OnInit {
       lastName: ['', Validators.required ],
       gender: ['', Validators.required],
       userType: ['', Validators.required],
-      phone: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      address: ['', Validators.required]
+      phone: ['', Validators.required]
     });
   }
 
