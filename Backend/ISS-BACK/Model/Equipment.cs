@@ -8,6 +8,7 @@ namespace ISS_BACK.Model
     public class Equipment : Entity
     {
        public string Name { get; set; }
+        public string Manufacturer { get; set; }
 
     }
 }

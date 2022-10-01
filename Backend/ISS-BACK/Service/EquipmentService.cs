@@ -48,6 +48,7 @@ namespace ISS_BACK.Service
             {
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
                 equipment.Name = entity.Name;
+                equipment.Manufacturer = entity.Manufacturer;
                 unitOfWork.Equipments.Add(equipment);
                 _ = unitOfWork.Complete();
 

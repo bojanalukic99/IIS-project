@@ -32,7 +32,7 @@ namespace ISS_BACK.Controllers
 
 
         [HttpGet("allByEquipment/{id}")]
-        public virtual IActionResult GetAllByEquipment(Equipment id)
+        public virtual IActionResult GetAllByEquipment(long id)
         {
             return Ok(equipmentAppointmentService.GetAllByEquipment(id));
         }

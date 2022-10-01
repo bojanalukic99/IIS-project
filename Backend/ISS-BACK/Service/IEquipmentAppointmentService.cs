@@ -8,7 +8,7 @@ namespace ISS_BACK.Service
 {
     public interface IEquipmentAppointmentService
     {
-        IEnumerable<EquipmentAppointment> GetAllByEquipment(Equipment id);
+        IEnumerable<AppForEquipment> GetAllByEquipment(long id);
         bool Update(long id, EquipmentAppointment appointment);
         EquipmentAppointment AddAppointment(RequiredEquipment equipment, OpticianAppointment opticianAppointment);
 

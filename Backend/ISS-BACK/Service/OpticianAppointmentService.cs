@@ -37,7 +37,7 @@ namespace ISS_BACK.Service
                 int endMinut = endTime.Minute;
                 if (dateStart == equipmentAppointment.Date && equipmentAppointment.Equipment == equipment)
                 {
-                    if (start <= dateEnd.Hour && dateStart.Hour < endHour)
+                    if (!(start <= dateEnd.Hour) && !(dateStart.Hour < endHour))
                     {
                         return false;
                     }
@@ -83,8 +83,11 @@ namespace ISS_BACK.Service
                 while (currentTime <= endTime)
                 {
                     OpticianAppointment appointment = unitOfWord.OpticianAppointments.GetByStartTime(currentTime);
+                    DateTime appointmentStart = appointment.Date;
+                    DateTime appointmentEnd = appointment.Date.AddMinutes(appointment.Product.MakingTime);
+             
 
-                    if (appointment != null)
+                    if (!(currentTime <= appointmentStart) && !(appointmentEnd < currentTime))
                     {
                         currentTime = currentTime.AddMinutes(product.MakingTime);
                         continue;
@@ -172,9 +175,17 @@ namespace ISS_BACK.Service
 
                     if (appointment != null)
                     {
-                        currentTime = currentTime.AddMinutes(product.MakingTime);
-                        continue;
+
+                        DateTime appointmentStart = appointment.Date;
+                        DateTime appointmentEnd = appointment.Date.AddMinutes(appointment.Product.MakingTime);
+                        if (!(currentTime <= appointmentStart) && !(appointmentEnd < currentTime))
+                        {
+                            currentTime = currentTime.AddMinutes(product.MakingTime);
+                            continue;
+                        }
                     }
+
+                   
 
                     if (equipments.Count != 0)
                     {

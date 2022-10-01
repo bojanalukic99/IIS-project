@@ -14,17 +14,17 @@ namespace ISS_BACK.Service
         {
             _logger = logger;
         }
-        public IEnumerable<EquipmentAppointment> GetAllByEquipment(Equipment id)
+        public IEnumerable<AppForEquipment> GetAllByEquipment(long id)
         {
             try
             {
                 using UnitOfWork unitOfWork = new UnitOfWork(new ApplicationContext());
 
-                return unitOfWork.EquipmentAppointments.GetAllByEquipment(id);
+                return unitOfWork.AppForEquipments.GetAllByEquipment(id);
             }
             catch (Exception e)
             {
-                return new List<EquipmentAppointment>();
+                return new List<AppForEquipment>();
             }
         }
 

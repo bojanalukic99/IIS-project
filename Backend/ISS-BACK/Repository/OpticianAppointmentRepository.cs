@@ -104,7 +104,7 @@ namespace ISS_BACK.Repository
 
         public OpticianAppointment GetByStartTime(DateTime startTime)
         {
-            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Where(x => !x.Deleted && x.Date.Year == startTime.Year && x.Date.Day == startTime.Day && x.Date.Hour == startTime.Hour && x.Date.Minute == startTime.Minute).SingleOrDefault();
+            return ApplicationContext.OpticianAppointments.Include(x => x.Optician).Include(x => x.Product).Where(x => !x.Deleted && x.Date.Year == startTime.Year && x.Date.Day == startTime.Day && x.Date.Hour == startTime.Hour && x.Date.Minute == startTime.Minute).SingleOrDefault();
         }
 
 
